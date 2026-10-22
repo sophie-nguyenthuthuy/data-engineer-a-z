@@ -70,7 +70,29 @@ class Lake:
         else:
             Path(uri).parent.mkdir(parents=True, exist_ok=True)
             df.write_parquet(uri, compression="zstd")
+        self._remove_other_files(layer, table, partition, keep=uri)
         return uri
+
+    def _remove_other_files(self, layer: str, table: str, partition: str, keep: str) -> None:
+        """Overwrite = sau khi ghi file mới, xoá mọi file khác còn lại trong partition.
+
+        Chỉ ghi đè `part-000.parquet` là chưa đủ: Spark (#10) đặt tên `part-00000-<uuid>.parquet` + `_SUCCESS`,
+        nên hai writer luân phiên sẽ để lại hai bản của cùng dữ liệu → dbt báo duplicate. Partition là đơn vị
+        ghi đè, không phải file. Ghi trước rồi xoá sau để không có lúc nào partition trống.
+        """
+        prefix = self.path(layer, table, partition)
+        if self.is_s3:
+            from pyarrow import fs as pafs
+
+            fs = self._fs()
+            # từng object một: MinIO từ chối DeleteObjects (bulk) thiếu header Content-MD5 mà pyarrow không gửi
+            for info in fs.get_file_info(pafs.FileSelector(self._strip(prefix), recursive=True)):
+                if info.type == pafs.FileType.File and info.path != self._strip(keep):
+                    fs.delete_file(info.path)
+            return
+        for f in Path(prefix).iterdir():
+            if f.is_file() and str(f) != keep:
+                f.unlink()
 
     def read_parquet(self, layer: str, table: str, partition: str | None = None) -> pl.DataFrame:
         uri = self.path(layer, table, partition)

@@ -42,3 +42,4 @@ infra/terraform/*.tfvars
 .DS_Store
 .idea/
 .vscode/
+platform/dbt/target_airflow/

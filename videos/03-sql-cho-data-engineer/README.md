@@ -66,8 +66,21 @@ Ba điểm khác ([`lab/queries_postgres.sql`](lab/queries_postgres.sql) ghi rõ
 - **Q4a**: 24 dòng; giờ 0–4 và 23 = 0; cao điểm 7 h = 80, 8 h = 87, 15 h = 82. **Q4b**: 6 dòng, `is_tet_mung_1 = true` ở 2026-02-17.
 - **Q5a**: 11 dòng, tất cả có dạng `2026-02-15 08:50:00` (dấu cách, không offset). **Q5b**: `HN07-20260214-00014` đọc sai thành `2026-02-15 04:06:37`, đọc đúng là `2026-02-14 21:06:37`.
 - **Q6**: plan có `Table Scan` ở dưới cùng với `Projections: transaction_id, ts` (chỉ đọc 2 cột). DuckDB đổi `WINDOW` thành `Hash Group By` vì ta chỉ `count(*)` — optimizer được phép viết lại câu của bạn.
-- **Postgres (bước 4)**: Q1d lệch so với DuckDB đúng **172 000 VND** giữa ngày 14 và 15 — chính là hoá đơn `HN07-20260214-00014` bị trôi 7 giờ. Q5b vẫn 11 dòng. Q6 có `WindowAgg` trên `Sort Key: transaction_id, ts`.
-  <!-- TODO(thuy): dán output EXPLAIN (ANALYZE, BUFFERS) thật của Postgres sau khi quay -->
+- **Postgres (bước 4)**: Q1d lệch so với DuckDB đúng **172 000 VND** giữa ngày 14 và 15 — chính là hoá đơn `HN07-20260214-00014` bị trôi 7 giờ. Q5b vẫn 11 dòng; Q5d (heuristic giờ đóng cửa) chỉ bắt được 2/11. Q6 thật trên Postgres 16.4:
+  ```
+  Aggregate  (cost=284.36..284.37 rows=1 width=8) (actual time=7.528..7.528 rows=1 loops=1)
+    ->  Subquery Scan on ranked  (cost=203.70..284.33 rows=12 width=0) (actual time=5.775..7.243 rows=2476 loops=1)
+          Filter: (ranked.rn = 1)
+          ->  WindowAgg  (cost=203.70..253.32 rows=2481 width=217) (actual time=5.774..6.949 rows=2476 loops=1)
+                Run Condition: (row_number() OVER (?) <= 1)
+                ->  Sort  (cost=203.70..209.90 rows=2481 width=28) (actual time=5.767..5.938 rows=2481 loops=1)
+                      Sort Key: pos_transactions.transaction_id, pos_transactions.ts
+                      Sort Method: quicksort  Memory: 232kB
+                      ->  Seq Scan on pos_transactions  (cost=0.00..63.81 rows=2481 width=28) (actual time=0.003..0.246 rows=2481 loops=1)
+                            Buffers: shared hit=39
+  Execution Time: 7.564 ms
+  ```
+  Đọc từ dưới lên: `Seq Scan` 39 page → `Sort` theo `(transaction_id, ts)` → `WindowAgg`. Để ý `Run Condition: row_number() <= 1` — Postgres ≥ 15 đẩy điều kiện `rn = 1` **vào trong** WindowAgg nên dừng sớm mỗi partition; DuckDB thì viết lại hẳn thành `Hash Group By`. Hai optimizer, hai cách, cùng kết quả 2 476.
 
 ## Câu hỏi phỏng vấn của video
 > "Bảng hoá đơn có bản ghi trùng do retry. Bạn dedup bằng `ROW_NUMBER() ... ORDER BY ts` — nhưng hai bản sao có `ts` giống hệt nhau. Kết quả có deterministic không? Nếu hai bản sao khác nhau ở `total_amount_vnd` (bản sau là bản sửa), bạn đổi `ORDER BY` thế nào và cần thêm cột gì ở nguồn để làm được việc đó?"

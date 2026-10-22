@@ -8,6 +8,7 @@ Cố ý viết đơn giản (polars + PyYAML) để bạn đọc hết trong 5 p
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -22,6 +23,28 @@ TYPE_MAP = {
     "timestamp": None,  # any Datetime
     "date": {pl.Date},
 }
+
+
+def read_parquet_any(path: str) -> pl.DataFrame:
+    """Đọc Parquet local hoặc `s3://` (MinIO qua S3_ENDPOINT).
+
+    Polars đọc S3 bằng object_store, KHÔNG đọc biến S3_ENDPOINT như pyarrow trong coffee_ingestion → phải truyền
+    storage_options. Thiếu `aws_allow_http` là nó âm thầm gọi https://s3.us-east-1.amazonaws.com → InvalidAccessKeyId.
+    """
+    if not path.startswith("s3://"):
+        return pl.read_parquet(path)
+    endpoint = os.environ.get("S3_ENDPOINT")
+    opts = None
+    if endpoint:  # MinIO; không có S3_ENDPOINT = AWS thật, object_store tự lấy credentials
+        opts = {
+            "aws_endpoint_url": endpoint,
+            "aws_allow_http": "true" if endpoint.startswith("http://") else "false",
+            "aws_virtual_hosted_style_request": "false",
+            "aws_access_key_id": os.environ.get("AWS_ACCESS_KEY_ID", "minioadmin"),
+            "aws_secret_access_key": os.environ.get("AWS_SECRET_ACCESS_KEY", "minioadmin"),
+            "aws_region": os.environ.get("AWS_REGION", "us-east-1"),
+        }
+    return pl.read_parquet(path, storage_options=opts)
 
 
 def check(df: pl.DataFrame, contract: dict, run_date: str | None = None) -> list[str]:
@@ -70,7 +93,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--date", default=None, help="business date, used for low-volume exceptions")
     a = p.parse_args(argv)
     contract = yaml.safe_load(Path(a.contract).read_text(encoding="utf-8"))
-    df = pl.read_parquet(a.parquet)
+    df = read_parquet_any(a.parquet)
     run_date = a.date or (a.parquet.split("dt=")[1][:10] if "dt=" in a.parquet else None)
     errors = check(df, contract, run_date)
     print(

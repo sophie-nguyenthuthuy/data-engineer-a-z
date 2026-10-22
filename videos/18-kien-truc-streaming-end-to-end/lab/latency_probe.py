@@ -58,7 +58,8 @@ def tap_kafka(
 def read_windows(parquet_path: str) -> list[tuple[int, str]]:
     """(window_start epoch ms, store_id) của mọi dòng trong một file Parquet của sink.
 
-    TODO 3: duckdb.sql("SELECT epoch_ms(window.start), store_id FROM read_parquet(...)").fetchall()
+    TODO 3: duckdb.sql('SELECT epoch_ms("window".start), store_id FROM read_parquet(...)').fetchall()
+            (`window` là từ khoá DuckDB nên phải quote "window")
     """
     raise NotImplementedError
 

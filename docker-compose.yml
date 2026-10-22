@@ -1,11 +1,12 @@
 # Môi trường dùng chung của khoá "Data Engineer từ A–Z" (giới thiệu ở video #05).
 # Mọi lab sau đều chạy trên đây. Bật theo profile để tiết kiệm RAM:
-#   core          postgres + minio                          (~1.5 GB)
-#   notebook      + jupyter (pyspark kernel)                (~2 GB)
-#   streaming     + kafka, schema-registry, kafka-ui, debezium (~3 GB)
-#   spark         + spark master + 1 worker                 (~2.5 GB)
-#   orchestration + airflow webserver/scheduler, marquez    (~3 GB)
-#   analytics     + trino                                   (~2 GB)
+# (đo thật lúc rảnh trên Docker Desktop; đỉnh khi chạy job Spark/Trino cao hơn 2–4 lần)
+#   core          postgres + minio                          (~120 MB rảnh, ~1.5 GB đỉnh)
+#   notebook      + jupyter (pyspark kernel)                (~170 MB rảnh, ~2 GB khi chạy Spark local[*])
+#   streaming     + kafka, schema-registry, kafka-ui, debezium (~1.1 GB)
+#   spark         + spark master + 1 worker                 (~0.5 GB rảnh, +2 GB executor khi có job)
+#   orchestration + airflow webserver/scheduler, marquez    (~1.9 GB)
+#   analytics     + trino                                   (~0.8 GB rảnh, 2 GB+ khi query)
 # `make up` = core + notebook; `make up PROFILE=all` bật tất cả. Xem SETUP.md.
 
 name: dea2z
@@ -37,29 +38,31 @@ services:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-coffee} -d ${POSTGRES_DB:-coffee_pos}"]
 
   minio:
-    image: minio/minio:RELEASE.2024-10-13T13-34-11Z
+    # MinIO đã gỡ image khỏi Docker Hub/quay (2025); dùng bản lưu trữ của Bitnami (có sẵn `mc` bên trong).
+    image: bitnamilegacy/minio:2024.10.13
     profiles: [core]
-    command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      MINIO_DEFAULT_BUCKETS: ${LAKE_BUCKET:-lake},warehouse
+      MINIO_CONSOLE_PORT_NUMBER: 9001
     ports:
       - "${MINIO_PORT:-9000}:9000"
       - "${MINIO_CONSOLE_PORT:-9001}:9001"
-    volumes: [miniodata:/data]
+    volumes: [miniodata:/bitnami/minio/data]
     healthcheck:
       <<: *hc
-      test: ["CMD", "mc", "ready", "local"]
+      test: ["CMD-SHELL", "curl -sf http://localhost:9000/minio/health/live >/dev/null"]
 
-  # Tạo bucket `lake` + prefix bronze/silver/gold rồi thoát.
+  # Tạo prefix bronze/silver/gold trong bucket `lake` rồi thoát (bucket do MINIO_DEFAULT_BUCKETS tạo).
   minio-init:
-    image: minio/mc:RELEASE.2024-10-08T09-37-26Z
+    image: bitnamilegacy/minio:2024.10.13
     profiles: [core]
     depends_on:
       minio: { condition: service_healthy }
     entrypoint: >
       /bin/sh -c "
-      mc alias set local http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD:-minioadmin} &&
+      until mc alias set local http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD:-minioadmin}; do echo 'waiting for minio…'; sleep 2; done &&
       mc mb --ignore-existing local/${LAKE_BUCKET:-lake} &&
       mc mb --ignore-existing local/warehouse &&
       for l in bronze silver gold; do echo '' | mc pipe local/${LAKE_BUCKET:-lake}/$$l/.keep; done &&
@@ -95,10 +98,10 @@ services:
       dockerfile: spark.Dockerfile
     image: dea2z/spark:3.5.3
     profiles: [spark]
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+      --host spark-master --port 7077 --webui-port 8080
     environment:
-      SPARK_MODE: master
-      SPARK_RPC_AUTHENTICATION_ENABLED: "no"
-      SPARK_RPC_ENCRYPTION_ENABLED: "no"
       AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-minioadmin}
       AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
     ports:
@@ -120,13 +123,10 @@ services:
     profiles: [spark]
     depends_on:
       spark-master: { condition: service_healthy }
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+      spark://spark-master:7077 --webui-port 8081 --memory 2G --cores 2
     environment:
-      SPARK_MODE: worker
-      SPARK_MASTER_URL: spark://spark-master:7077
-      SPARK_WORKER_MEMORY: 2G
-      SPARK_WORKER_CORES: 2
-      SPARK_RPC_AUTHENTICATION_ENABLED: "no"
-      SPARK_RPC_ENCRYPTION_ENABLED: "no"
       AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-minioadmin}
       AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
     volumes:
@@ -242,6 +242,8 @@ services:
       AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
       S3_ENDPOINT: http://minio:9000
       POSTGRES_URL: postgresql://${POSTGRES_USER:-coffee}:${POSTGRES_PASSWORD:-coffee}@postgres:5432/${POSTGRES_DB:-coffee_pos}
+      # coffee_ingestion chạy thẳng từ bind mount (src layout) — sửa code trên máy là Airflow thấy ngay.
+      PYTHONPATH: /opt/ingestion/src
     entrypoint: /bin/bash
     command: -c "airflow db migrate && airflow users create --username $${_AIRFLOW_WWW_USER_USERNAME} --password $${_AIRFLOW_WWW_USER_PASSWORD} --firstname Thuy --lastname DE --role Admin --email admin@example.com || true"
     volumes: &airflow-vols
@@ -296,7 +298,7 @@ services:
     volumes:
       - ./platform/observability/marquez.yml:/opt/marquez/marquez.yml:ro
     ports:
-      - "${MARQUEZ_API_PORT:-5000}:5000"
+      - "${MARQUEZ_API_PORT:-5050}:5000"   # host 5050: macOS dùng 5000 cho AirPlay Receiver
       - "5001:5001"
     healthcheck:
       <<: *hc

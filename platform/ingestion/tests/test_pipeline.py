@@ -74,3 +74,18 @@ def test_missing_date_returns_2(tmp_path: Path):
 def test_dimensions_land_in_silver(tmp_path: Path, layer: str, table: str):
     main(["run", "--source", str(SAMPLES), "--lake", str(tmp_path), "--date", "2026-02-16"])
     assert Lake(str(tmp_path)).read_parquet(layer, table, "dt=2026-02-16").height > 0
+
+
+def test_write_parquet_overwrites_whole_partition(tmp_path):
+    """Overwrite = xoá file cũ trong partition (kể cả file Spark để lại), không chỉ ghi đè part-000."""
+    import polars as pl
+
+    from coffee_ingestion.lake import Lake
+
+    lake = Lake(str(tmp_path))
+    part = tmp_path / "silver" / "t" / "dt=2026-02-15"
+    part.mkdir(parents=True)
+    (part / "part-00000-spark.snappy.parquet").write_bytes(b"old")
+    (part / "_SUCCESS").write_bytes(b"")
+    lake.write_parquet(pl.DataFrame({"a": [1]}), "silver", "t", "dt=2026-02-15")
+    assert sorted(p.name for p in part.iterdir()) == ["part-000.parquet"]

@@ -1,0 +1,2 @@
+# Không parse file test như DAG (pytest không có trong image lúc scheduler quét).
+test_.*\.py

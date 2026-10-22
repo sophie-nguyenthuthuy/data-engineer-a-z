@@ -35,7 +35,8 @@ def run(source: str, lake_root: str, run_date: str, filter_by_date: bool = True)
     # ── bronze: land everything as-is ──
     for table, df in raw.items():
         if filter_by_date and table == "pos_transactions":
-            # one partition per business day; naive strings compare fine on the first 10 chars
+            # one partition per business day; the first 10 chars of `ts` are the VN-local date for BOTH sources
+            # (CSV strings are VN-local; read_postgres sets the session time zone to Asia/Ho_Chi_Minh)
             df = df.filter(pl.col("ts").str.slice(0, 10) == run_date)
         if filter_by_date and table == "pos_line_items":
             txn_ids = raw["pos_transactions"].filter(pl.col("ts").str.slice(0, 10) == run_date)[

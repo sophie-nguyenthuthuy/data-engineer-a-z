@@ -17,7 +17,7 @@
 ## Lab: để máy kiểm tra thay bạn
 
 ### Bước 1 — Đọc CI hiện có
-<!-- TODO(thuy): cập nhật bảng này khi ci.yml thay đổi -->
+<!-- bảng này mô tả ci.yml hiện tại; cập nhật khi thêm/bớt job -->
 Mở [`ci.yml`](../../.github/workflows/ci.yml). Mỗi job = một lệnh bạn đã chạy tay trong khoá:
 
 | Job | Lệnh | Bắt lỗi gì | Video |
@@ -87,11 +87,11 @@ terraform destroy                          # ĐỪNG QUÊN
 - **State backend**: `terraform.tfstate` local chỉ dùng cho lab một người. Team dùng backend S3 + DynamoDB lock (hoặc Terraform Cloud) để không hai người `apply` cùng lúc.
 
 ## Kết quả mong đợi
-- Bước 1: `make lint` → `All checks passed!` + `N files already formatted`; `make test` → toàn bộ pass; `make dbt-parse` → `Found 11 models, ...`; `make smoke` → JSON summary với `"rows_out": 792`. <!-- TODO(thuy): dán số test/model thật sau khi các video khác hoàn tất -->
+- Bước 1 (số thật ở commit hiện tại): `make lint` → `All checks passed!` + `160 files already formatted`; `make test` → **0 test**, 1 skipped (test DagBag chỉ chạy trong container Airflow); `make dbt-parse` với dbt 1.9 chỉ in `Performance info: …/target/perf_info.json` (không lỗi = parse OK — dòng `Found 11 models, 1 snapshot, 1 analysis, 33 data tests, 5 sources` chỉ xuất hiện ở `dbt build`); `make smoke` → JSON summary với `"rows_out": 792`.
 - Bước 2: `pre-commit run --all-files` in từng hook `Passed`. Lần commit có `import os` thừa: `ruff....Failed` kèm `Fixed 1 error`, commit bị chặn.
 - Bước 3: `3 passed`. Lưu ý cú pháp YAML: PyYAML đọc key `on` thành boolean `True` (chuẩn YAML 1.1) — test đã xử lý cả hai trường hợp; đây là lý do nhiều người viết `"on":` có ngoặc kép.
 - Bước 4: `terraform fmt -check` không in gì (exit 0); `validate` → `Success! The configuration is valid.`
-- Bước 5: `plan` → `Plan: 12 to add, 0 to change, 0 to destroy.` (bucket, versioning, public-access-block, SSE, lifecycle, 3 object `bronze/ silver/ gold/`, Glue database, IAM user + policy + access key) <!-- TODO(thuy): dán số resource thật từ terraform plan khi quay -->; `destroy` → `Destroy complete! Resources: 12 destroyed.`
+- Bước 5: `plan` → `Plan: 12 to add, 0 to change, 0 to destroy.` (bucket, versioning, public-access-block, SSE, lifecycle, 3 object `bronze/ silver/ gold/` từ một `for_each`, Glue database, IAM user + policy + access key — 10 khối `resource` trong `main.tf`, 12 resource sau khi `for_each` nở ra); `destroy` → `Destroy complete! Resources: 12 destroyed.` (cần tài khoản AWS; `fmt`/`validate` thì CI chạy hộ mỗi commit.)
 
 ## Câu hỏi phỏng vấn của video
 > "PR của bạn đổi một model dbt. CI nên chạy gì để **đủ tin** merge mà không cần cluster/warehouse thật? `dbt parse` bắt được lỗi gì và bỏ sót lỗi gì? Nếu có 15 phút CI, bạn thêm bước nào tiếp theo?"

@@ -42,7 +42,16 @@ uv run pytest videos/11-toi-uu-spark -q
 Lời giải: [`lab/solution/small_files.py`](lab/solution/small_files.py). Nối lại với #10: `bronze_to_silver_pos.py` có `.coalesce(1)` trước `write` chính là để không sinh 8 file × mỗi ngày.
 
 ## Kết quả mong đợi
-- Bước 2, mode `naive`: `result.show(5)` in `TP.HCM | SG01` đứng đầu với revenue ≈ 40 % tổng; trên UI stage join có **8 task**, một task Duration gấp nhiều lần Median và Shuffle Read ≈ 40 % tổng. `salted` và `aqe` kéo Max về gần Median; `broadcast` không còn stage shuffle cho join và nhanh nhất. <!-- TODO(thuy): dán bảng Summary Metrics 4 mode + thời gian job thật sau khi chạy trên cluster; kiểm tra AQE có tách partition không với 5 M dòng (ngưỡng 256 MB) — nếu không, hạ skewedPartitionThresholdInBytes và ghi lại -->
+- Bước 2: cả 4 mode in cùng bảng, `TP.HCM | SG01 | 84 999 600 000` đứng đầu (= 40 % tổng), rồi HN15, HN10, HN05, HN14. Số đo thật từ **event log** của 4 lần chạy trên cluster compose (worker 2 core/2 GB, `--rows 5000000`), stage join + groupBy:
+
+  | mode | wall job | số task stage shuffle | task ngắn nhất | median | **task dài nhất** | shuffle read của task dài nhất |
+  |------|--------:|---:|---:|---:|---:|---:|
+  | naive | 8,9 s | 8 | 15 ms | 250 ms | **1 115 ms** | 1,2 MB · **2 333 336 dòng** (47 %) |
+  | salted | 8,3 s | 8 (+8 stage gộp lại) | 257 ms | 530 ms | 807 ms | 6,6 MB · 1 082 443 dòng (22 %) |
+  | broadcast | **6,4 s** | 8 (chỉ groupBy, 10 dòng/task) | 4 ms | 6 ms | 88 ms | ~0 |
+  | aqe | 7,9 s | **1** | — | — | **2 293 ms** | 2,0 MB · 5 000 016 dòng (100 %) |
+
+  Đọc bảng: `naive` đúng kịch bản skew — Max gấp **4,5× Median**, task đó ôm 2,33 M dòng (SG01 40 % + vài cửa hàng HN rơi cùng hash bucket). `salted` chia SG01 thành 8 → Max chỉ còn 1,5× Median nhưng shuffle nhiều hơn (dim nhân 8). `broadcast` không shuffle fact cho join, nhanh nhất. Và **`aqe` tệ hơn `naive`**: AQE thấy toàn bộ shuffle chỉ ~2 MB (< `advisoryPartitionSizeInBytes` 64 MB) nên *gộp* 8 partition thành **1 task** làm hết 5 M dòng; còn tách skew thì không xảy ra vì partition SG01 (1,2 MB) xa ngưỡng `skewedPartitionThresholdInBytes` 256 MB. Với dữ liệu nhỏ, AQE tối ưu cho "ít task" chứ không cho "cân task". Muốn thấy AQE tách skew trên laptop: `--conf spark.sql.adaptive.skewJoin.skewedPartitionThresholdInBytes=100k --conf spark.sql.adaptive.advisoryPartitionSizeInBytes=100k` (hoặc `--rows 200000000` nếu máy chịu được). Tổng thời gian 4 mode gần nhau (6–9 s) vì 5 M dòng quá nhỏ — phần lớn là khởi động JVM/executor; sự khác biệt nằm ở **hình dạng task**, đúng cái bạn phải đọc được trên UI.
 - Bước 4 (`--files 500`, máy mình): `one_file` 36 227 bytes / 0,46 ms; `many_files` 500 file, **2 074 824 bytes (×57)**, 19,9 ms Polars (×43) và 55 ms pyarrow; `compacted` về lại 36 227 bytes. `pytest videos/11-toi-uu-spark -q` → **2 passed**.
 
 ## Câu hỏi phỏng vấn của video

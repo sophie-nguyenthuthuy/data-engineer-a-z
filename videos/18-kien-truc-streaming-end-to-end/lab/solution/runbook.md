@@ -106,7 +106,7 @@ docker compose exec jupyter python /home/jovyan/work/videos/18-kien-truc-streami
   --bootstrap kafka:29092 --s3-endpoint http://minio:9000 --duration 240
 ```
 Chạy **trước** khi bật lại producer POS (tap chỉ thấy message mới). Ghi lại p50/p95 vào README của bạn.
-<!-- TODO(thuy): điền p50/p95 đo thật -->
+Đo thật trên cluster compose (`--rate 20`, probe 120 s): 565 cửa sổ, **p50 = 31,6 s, p95 = 44,8 s, max 61,4 s**; đợt file đầu p50 2,5 s. Chi tiết và cách đọc ở README video.
 
 ## 9. Dọn (đúng thứ tự)
 ```bash

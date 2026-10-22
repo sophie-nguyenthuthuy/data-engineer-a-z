@@ -19,4 +19,4 @@ hoặc local trong Jupyter (`SparkSession.builder.master("local[*]")`) — mọi
 | `streaming_pos_agg.py` | #15 | Structured Streaming từ Kafka `pos.transactions`: doanh thu theo cửa hàng mỗi 1 phút, watermark 10 phút |
 | `iceberg_silver.py` | #17 | ghi silver thành Iceberg table, MERGE INTO (upsert), time travel |
 
-<!-- TODO(thuy): chạy thử từng job trên cluster compose và dán output thật vào README video tương ứng. Code đã lint nhưng chưa chạy end-to-end trên cluster. -->
+Cả 4 job đã chạy end-to-end trên cluster compose (output thật trong README video #10, #11, #15, #17). `skew_demo.py` thêm `--conf spark.eventLog.enabled=true --conf spark.eventLog.dir=/tmp/spark-events` nếu muốn đọc số đo task sau khi job xong (Spark UI của application biến mất khi job kết thúc).

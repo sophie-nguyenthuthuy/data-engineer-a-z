@@ -53,9 +53,35 @@ uv run pytest videos/02-kien-truc-du-lieu -q
   ```
   Thời gian dao động theo lần chạy (mình đo 9–15× tuỳ máy đang bận gì); tỉ lệ dung lượng thì cố định. **180 dòng** = 30 cửa hàng × 6 ngày. Tổng `revenue_vnd` của 180 dòng = **238 299 000** (chưa dedup — video #03 sẽ sửa).
 - Bước 2 với 30 ngày: CSV 17,6 MB → Parquet 3,0 MB (5,8×); thời gian ~93 ms → ~12 ms.
-- Bước 3: câu OLTP trước index là `Seq Scan on pos_transactions ... rows=1` với `Buffers: shared hit` vài chục page; sau `CREATE INDEX` thành `Index Scan using idx_pos_transactions_txn` với `shared hit` ≤ 5. Câu OLAP là `Sort → HashAggregate → Seq Scan` với `Filter: (store_id IS NOT NULL)`, `Rows Removed by Filter: 8`, và không dùng index nào.
-  <!-- TODO(thuy): dán output EXPLAIN thật (số page, thời gian) sau khi quay -->
-- `pg_total_relation_size('pos_transactions')` khoảng vài trăm KB — nhỏ hơn CSV? Không: Postgres có thêm 2 index và header mỗi dòng (~24 byte). Đó là cái giá của việc ghi/sửa từng dòng nhanh.
+- Bước 3 (output thật trên Postgres 16.4, samples 2 481 dòng; thời gian của bạn sẽ khác, **số page thì không**):
+  ```
+  -- OLTP, chưa có index: đọc hết 39 page heap để trả 1 dòng
+  Seq Scan on pos_transactions  (cost=0.00..70.01 rows=1 width=81) (actual time=0.081..0.181 rows=1 loops=1)
+    Filter: (transaction_id = 'HN01-20260215-00010'::text)
+    Rows Removed by Filter: 2480
+    Buffers: shared hit=39
+  Execution Time: 0.194 ms
+
+  -- OLTP, sau CREATE INDEX: đi B-tree, đụng 3 page
+  Index Scan using idx_pos_transactions_txn on pos_transactions  (cost=0.28..8.30 rows=1 width=81) (actual time=0.019..0.019 rows=1 loops=1)
+    Index Cond: (transaction_id = 'HN01-20260215-00010'::text)
+    Buffers: shared hit=1 read=2
+  Execution Time: 0.036 ms
+
+  -- OLAP: đọc 100 % heap, không index nào được dùng
+  GroupAggregate  (cost=215.55..283.32 rows=2459 width=41) (actual time=2.381..2.757 rows=180 loops=1)
+    Group Key: (((ts AT TIME ZONE 'Asia/Ho_Chi_Minh'::text))::date), store_id
+    ->  Sort  (cost=215.55..221.74 rows=2473 width=17) (actual time=2.371..2.472 rows=2473 loops=1)
+          Sort Key: (((ts AT TIME ZONE 'Asia/Ho_Chi_Minh'::text))::date), store_id
+          Sort Method: quicksort  Memory: 212kB
+          ->  Seq Scan on pos_transactions  (cost=0.00..76.17 rows=2473 width=17) (actual time=0.467..1.391 rows=2473 loops=1)
+                Filter: (store_id IS NOT NULL)
+                Rows Removed by Filter: 8
+                Buffers: shared hit=39
+  Execution Time: 2.804 ms
+  ```
+  Index giảm Buffers từ 39 page xuống 3 và thời gian ~5×. Câu OLAP là `GroupAggregate ← Sort ← Seq Scan` (planner chọn sort-then-group vì có `ORDER BY` cùng key; với bảng lớn hơn bạn sẽ thấy `HashAggregate`), `Filter: (store_id IS NOT NULL)`, `Rows Removed by Filter: 8`, và **không dùng index nào** dù `idx_pos_transactions_store` tồn tại.
+- `pg_total_relation_size('pos_transactions')` = **464 kB** (heap 312 kB + 2 index) — nhỏ hơn CSV? Không: Postgres có thêm 2 index và header mỗi dòng (~24 byte). Đó là cái giá của việc ghi/sửa từng dòng nhanh.
 
 ## Câu hỏi phỏng vấn của video
 > "Sếp muốn dashboard doanh thu realtime, đề nghị 'cứ cho Metabase query thẳng vào database POS cho nhanh'. Bạn giải thích thế nào bằng query plan? Và nếu bắt buộc phải làm ngay tuần này, bạn chọn giải pháp tạm nào ít rủi ro nhất (read replica? CDC? dump hàng giờ?)."

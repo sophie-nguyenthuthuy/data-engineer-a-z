@@ -104,7 +104,31 @@ docker compose exec postgres psql -U coffee -d coffee_pos -c "SELECT pg_drop_rep
 - Bước 4: 3 envelope `c → u → d` + tombstone đúng thứ tự, `before` có dữ liệu ở `u` và `d` (nhờ `REPLICA IDENTITY FULL`); `source.lsn` tăng dần.
 - Bước 5: sau snapshot DuckDB có **2 476 dòng** (2 481 − 5 `transaction_id` trùng: upsert theo key tự dedup — hãy nghĩ xem đó là may hay rủi); sau `cdc_demo.sql` dòng `…-99001` **không còn** (đã delete), `_op` phân bố `r` ≈ 2 476.
 - Bước 6: `3 passed` — trạng thái cuối sau `r,r,c,u,d,c` là 3 dòng, tổng 175 000 VND; áp dụng lại toàn bộ envelope không đổi kết quả.
-<!-- TODO(thuy): dán status JSON và 4 message thật từ console consumer sau khi quay -->
+
+Output thật (Debezium 2.7.3, Postgres 16.4):
+```
+$ curl -s localhost:8083/connectors/coffee-pos/status | python -m json.tool
+{
+    "name": "coffee-pos",
+    "connector": { "state": "RUNNING", "worker_id": "172.25.0.7:8083" },
+    "tasks": [ { "id": 0, "state": "RUNNING", "worker_id": "172.25.0.7:8083" } ],
+    "type": "source"
+}
+$ kafka-topics.sh --list | grep coffee
+__debezium-heartbeat.coffee
+coffee.public.pos_line_items
+coffee.public.pos_transactions
+$ kafka-get-offsets.sh --topic coffee.public.pos_transactions   →  coffee.public.pos_transactions:0:2481
+$ kafka-get-offsets.sh --topic coffee.public.pos_line_items     →  coffee.public.pos_line_items:0:4328
+```
+Bốn message của `cdc_demo.sql` trên console consumer (rút gọn `source`):
+```
+{"transaction_id":"HN01-20260215-99001"}  {"before":null,"after":{"transaction_id":"HN01-20260215-99001","store_id":"HN01","ts":"2026-02-15T03:00:00.000000Z","channel":"store","payment_method":"cash","customer_id":null,"staff_id":"HN01-S1","total_amount_vnd":45000,"discount_vnd":0,"is_rainy_day":false,"loaded_at":"2026-10-22T11:48:28.125231Z"},"source":{"version":"2.7.3.Final","connector":"postgresql","name":"coffee","db":"coffee_pos","schema":"public","table":"pos_transactions","txId":821,"lsn":33502096,...},"op":"c","ts_ms":1792669708154,...}
+{"transaction_id":"HN01-20260215-99001"}  {"before":{...,"total_amount_vnd":45000,...},"after":{...,"total_amount_vnd":50000,...},"source":{...,"txId":822,"lsn":33519400,...},"op":"u",...}
+{"transaction_id":"HN01-20260215-99001"}  {"before":{...,"total_amount_vnd":50000,...},"after":null,"source":{...,"txId":823,"lsn":33519712,...},"op":"d",...}
+{"transaction_id":"HN01-20260215-99001"}  null
+```
+`lsn` 33502096 → 33519400 → 33519712 tăng dần, `txId` 821 → 822 → 823 — ba transaction Postgres riêng. Cột `ts` INSERT là `'2026-02-15 10:00:00+07'` nhưng envelope ghi `2026-02-15T03:00:00.000000Z`: Debezium luôn chuẩn hoá `timestamptz` về UTC. DuckDB sau `cdc_apply.py` + `cdc_demo.sql`: `count(*) = 2476`, dòng `…-99001` = 0 (đã delete), `_op` toàn `r` (2 476) — các dòng `c`/`u` của 99001 đã bị `d` xoá. Slot sau khi xoá connector: `dbz_coffee | active = t` thêm vài giây (walsender đang đóng) rồi `f`; `pg_drop_replication_slot` lúc còn `active` sẽ báo `replication slot "dbz_coffee" is active for PID …` — chờ rồi chạy lại.
 
 ## Câu hỏi phỏng vấn của video
 > "Debezium connector của bạn chết lúc 2 giờ sáng, không ai biết tới 9 giờ. Chuyện gì xảy ra với Postgres của POS trong 7 tiếng đó, bạn kiểm tra bằng query gì, và thiết kế lại thế nào để lần sau nó tự kêu?"

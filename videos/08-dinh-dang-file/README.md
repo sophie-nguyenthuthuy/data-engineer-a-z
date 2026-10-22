@@ -62,7 +62,13 @@ Bảng benchmark (máy mình, Apple M-series; thời gian của bạn sẽ khác
 - Footer: `num_rows: 2481`, `num_row_groups: 1`, `num_columns: 10`, `created_by: Polars ...`; `store_id` có `nulls: 8`; `total_amount_vnd` min `0`, max `428000`, codec `ZSTD`.
 - Pushdown: `{"row_groups_total": 10, "row_groups_needed_for_SG14": [8, 9], "rows_SG14": 130}` — đọc 2/10 row group là đủ.
 - `pytest videos/08-dinh-dang-file -q` → **4 passed**.
-- Bước 5 (Jupyter): `wrote /tmp/avro/pos_transactions.v1.avro (... bytes) with schema v1`, rồi `read back 500 records with schema v2; first record: {... 'discount_vnd': 0}`. Bỏ `default` → exception `SchemaResolutionError`. <!-- TODO(thuy): dán output thật từ Jupyter sau khi quay -->
+- Bước 5 (chạy trong container Jupyter, output thật):
+  ```
+  wrote /tmp/avro/pos_transactions.v1.avro (6,701 bytes) with schema v1
+  read back 500 records with schema v2; first record: {'transaction_id': 'SG04-20260214-00038', 'store_id': 'SG04', 'ts': '2026-02-14T05:17:12+07:00', 'channel': 'store', 'total_amount_vnd': 74000, 'discount_vnd': 0}
+  reader without default → SchemaResolutionError: schema KHÔNG tương thích ngược, đúng như mong đợi
+  ```
+  Thông điệp gốc của fastavro khi bỏ `default`: `SchemaResolutionError: No default value for field discount_vnd in ...`. 500 hoá đơn Avro = 6,7 KB ≈ 13 byte/dòng — nhỏ hơn cả Parquet zstd ở bảng trên vì Avro không mang footer thống kê; đổi lại nó là row-based, đọc 1 cột vẫn phải đọc hết.
 
 ## Câu hỏi phỏng vấn của video
 > "Team BI than query trên lake chậm dù dữ liệu chỉ 50 GB Parquet. Bạn mở footer vài file ra xem thì nên nhìn vào những gì, và 3 nguyên nhân hay gặp nhất là gì?"

@@ -45,7 +45,7 @@ def post(url: str, payload: dict) -> int:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--url", default="http://localhost:5000/api/v1/lineage")
+    p.add_argument("--url", default="http://localhost:5050/api/v1/lineage")
     p.add_argument("--namespace", default="dea2z-manual")
     p.add_argument("--job", required=True)
     p.add_argument("--input", action="append", default=[])

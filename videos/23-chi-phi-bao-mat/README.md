@@ -45,22 +45,30 @@ Mở [`lab/cost_model.py`](lab/cost_model.py). Phần đo đã viết sẵn: đ�
 uv run python videos/23-chi-phi-bao-mat/lab/cost_model.py
 uv run python videos/23-chi-phi-bao-mat/lab/cost_model.py --multiplier 100   # nếu Phin Phố có 3 000 cửa hàng
 ```
-Giá dùng trong model: S3 Standard 0.025 USD/GB-tháng, Athena 5 USD/TB quét (ap-southeast-1). <!-- TODO(thuy): xác nhận giá hiện tại trước khi quay -->
+Giá dùng trong model (kiểm lại qua AWS Price List API cho `ap-southeast-1`, 22/10/2026): S3 Standard **0,025 USD/GB-tháng** cho 50 TB đầu (0,024 cho 450 TB tiếp, 0,023 trên 500 TB), PUT/COPY/POST/LIST **0,005 USD/1 000 request**, GET **0,004 USD/10 000 request**; Athena **5 USD/TB quét**, sàn 10 MB/query. Giá đổi theo thời gian — tự kiểm lại bằng:
+```bash
+curl -s https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonAthena/current/ap-southeast-1/index.json | python3 -c "import json,sys; d=json.load(sys.stdin); print([pd['description'] for t in d['terms']['OnDemand'].values() for v in t.values() for pd in v['priceDimensions'].values() if 'Scanned' in pd['description']])"
+```
 
 ### Bước 4 — Access control ở 3 lớp
 1. **IAM (AWS)**: đọc policy trong [`infra/terraform/main.tf`](../../infra/terraform/main.tf): `s3:ListBucket` trên bucket, `s3:Get/Put/DeleteObject` trên `bucket/*`, không có `s3:*`, không có `"Resource": "*"` cho S3. Glue dùng `*` — trade-off có comment.
 2. **MinIO**: cùng ngôn ngữ policy với IAM. Tạo user chỉ-đọc `gold/`:
    ```bash
    docker compose exec minio mc admin user add local analyst analyst123
-   docker compose exec minio mc admin policy create local gold-readonly /dev/stdin <<'EOF'
+   docker compose exec -T minio mc admin policy create local gold-readonly /dev/stdin <<'EOF'
    {"Version":"2012-10-17","Statement":[
-     {"Effect":"Allow","Action":["s3:GetBucketLocation","s3:ListBucket"],"Resource":["arn:aws:s3:::lake"],
+     {"Effect":"Allow","Action":["s3:GetBucketLocation"],"Resource":["arn:aws:s3:::lake"]},
+     {"Effect":"Allow","Action":["s3:ListBucket"],"Resource":["arn:aws:s3:::lake"],
       "Condition":{"StringLike":{"s3:prefix":["gold/*"]}}},
      {"Effect":"Allow","Action":["s3:GetObject"],"Resource":["arn:aws:s3:::lake/gold/*"]}]}
    EOF
    docker compose exec minio mc admin policy attach local gold-readonly --user analyst
    ```
-   <!-- TODO(thuy): kiểm tra cú pháp mc admin policy create với image minio RELEASE.2024-10 khi quay -->
+   Để ý `s3:GetBucketLocation` phải nằm **statement riêng**: MinIO (mc 2024-10) từ chối policy nếu gắn condition `s3:prefix` vào action đó — `unsupported condition keys '[s3:prefix]' used for action 's3:GetBucketLocation'`. Kiểm chứng bằng chính `mc` trong container:
+   ```bash
+   docker compose exec minio sh -c 'mc alias set analyst http://localhost:9000 analyst analyst123 && mc ls analyst/lake/gold/ && mc ls analyst/lake/silver/'
+   # gold/ liệt kê được (.keep), silver/ → "Unable to list folder. Access Denied."
+   ```
 3. **Postgres**: analyst cần đọc POS nhưng không được thấy `phone`/`email`. Điền TODO trong [`lab/analyst_role.sql`](lab/analyst_role.sql) — `GRANT SELECT` 4 bảng, **column-level GRANT** cho `customers`, view `customers_masked` — rồi:
    ```bash
    docker compose exec -T postgres psql -U coffee -d coffee_pos < videos/23-chi-phi-bao-mat/lab/analyst_role.sql

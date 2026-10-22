@@ -19,11 +19,14 @@
 ### Bước 1 — Bật và chạy `coffee_daily_pipeline`
 Trong UI: tìm DAG `coffee_daily_pipeline` → bật toggle bên trái → bấm ▶ **Trigger DAG**. Mở tab **Graph** để xem 4 task nối nhau: `business_date → ingest_bronze_silver → dbt_build → notify`.
 
-Hoặc bằng CLI (kết quả y hệt):
+Hoặc bằng CLI. **Chọn ngày**: Postgres chỉ có dữ liệu 14–19/02/2026, nên trigger "bây giờ" sẽ nạp ngày hôm qua (rỗng) và `ingest` thoát mã 2 — đúng hành vi của `coffee-ingest` khi silver trống. Truyền logical date là **02:00 ngày D+1 giờ VN** để nạp ngày D:
 ```bash
-docker compose exec airflow-webserver airflow dags trigger coffee_daily_pipeline
+docker compose exec airflow-webserver airflow dags trigger coffee_daily_pipeline -e "2026-02-16T02:00:00+07:00"   # nạp 2026-02-15
 docker compose exec airflow-webserver airflow dags list-runs -d coffee_daily_pipeline
 ```
+Vì sao không dùng `{{ ds }}` thẳng? `ds` là ngày của `logical_date` tính theo **UTC**: lịch `0 2 * * *` giờ VN = 19:00 UTC hôm trước, nên `ds` lệch đúng một ngày (run cho 15/02 có `ds = 2026-02-14`). Task `business_date` đổi `data_interval_start` về `Asia/Ho_Chi_Minh` rồi mới lấy ngày; `ingest` nhận ngày đó qua XCom. Mình chỉ phát hiện lỗi này khi chạy thật — Airflow không báo gì, chỉ có dữ liệu sai ngày.
+
+Bật toggle DAG lần đầu, Airflow sẽ tự tạo **một run** cho data interval gần nhất (hôm qua) dù `catchup=False` — run đó fail ở `ingest` (không có dữ liệu). Không phải bug; đó là lý do bước 3 nói về `catchup`.
 
 Bấm vào ô `ingest_bronze_silver` → **Log**. Bạn sẽ thấy đúng JSON summary mà `coffee-ingest run` in ra ở video #07, chỉ khác `--source` là Postgres và `--lake` là `s3://lake` (MinIO).
 
@@ -75,14 +78,15 @@ docker compose exec airflow-webserver airflow dags trigger coffee_weekly_report
 ```bash
 uv run pytest videos/19-airflow -q
 ```
-Test kiểm tra: có `dag_id`, có `schedule`, có `tags`, và **không** có `datetime.now()` trong bất kỳ DAG nào của repo. Test "thật" với `DagBag` nằm ở [`platform/airflow/dags/test_dag_integrity.py`](../../platform/airflow/dags/test_dag_integrity.py), chạy trong container:
+Test kiểm tra: có `dag_id`, có `schedule`, có `tags`, và **không** có `datetime.now()` trong bất kỳ DAG nào của repo. Test "thật" với `DagBag` nằm ở [`platform/airflow/dags/test_dag_integrity.py`](../../platform/airflow/dags/test_dag_integrity.py), chạy trong container (image đã có pytest; `.airflowignore` giữ cho scheduler không parse file test):
 ```bash
-docker compose exec airflow-webserver python -m pytest /opt/airflow/dags -q
+docker compose exec airflow-webserver python -m pytest /opt/airflow/dags -q    # 1 passed, ~60 s (DagBag import thật)
 ```
 
 ## Kết quả mong đợi
-- Bước 1: Graph 4 task đều **xanh** (success). Log `ingest_bronze_silver` có `"rows_out": 792` cho `pos_transactions` nếu `ds` rơi vào 2026-02-15, `"quarantined": 4`. <!-- TODO(thuy): dán ảnh Graph + ds thực tế lúc quay, vì ds = hôm qua theo giờ chạy -->
-- Bước 2: Grid có `ingest [4]`; MinIO có `dt=2026-02-14 … dt=2026-02-17`, mỗi thư mục đúng **1 file** `part-000.parquet` kể cả sau khi chạy lại.
+- Bước 1 (run `manual__2026-02-16T02:00:00+07:00`, chạy thật): 4 task `business_date → ingest_bronze_silver → dbt_build → notify` đều **success**. `business_date` trả `2026-02-15`. Log `ingest_bronze_silver` là JSON summary của `coffee-ingest`: `pos_transactions` **rows_out = 793, quarantined = 4** — khác CSV (792) đúng 1 dòng: `HN07-20260214-00014` thiếu offset nên Postgres đã lưu thành 04:06 ngày 15 (bài #03), từ Postgres nó thuộc ngày 15. `_tz_fixed` toàn `false` vì Postgres luôn trả chuỗi có offset — lỗi tz_drift ở nguồn này "biến mất" nhưng dữ liệu vẫn sai 7 giờ. `dbt_build`: `Done. PASS=45 WARN=0 ERROR=0 SKIP=0 TOTAL=45`. `notify`: `✅ coffee_daily_pipeline xong cho ngày 2026-02-15` rồi `no SLACK_WEBHOOK_URL / TELEGRAM_* Variable set → log only` — đặt Variable trong Admin → Variables để gửi thật.
+- Bước 2: Grid có `ingest [4]`, 4 task instance success; MinIO có `dt=2026-02-14 … dt=2026-02-17`, mỗi thư mục đúng **1 file** `part-000.parquet` kể cả sau khi chạy lại. Số dòng silver từ Postgres: 765 / 793 / 730 / 59 (CSV: 766 / 792 / 730 / 59); quarantine 3 / 4 / 1 / 0 — giống CSV.
+- `coffee_quality_checks` được Dataset `s3://lake/silver/pos_transactions` kích hoạt ngay sau `ingest_bronze_silver`; cả 4 task success, `business_date` lấy `2026-02-15` từ XCom của run upstream. Trigger tay: `airflow dags trigger coffee_quality_checks --conf '{"date": "2026-02-15"}'`.
 - Bước 4: với gold có đủ 14→17/02 (chạy backfill ở bước 2, hoặc `make smoke` + `coffee-ingest run --date` cho 3 ngày còn lại rồi `dbt build`), log `print_report` in:
 
   | # | store_id | revenue_vnd | transactions |

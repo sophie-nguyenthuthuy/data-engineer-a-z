@@ -10,9 +10,9 @@ import sys
 from pathlib import Path
 
 import great_expectations as gx
-import polars as pl
 
 sys.path.insert(0, str(Path(__file__).parent))
+from contract_check import read_parquet_any  # noqa: E402
 from suites.pos_transactions_suite import build_suite  # noqa: E402
 
 
@@ -23,7 +23,7 @@ def main() -> int:
     a = p.parse_args()
 
     path = f"{a.lake.rstrip('/')}/silver/pos_transactions/dt={a.date}/*.parquet"
-    df = pl.read_parquet(path).to_pandas()
+    df = read_parquet_any(path).to_pandas()
 
     context = gx.get_context(
         mode="ephemeral"

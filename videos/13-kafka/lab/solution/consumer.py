@@ -9,7 +9,7 @@ import argparse
 import json
 from collections import defaultdict
 
-from confluent_kafka import Consumer, KafkaException, TopicPartition
+from confluent_kafka import Consumer, KafkaError, KafkaException, TopicPartition
 
 COMMIT_EVERY = 50  # message
 
@@ -72,7 +72,13 @@ def main() -> None:
         pass
     finally:
         if processed:
-            consumer.commit(asynchronous=False)
+            try:
+                consumer.commit(asynchronous=False)
+            except KafkaException as exc:
+                # _NO_OFFSET = không có offset mới kể từ lần commit trước (Ctrl+C đúng lúc processed % 50 == 0).
+                # Không phải lỗi — nhưng librdkafka vẫn raise, và không bắt thì chương trình "crash" khi dừng.
+                if exc.args[0].code() != KafkaError._NO_OFFSET:
+                    raise
         consumer.close()
         total = sum(revenue.values())
         print(f"\n{processed} message, tổng {fmt_vnd(total)}")

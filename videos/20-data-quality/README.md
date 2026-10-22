@@ -76,8 +76,8 @@ uv run pytest videos/20-data-quality -q
 - Bước 2: `contract silver.pos_transactions v1.0 — 59 rows — OK ✅`. Sau khi sửa `min_rows_per_day: 100` **và** bỏ ngày 17 khỏi exceptions: `FAILED ❌` với dòng `  - only 59 rows < min_rows_per_day 100`, exit code 1.
 - Bước 3: `contract silver.pos_line_items v1.0 — 1392 rows — OK ✅`. (Silver ngày 15/02: 1 401 dòng thô → 1 392 sau khi cách ly 3 `negative_qty` + 6 `orphan_txn`; size L/M/S = 243/660/489.)
 - Bước 4: `FAILED ❌` + `  - size: values not allowed ['L']`.
-- Bước 5: dòng cuối dạng `✅ 8/8 expectations passed for dt=2026-02-15`. <!-- TODO(thuy): dán output GX thật sau khi quay; xác nhận 8/8 trên samples -->
-- Bước 6: `dbt test` báo `PASS` cho toàn bộ test, trong đó có `dbt_utils_free_positive_stg_pos_line_items_quantity` và `assert_revenue_non_negative`. <!-- TODO(thuy): dán số test thật (Done. PASS=N) -->
+- Bước 5 (đã chạy trên samples): GX in `Calculating Metrics: 100% 42/42` rồi dòng cuối `✅ 8/8 expectations passed for dt=2026-02-15`. 8 expectation nhưng 42 metric — GX tách mỗi expectation thành nhiều metric nhỏ (count, null count, min/max…) và cache dùng chung.
+- Bước 6: cần `dbt build` (video #12) trước, vì `dbt test` chỉ chạy test trên bảng đã có — chạy trên DuckDB trống sẽ ra `ERROR=28` kiểu `Table ... does not exist`. Trên lake-local 4 ngày: `Done. PASS=33 WARN=0 ERROR=0 SKIP=0 TOTAL=33`, trong đó có `dbt_utils_free_positive_stg_pos_line_items_quantity` và `assert_revenue_non_negative`. (`dbt build` đầy đủ là `PASS=45` = 11 model + 1 snapshot + 33 test.)
 - Bước 7: `4 passed` (~1 s: test tự chạy pipeline vào thư mục tạm cho 15/02 và 17/02 rồi gọi `contract_check.check()`).
 
 ## Câu hỏi phỏng vấn của video

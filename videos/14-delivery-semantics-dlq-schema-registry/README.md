@@ -89,7 +89,41 @@ Subject đặt theo quy ước `<topic>-value`. Message Avro thật trên Kafka 
 - Bước 3: 7 message `null_store` + 1 `invalid_json` bạn vừa bơm → topic `pos.transactions.dlq` có **8 message**, header hiển thị `reason:null_store,source_topic:pos.transactions,...`. Nếu đã bắn dữ liệu nhiều lần ở #13 thì số `null_store` là bội số của 7.
 - Bước 5: id 1, id 2, rồi HTTP 409 `Schema being registered is incompatible with an earlier schema`.
 - Test offline `test_v14_avro_schema.py`: `4 passed`.
-<!-- TODO(thuy): dán output thật của dlq_consumer và response 409 sau khi quay -->
+
+Output thật (topic vừa tạo lại, 1 008 message):
+```
+$ idempotent_consumer.py --group lab14-idem --from-beginning        (Ctrl+C sau khi hết message)
+dup  HN15-20260215-00007  p0@75
+dup  HN12-20260215-00011  p2@188
+dup  SG12-20260215-00011  p1@293
+dup  HN06-20260215-00010  p1@358
+^C
+processed=1008 duplicates=4 distinct=1004
+doanh thu không dedup: 97.494.000 VND
+doanh thu dedup      : 96.964.000 VND
+
+$ dlq_consumer.py --group lab14-dlq --from-beginning
+→ DLQ  reason=null_store  p2@67
+→ DLQ  reason=null_store  p2@87
+...
+→ DLQ  reason=null_store  p0@218
+→ DLQ  reason=invalid_json  p0@345            ← message bạn vừa bơm
+^C
+ {'ok': 1001, 'null_store': 7, 'invalid_json': 1}
+
+$ kafka-console-consumer.sh --topic pos.transactions.dlq --from-beginning --property print.headers=true ...
+reason:null_store,source_topic:pos.transactions,source_partition:1,source_offset:24		{"transaction_id": "SG10-20260215-00017", "store_id": null, ...}
+reason:invalid_json,source_topic:pos.transactions,source_partition:0,source_offset:345	HN01	{"broken": true
+Processed a total of 8 messages
+
+$ bash register_schema.sh pos_transaction.avsc                 → {"id":1}
+$ bash register_schema.sh pos_transaction_v2_compatible.avsc   → {"id":2}
+$ bash register_schema.sh pos_transaction_v2_incompatible.avsc → HTTP 409
+{"error_code":409,"message":"Schema being registered is incompatible with an earlier schema for subject \"pos.transactions-value\", details: [{errorType:'TYPE_MISMATCH', description:'The type (path '/fields/7/type') of a field in the new schema does not match ...
+$ CHECK=1 bash register_schema.sh pos_transaction_v2_incompatible.avsc → {"is_compatible":false}
+$ curl -s localhost:8081/subjects/pos.transactions-value/versions → [1,2]
+```
+Để ý `source_offset` trong header: 7 message `null_store` có offset khác nhau ở 3 partition — đó là địa chỉ để quay lại message gốc trong topic nguồn khi cần replay. Registry chỉ ra *đúng field* bị đổi kiểu (`/fields/7/type` = `total_amount_vnd`). Nếu port 8081 trên máy bạn bị chiếm (`SCHEMA_REGISTRY_PORT` trong `.env`), truyền registry URL làm tham số thứ 3 cho `register_schema.sh`.
 
 ## Câu hỏi phỏng vấn của video
 > "Pipeline của bạn đọc Kafka rồi ghi doanh thu vào Postgres. Sếp bảo 'phải exactly-once'. Bạn bật `enable.idempotence=true` và transactions là xong chưa? Nếu chưa, phần còn thiếu nằm ở đâu và bạn làm thế nào với bảng Postgres đó?"

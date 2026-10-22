@@ -71,8 +71,22 @@ Lời giải: [`lab/solution/compose.override.yml`](lab/solution/compose.overrid
 - `docker compose config` cho thấy `postgres.healthcheck` đã được "trải" ra đủ `interval: 10s, timeout: 5s, retries: 12, start_period: 20s` + `test` — anchor đã biến mất, đó là việc của YAML, không phải Docker.
 - Bước 3: `mc ls --recursive local/lake/bronze/` có 2 dòng: `bronze/.keep` và `bronze/stores/stores.csv` (2,0 KiB).
 - Bước 4: `ps adminer` là `healthy`; trang Adminer liệt kê 5 bảng, bấm `pos_transactions` → `select` thấy 2 481 dòng.
-- `docker stats --no-stream` cho core + notebook: tổng khoảng 1–1,5 GB khi rảnh (postgres vài chục MB, minio ~100–200 MB, jupyter ~300–500 MB).
-  <!-- TODO(thuy): dán output make ps + docker stats thật sau khi quay -->
+- `make ps` thật (macOS, Docker Desktop; cột PORTS rút gọn):
+  ```
+  NAME                 IMAGE                            SERVICE      STATUS                   PORTS
+  dea2z-jupyter-1      dea2z/jupyter:3.5.3              jupyter      Up 1 minute (healthy)    0.0.0.0:8888->8888/tcp
+  dea2z-minio-1        bitnamilegacy/minio:2024.10.13   minio        Up 9 minutes (healthy)   0.0.0.0:9000-9001->9000-9001/tcp
+  dea2z-postgres-1     postgres:16.4                    postgres     Up 9 minutes (healthy)   0.0.0.0:5432->5432/tcp
+  ```
+  (`minio-init` chỉ hiện với `docker compose ps -a`: `Exited (0)`.)
+- `docker stats --no-stream` khi rảnh, đo thật trên Docker Desktop (giới hạn 7,75 GiB):
+  ```
+  NAME                 CPU %     MEM USAGE
+  dea2z-jupyter-1      0.00%     167 MiB
+  dea2z-minio-1        0.06%     89 MiB
+  dea2z-postgres-1     0.37%     27 MiB
+  ```
+  Core + notebook **chưa tới 300 MB** lúc rảnh — con số 1,5–2 GB ở đầu compose là *đỉnh* khi chạy Spark `local[*]` trong notebook. Để so sánh, lúc bật **tất cả** profile trên cùng máy: kafka 320 MB, schema-registry 205 MB, kafka-ui 154 MB, debezium 423 MB, spark master+worker ~480 MB (rảnh), airflow webserver 765 MB + scheduler 524 MB + db 39 MB, marquez api 397 MB + web 89 MB + db 113 MB, trino 758 MB — tổng ≈ **4,5 GB rảnh**, chưa kể JVM Spark/Trino nở ra khi có query.
 
 Trả lời bước 1 (tự chấm): (1) prefix cho network `dea2z_default`, volume `dea2z_pgdata`…, container `dea2z-postgres-1`; (2) anchor YAML, merge 4 key healthcheck vào, chỉ sống trong 1 file; (3) init/one-shot container, `$$` để compose không thay biến `$l` của shell; (4) `pgdata` mất khi `reset`, 2 bind mount là file trên máy — sửa là thấy ngay; (5) chỉ chờ container *start*, Postgres có thể chưa nhận kết nối → Jupyter lỗi lúc boot; (6) không — `make up` chỉ bật `core` + `notebook`.
 

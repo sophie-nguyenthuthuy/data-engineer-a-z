@@ -60,7 +60,7 @@ Chạy job đó 2 lần cũng cho cùng kết quả như MERGE tay 2 lần — �
 ```bash
 docker compose exec minio mc ls local/warehouse/silver/pos_transactions/metadata/
 docker compose exec minio mc cp -r local/warehouse/silver/pos_transactions/metadata /tmp/meta
-docker compose cp minio:/tmp/meta ./tmp-meta
+docker compose cp minio:/tmp/meta ./tmp-meta          # → ./tmp-meta/metadata/*.json, *.avro
 ```
 `00000-<uuid>.metadata.json`, `00001-<uuid>.metadata.json`…, `snap-*.avro`, `*-m0.avro`. Mỗi `MERGE`/`ALTER` sinh thêm một metadata.json với số thứ tự tăng 1; **vị trí file hiện hành nằm trong catalog** (bảng `iceberg_tables` trong Postgres — xem thử bằng `psql -d iceberg_catalog`). Catalog kiểu hadoop thì thay bằng `version-hint.text` + `vN.metadata.json` (fixture trong `lab/solution/fixtures/` dùng dạng này). Mở một `metadata.json` bằng mắt trước khi viết code.
 
@@ -68,7 +68,7 @@ docker compose cp minio:/tmp/meta ./tmp-meta
 Mở [`lab/metadata_explorer.py`](lab/metadata_explorer.py), điền 4 TODO (tìm file hiện hành theo `version-hint.text`, load, tóm tắt snapshots, in bảng). Thử ngay với fixture trong `lab/solution/fixtures/metadata/` (một `v2.metadata.json` tối giản nhưng đúng spec v2) rồi với `./tmp-meta` ở bước 3:
 ```bash
 uv run python videos/17-lakehouse-iceberg-delta-hudi/lab/metadata_explorer.py videos/17-lakehouse-iceberg-delta-hudi/lab/solution/fixtures/metadata
-uv run python videos/17-lakehouse-iceberg-delta-hudi/lab/metadata_explorer.py ./tmp-meta
+uv run python videos/17-lakehouse-iceberg-delta-hudi/lab/metadata_explorer.py ./tmp-meta/metadata
 ```
 Bạn vừa viết một "engine" đọc Iceberg ở mức metadata — đúng cách DuckDB/Trino bắt đầu.
 
@@ -77,8 +77,7 @@ Bạn vừa viết một "engine" đọc Iceberg ở mức metadata — đúng c
 make up PROFILE=analytics
 docker compose exec trino trino --catalog lake --schema silver --execute "SELECT count(*) FROM pos_transactions"
 ```
-Ý tưởng: cùng dữ liệu, cùng metadata, engine khác — không copy, không ETL. Điều làm được việc đó là **catalog** dùng chung (ở đây: JDBC catalog trong Postgres). Catalog kiểu hadoop (chỉ file `version-hint.text`) Spark hiểu nhưng Trino không; production thường dùng REST catalog (Polaris, Lakekeeper, Nessie) hoặc Hive Metastore/Glue.
-<!-- TODO(thuy): kiểm chứng Trino 460 đọc được bảng do Spark tạo qua JDBC catalog (driver postgres trong plugin iceberg); nếu không, mount jar postgresql vào /usr/lib/trino/plugin/iceberg/ -->
+Ý tưởng: cùng dữ liệu, cùng metadata, engine khác — không copy, không ETL. Điều làm được việc đó là **catalog** dùng chung (ở đây: JDBC catalog trong Postgres). Catalog kiểu hadoop (chỉ file `version-hint.text`) Spark hiểu nhưng Trino không; production thường dùng REST catalog (Polaris, Lakekeeper, Nessie) hoặc Hive Metastore/Glue. Đã kiểm trên Trino 460: plugin iceberg có sẵn driver `org.postgresql_postgresql-42.7.4.jar`, không phải mount gì thêm; Trino còn đọc được bảng metadata: `SELECT snapshot_id, operation FROM "pos_transactions$snapshots"`.
 
 ### Bước 6 — Test offline
 ```bash
@@ -86,10 +85,36 @@ uv run pytest videos/17-lakehouse-iceberg-delta-hudi -q
 ```
 
 ## Kết quả mong đợi
-- Bước 2: `incoming_rows = 792`; count sau MERGE lần 1 = **792**, sau lần 2 **vẫn 792**. `.snapshots` có 2 dòng: `append` (added 792) rồi `overwrite` (added 792, **deleted 792** — copy-on-write ghi lại file dù giá trị không đổi). `VERSION AS OF <snapshot đầu>` cũng trả 792 nhưng đọc file cũ. `ADD COLUMN`: `.files` không thay đổi, cột mới toàn NULL.
-- Bước 3: thư mục metadata có `version-hint.text` = số lần commit, ít nhất `v1..v4.metadata.json` (create, merge, merge, alter).
-- Bước 4 với fixture: 2 snapshot, dòng `*8821937160440015002  2026-02-15 06:01:00  overwrite  792  792  792` được đánh `*`. Test `test_v17_metadata.py`: `3 passed`.
-<!-- TODO(thuy): dán output thật của .snapshots và metadata_explorer trên ./tmp-meta sau khi quay -->
+- Bước 2: `incoming_rows = 792`; count sau MERGE lần 1 = **792**, sau lần 2 **vẫn 792**. `.snapshots` thật sau khi chạy `iceberg_silver.py` 2 lần:
+  ```
+  snapshot_id          committed_at             operation  added  deleted  total
+  3616788352139182110  2026-10-22 11:50:20.485  append     NULL   NULL     0      ← CTAS … WHERE 1 = 0 tạo bảng rỗng
+  4996037437845598689  2026-10-22 11:50:23.569  append     792    NULL     792    ← MERGE lần 1: toàn INSERT
+  5652022970066613903  2026-10-22 11:50:34.405  overwrite  792    792      792    ← MERGE lần 2: copy-on-write ghi lại file dù giá trị không đổi
+  ```
+  (Làm bằng `iceberg_lab.sql` — `CREATE TABLE` thường — thì không có snapshot rỗng đầu, chỉ 2 dòng.) `VERSION AS OF 4996037437845598689` trả **792** nhưng đọc manifest cũ. `ADD COLUMN` rồi `RENAME`: `.files` vẫn 2 file (`ts_day=2026-02-14` 36 dòng — hoá đơn sau 0h UTC… tức trước 7h sáng VN; `ts_day=2026-02-15` 756 dòng), cột mới toàn NULL; `.history` 3 dòng đều `is_current_ancestor = true`.
+- Bước 3: với JDBC catalog, `metadata/` có `00000-<uuid>.metadata.json` … `00004-<uuid>.metadata.json` (create, merge, merge, add column, rename), 3 `snap-*.avro` (manifest list), 3 `*-m0/m1.avro` (manifest). Con trỏ hiện hành nằm trong Postgres:
+  ```
+  $ psql -d iceberg_catalog -c "SELECT table_namespace, table_name, metadata_location FROM iceberg_tables"
+  silver | pos_transactions | s3a://warehouse/silver/pos_transactions/metadata/00004-005b8437-….metadata.json
+  ```
+- Bước 4 với fixture: 2 snapshot, dòng `*8821937160440015002  2026-02-15 06:01:00  overwrite  792  792  792` được đánh `*`. Với `./tmp-meta/metadata` thật:
+  ```
+  metadata file     : 00004-005b8437-343c-4111-b034-c3580da36ab4.metadata.json
+  table-uuid        : 17cb6570-94f9-448e-a45f-d2dd73370d2c
+  format-version    : 2
+  location          : s3a://warehouse/silver/pos_transactions
+  current-snapshot  : 5652022970066613903
+  schemas           : 3 (current-schema-id=2)      ← schema gốc, +source_system, rename → _source
+  partition-specs   : 1
+
+           snapshot_id  committed_at (UTC)   operation   added deleted  total
+   3616788352139182110  2026-10-22 11:50:20  append          0       0      0
+   4996037437845598689  2026-10-22 11:50:23  append        792       0    792
+  *5652022970066613903  2026-10-22 11:50:34  overwrite     792     792    792
+  ```
+  Test `test_v17_metadata.py`: `3 passed`.
+- Bước 5: `docker compose exec trino trino --catalog lake --schema silver --execute "SELECT count(*) FROM pos_transactions"` → `"792"`; sau `ADD COLUMN` ở Spark, Trino thấy ngay cột `_source` (toàn NULL) — cùng metadata, không đồng bộ gì.
 
 ## Câu hỏi phỏng vấn của video
 > "Team bạn có data lake Parquet partition theo ngày, chạy ổn 2 năm. Sếp đọc bài về lakehouse và muốn chuyển sang Iceberg. Bạn nêu 3 vấn đề cụ thể mà Iceberg sẽ giải quyết **cho team này**, và 2 chi phí mới xuất hiện (gợi ý: catalog, compaction/expire snapshots)."

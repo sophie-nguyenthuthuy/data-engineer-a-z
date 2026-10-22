@@ -16,10 +16,11 @@ DAGS_DIR = Path(__file__).parent
 
 def test_dagbag_has_no_import_errors():
     from airflow.models import DagBag
+    from airflow.utils.dag_cycle_tester import check_cycle
 
     bag = DagBag(dag_folder=str(DAGS_DIR), include_examples=False)
     assert not bag.import_errors, bag.import_errors
     assert {"coffee_daily_pipeline", "coffee_backfill", "coffee_quality_checks"} <= set(bag.dag_ids)
     for dag in bag.dags.values():
         assert dag.tags, f"{dag.dag_id} has no tags"
-        dag.test_cycle()  # raises on cycle
+        check_cycle(dag)  # raises AirflowDagCycleException on cycle

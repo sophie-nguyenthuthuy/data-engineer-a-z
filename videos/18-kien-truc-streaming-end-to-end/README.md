@@ -112,9 +112,21 @@ Streaming không sai; sai là trả chi phí vận hành 24/7 (broker, checkpoin
 ## Kết quả mong đợi
 - `make ps`: ~20 container, tất cả `healthy`/`running` sau 3–5 phút (Airflow và Trino lên chậm nhất).
 - Runbook chạy trọn: topic `coffee.public.pos_transactions` có snapshot, `pos.transactions` nhận producer, `s3a://lake/gold/rt_store_revenue_1m/` có file Parquet mới mỗi ~10–30 giây khi producer chạy `--rate 20` (cửa sổ 1 phút event-time đóng rất nhanh vì event time chạy nhanh hơn đồng hồ ~1 700 lần).
-- `latency_probe.py`: với `--rate 20` và watermark 10 phút event-time, p50 ≈ vài giây tới vài chục giây (chủ yếu là thời gian micro-batch + chờ watermark vượt `window.end`); p95 cao hơn vì cửa sổ cuối phải chờ event time trôi đủ 10 phút. Bạn sẽ thấy: **latency của append-mode sink do watermark quyết định, không phải do Kafka hay Spark chậm.**
-- DuckDB đọc được gold từ MinIO, top cửa hàng khớp với console sink ở #15 (SG14 dẫn đầu ngày 15/02).
-<!-- TODO(thuy): dán output thật của latency_probe (p50/p95) và `make ps` sau khi quay -->
+- `latency_probe.py` (đo thật, producer `--rate 20`, probe `--duration 120`):
+  ```
+  tap pos.transactions @ localhost:9092; theo dõi s3://lake/gold/rt_store_revenue_1m/
+  12:22:12  part-00004-e2967510-…  windows= 16 matched=  4 p50=   2.5s p95=   2.9s
+  12:22:12  part-00006-7aff36e8-…  windows= 13 matched=  6 p50=   2.4s p95=   3.1s
+  12:23:15  part-00001-0b2d6bfb-…  windows= 17 matched= 16 p50=  43.2s p95=  45.5s
+  12:23:16  part-00000-082d960f-…  windows= 59 matched= 59 p50=  27.2s p95=  38.0s
+  ...
+  565 cửa sổ đo được
+  end-to-end latency  p50=31.6s  p95=44.8s  max=61.4s
+  Phần lớn con số này là watermark (10 phút event-time) + micro-batch, không phải Kafka hay Spark 'chậm'.
+  ```
+  Đọc kết quả: file đầu ra **theo đợt** (12:22:12 rồi 12:23:15 — cách nhau một phút), mỗi đợt 8 file (`spark.sql.shuffle.partitions = 8`, mỗi partition một file — small files bằng xương bằng thịt, nối với #11). Cửa sổ chỉ được ghi khi watermark vượt `window.end` + 10 phút event-time; với event time trôi nhanh ~1 700× thì 10 phút ≈ 0,35 s thật, nên phần lớn latency là **chờ đủ dữ liệu cho micro-batch kế tiếp** đóng cửa sổ, không phải tính toán. Đợt đầu p50 2,5 s; các đợt sau 27–44 s vì ở `--rate 20` một cửa sổ 1 phút event-time cần ~3 s thật để qua, và watermark chỉ nhích khi batch mới tới. **Latency của append-mode sink do watermark và nhịp dữ liệu quyết định, không phải do Kafka hay Spark chậm.**
+- `make ps` lúc chạy trọn runbook: 17 container (xem bảng ở #05), tất cả `healthy`/`running`; Airflow và Trino lên chậm nhất (~1 phút). `mc ls --recursive local/lake/gold/rt_store_revenue_1m/` sau 2 phút: 35 object (28 Parquet + 7 file `_spark_metadata/N`, mỗi batch có output một file metadata — đó là cách Spark làm sink file *exactly-once*: reader chỉ tin file được liệt kê trong `_spark_metadata`).
+- DuckDB đọc được gold từ MinIO: `624 cửa sổ, 644 orders` sau 2 phút (phần còn lại chưa đóng); top cửa hàng `SG14 34 orders 4 165 000` → `SG04` → `SG09` — khớp với console sink ở #15 (SG14 dẫn đầu ngày 15/02).
 
 ## Câu hỏi phỏng vấn của video
 > "Khách hàng là chuỗi 30 cửa hàng, yêu cầu 'dashboard real-time'. Bạn có 3 tháng và 2 kỹ sư. Bạn đề xuất kiến trúc gì, chỗ nào dùng streaming, chỗ nào kiên quyết không, và bạn đo cái gì để chứng minh lựa chọn đó đúng sau khi go-live?"

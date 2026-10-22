@@ -31,6 +31,10 @@ def read_postgres(url: str, table: str) -> pl.DataFrame:
     import psycopg  # optional dependency: coffee-ingestion[postgres]
 
     with psycopg.connect(url) as conn, conn.cursor() as cur:
+        # `ts` là TIMESTAMPTZ: psycopg trả về theo TimeZone của session (mặc định UTC trong container).
+        # Ép về giờ VN để chuỗi str(ts) có dạng '2026-02-15 05:57:28+07:00' giống CSV — pipeline cắt 10 ký tự
+        # đầu làm ngày nghiệp vụ, nên nếu để UTC thì hoá đơn 5h sáng 15/02 sẽ rơi vào partition 14/02.
+        cur.execute("SET TIME ZONE 'Asia/Ho_Chi_Minh'")
         cur.execute(f"SELECT * FROM {table}")  # noqa: S608 — table names come from POS_TABLES, not user input
         cols = [d.name for d in cur.description]
         rows = cur.fetchall()

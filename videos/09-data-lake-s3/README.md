@@ -73,9 +73,20 @@ uv run python videos/09-data-lake-s3/lab/solution/lake_inventory.py --lake s3://
 
 ## Kết quả mong đợi
 - Bước 2: 4 lần chạy, mỗi lần JSON summary như #07, `path` giờ là `s3://lake/bronze/...`. Ngày 15/02 vẫn `rows_out: 792`.
-- Bước 3: `mc ls --recursive` liệt kê 4 object `dt=2026-02-1[4-7]/part-000.parquet`, mỗi file 5–16 KB. <!-- TODO(thuy): dán output mc ls/du thật sau khi quay -->
+- Bước 3, output thật:
+  ```
+  $ docker compose exec minio mc ls --recursive local/lake/silver/pos_transactions/
+  [2026-10-22 11:42:16 UTC]  16KiB STANDARD dt=2026-02-14/part-000.parquet
+  [2026-10-22 11:42:17 UTC]  16KiB STANDARD dt=2026-02-15/part-000.parquet
+  [2026-10-22 11:42:18 UTC]  15KiB STANDARD dt=2026-02-16/part-000.parquet
+  [2026-10-22 11:42:19 UTC] 4.8KiB STANDARD dt=2026-02-17/part-000.parquet
+  $ docker compose exec minio mc du local/lake/bronze/ local/lake/silver/
+  276KiB	21 objects	lake/bronze
+  260KiB	29 objects	lake/silver
+  ```
+  21 = 20 partition + `.keep`; 29 = 28 + `.keep`. Mùng 1 Tết (17/02) chỉ 4,8 KB.
 - Bước 4: bảng 4 dòng — `2026-02-14 | 766 | 73397000`, `2026-02-15 | 792 | 76939000`, `2026-02-16 | 730 | 70254000`, `2026-02-17 | 59 | 5549000`; query thứ hai trả `792`.
-- Bước 5 với 4 ngày đã ingest (số đo trên thư mục local; trên MinIO `bytes` giống hệt vì cùng file):
+- Bước 5 với 4 ngày đã ingest (số đo trên `./lake-local`):
 
 ```
 layer   table                           partition        files     bytes    rows
@@ -87,6 +98,8 @@ silver  quarantine_pos_transactions     dt=2026-02-15        1     1,923       4
 bronze   tables=5 partitions=20 files=20 bytes=262,618 rows=14,686
 silver   tables=7 partitions=28 files=28 bytes=238,512 rows=14,682
 ```
+  Trên MinIO cùng lệnh cho `rows` **giống hệt** nhưng `bytes` khác (bronze 282 834, silver 265 933; `silver/pos_transactions/dt=2026-02-15` là 16 494 thay vì 15 322): `Lake.write_parquet` dùng **Polars writer** cho local nhưng **pyarrow writer** cho S3 — hai writer, hai cách chọn encoding/row group, cùng dữ liệu. Bài học nhỏ: so sánh lake bằng số dòng và checksum nội dung, đừng so byte.
+
   Hai điều đáng để ý: (1) `customers` và `stores` được chụp lại **nguyên bản mỗi ngày** (4 partition × 2 000 khách) — đó là kiểu *full snapshot dimension*, staging của dbt sẽ chỉ lấy bản mới nhất; (2) tổng dòng silver (14 682) chỉ kém bronze (14 686) 4 dòng vì quarantine được tính vào silver — không dòng nào "biến mất".
 - `pytest videos/09-data-lake-s3 -q` → **3 passed**.
 

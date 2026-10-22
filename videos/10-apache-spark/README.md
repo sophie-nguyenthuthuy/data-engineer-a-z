@@ -39,9 +39,9 @@ docker compose exec spark-master spark-submit --master spark://spark-master:7077
 
 ### Bước 4 — Spark UI: tìm 5 từ khoá
 Mở http://localhost:8085 → application `bronze_to_silver_pos` (còn thấy trong *Completed Applications* sau khi job xong) → **Application Detail UI**:
-- **Jobs**: mỗi action (`count()`, `write`) là một job. Đếm xem có bao nhiêu — gợi ý: code gọi `count()` 4 lần trong `print(...)`, cộng 2 lần `write` → **6 job**, và vì **lazy** nên 4 lần `count()` đọc lại bronze 4 lần (bài tập 1 sửa điều này).
+- **Jobs**: mỗi action (`count()`, `write`) là một job — code gọi `count()` 4 lần trong `print(...)` cộng 2 lần `write`, nên bạn đoán 6. Thực tế UI hiện **14 job** (id 0–13): vì AQE bật, mỗi action có shuffle bị tách thành *map-stage job* + job cuối; thêm 1 job đọc schema Parquet. Và vì **lazy**, 4 lần `count()` đọc lại bronze 4 lần (bài tập 1 sửa điều này).
 - **Stages**: job có shuffle sẽ tách thành ≥ 2 stage; ranh giới chính là `Exchange` trong plan (do `Window.partitionBy`).
-- **Tasks**: mỗi stage có N task = N partition. Sau shuffle là 8 (`spark.sql.shuffle.partitions = 8`), còn stage đọc Parquet là 1 (file bronze chỉ 16 KB).
+- **Tasks**: mỗi stage có N task = N partition. `spark.sql.shuffle.partitions = 8` nên bạn chờ 8 task sau shuffle — nhưng log thật ghi `Submitting 1 missing tasks from ShuffleMapStage` cho **mọi** stage: AQE (`coalescePartitions`) thấy 8 partition shuffle chỉ vài KB nên gộp thành 1. Tắt AQE (`--conf spark.sql.adaptive.enabled=false`) sẽ thấy đúng 8 task. Đây là ví dụ đầu tiên cho #11: config bạn đặt là *gợi ý*, AQE quyết định lúc chạy.
 - **Executors**: 1 driver + 1 executor (worker 2 core, 2 GB) — driver lập kế hoạch, executor làm việc.
 - **SQL / DataFrame** tab: bấm vào query → DAG có `Scan parquet` → `Filter` → `Exchange` → `Sort` → `Window` → ... Đây là physical plan sau Catalyst.
 
@@ -56,8 +56,20 @@ Hoặc chạy trên MinIO: `--lake s3a://lake`. Lời giải: [`lab/solution/wor
 **Không có test offline cho video này**: `.venv` không có pyspark (cố ý — pyspark + JVM nặng 300 MB). Mọi lệnh chạy trong Docker.
 
 ## Kết quả mong đợi
-- Bước 3 in dòng cuối: `bronze=799 silver=792 quarantine=4 tz_fixed=5` (cùng số với pipeline Python ở #07 — cùng rule, cùng dữ liệu, hai engine). <!-- TODO(thuy): chạy trên cluster compose và dán log thật, kể cả thời gian; job chưa chạy end-to-end trên cluster -->
-- Spark UI: application `bronze_to_silver_pos`, 6 jobs, stage có shuffle chạy 8 task, 1 executor. <!-- TODO(thuy): chụp ảnh Jobs + Stages + SQL DAG -->
+- Bước 3 (chạy thật trên cluster compose, worker 2 core/2 GB): toàn bộ `spark-submit` mất **11 giây**, trong đó khởi động SparkContext + xin executor ~4 s. Dòng cuối (sau hàng trăm dòng INFO):
+  ```
+  bronze=799 silver=792 quarantine=4 tz_fixed=5
+  ```
+  — cùng số với pipeline Python ở #07: cùng rule, cùng dữ liệu, hai engine. Vài dòng log đáng đọc:
+  ```
+  INFO SparkContext: Running Spark version 3.5.3
+  INFO StandaloneSchedulerBackend: Granted executor ID app-20261022114346-0000/0 on hostPort 172.25.0.5:33799 with 2 core(s)
+  INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 1.116054 s
+  INFO DAGScheduler: Registering RDD 6 (parquet ...) as input to shuffle 0
+  INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 1
+  INFO DAGScheduler: Job 13 finished: count at NativeMethodAccessorImpl.java:0, took 0.050872 s
+  ```
+- Spark UI: application `bronze_to_silver_pos`, **14 job**, 7 shuffle (`shuffle 0`–`6`), mỗi stage **1 task** (AQE gộp), 1 executor 2 core. Spark UI của application biến mất khi job xong (không có History Server trong compose) — chụp ảnh **trong lúc** job chạy, hoặc thêm `--conf spark.eventLog.enabled=true --conf spark.eventLog.dir=/tmp/spark-events` rồi đọc file event log (cách mình dùng để lấy số ở #11).
 - Bước 5, ngày 15/02: `rows=792`, 3 cách đều ra **30 cửa hàng**, tổng **76 939 000 VND**; top 5 giống nhau ở cả 3 cách:
 
 ```

@@ -19,7 +19,7 @@ import polars as pl
 REPO = Path(__file__).resolve().parents[4]
 SAMPLES = REPO / "data" / "samples"
 
-# TODO(thuy): xác nhận giá hiện tại tại https://aws.amazon.com/s3/pricing/ và /athena/pricing/ (ap-southeast-1)
+# Giá ap-southeast-1 kiểm qua AWS Price List API ngày 2026-10-22 (xem README bước 3). Giá đổi theo thời gian.
 S3_USD_PER_GB_MONTH = 0.025
 ATHENA_USD_PER_TB = 5.0
 ATHENA_MIN_BYTES_PER_QUERY = 10 * 1024**2  # Athena tính tối thiểu 10 MB mỗi query

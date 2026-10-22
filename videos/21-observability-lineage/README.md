@@ -11,7 +11,7 @@
 
 ## Yêu cầu trước khi xem
 - Đã xem #19 (Airflow) — lineage tự động sinh từ các DAG đó.
-- Bước 1–3 cần `make up PROFILE=all` (hoặc `PROFILE=orchestration`); Marquez UI http://localhost:3000, API http://localhost:5000.
+- Bước 1–3 cần `make up PROFILE=all` (hoặc `PROFILE=orchestration`); Marquez UI http://localhost:3000, API http://localhost:5050.
 - Bước 4–5 chạy **offline**, không cần Docker.
 
 ## Lab: nhìn thấy pipeline đang làm gì
@@ -33,18 +33,18 @@ Trigger `coffee_daily_pipeline` (như #19). Compose đã đặt `AIRFLOW__OPENLI
 Lưu ý thật: `BashOperator` **không tự biết** input/output của lệnh shell — provider chỉ gửi job + run, không có dataset. Đó là lý do DAG khai báo `outlets=[SILVER_POS]`: Airflow Dataset được map sang OpenLineage dataset. Muốn lineage cột-level cần integration của chính tool (Spark listener, dbt-ol) — bước 3.
 
 ### Bước 3 — Lineage model-level từ dbt
-`dbt-ol` là wrapper của `openlineage-dbt`, chưa có trong image. Hai cách:
-```bash
-# (a) trong container airflow — có dbt + duckdb sẵn
-docker compose exec airflow-webserver pip install --user "openlineage-dbt>=1.20,<2"
-docker compose exec -e OPENLINEAGE_URL=http://marquez-api:5000 -e OPENLINEAGE_NAMESPACE=dea2z-dbt \
-  airflow-webserver bash -c "cd /opt/dbt && dbt-ol build --profiles-dir . --target dev --vars '{lake_root: s3://lake}'"
-
-# (b) ngoài Docker, đọc ./lake-local (sau make smoke); config ở platform/observability/openlineage-dbt.yml
-cd platform/dbt && OPENLINEAGE_CONFIG=../observability/openlineage-dbt.yml \
-  uv run --with "openlineage-dbt>=1.20,<2" dbt-ol build --profiles-dir . --target dev
+Cách "chuẩn" là `dbt-ol` (gói `openlineage-dbt`, wrapper quanh `dbt`). Mình đã thử trong container Airflow — và nó **từ chối DuckDB**:
 ```
-Marquez giờ có từng model `stg_*`, `dim_*`, `fct_*` nối nhau — đúng DAG mà `dbt docs` vẽ, nhưng kèm **run history** và row count. Spark cũng tương tự qua listener ([`openlineage-spark.conf`](../../platform/observability/openlineage-spark.conf)) — chỉ cần thêm jar, không đổi code job.
+NotImplementedError: Only `bigquery`,`snowflake`,`redshift`,`spark`,`postgres`,`databricks`,`sqlserver`,`dremio`
+adapters are supported right now. Passed duckdb
+```
+(Thêm bẫy nhỏ: phải cài `openlineage-dbt` **cùng version** với `openlineage-python` đã có trong image — 1.18.0 — nếu không sẽ `ImportError: cannot import name 'tags_run'`.) Ở công ty dùng Postgres/Snowflake/BigQuery thì `dbt-ol build` thay `dbt build` là xong. Với DuckDB, mình tự viết phần lõi của dbt-ol trong 60 dòng stdlib: [`dbt_lineage.py`](../../platform/observability/dbt_lineage.py) đọc `target/manifest.json` (đồ thị `depends_on`) + `target/run_results.json` (trạng thái, thời gian) rồi gửi một cặp START/COMPLETE cho mỗi model:
+```bash
+cd platform/dbt && uv run dbt build --profiles-dir . --target dev && cd ../..
+uv run python platform/observability/dbt_lineage.py --dry-run | tail -3        # xem JSON trước
+uv run python platform/observability/dbt_lineage.py                            # gửi lên Marquez :5050
+```
+Marquez giờ có từng model `stg_*`, `dim_*`, `fct_*` nối nhau — đúng DAG mà `dbt docs` vẽ, nhưng kèm **run history**; job facet `sql` chứa SQL đã compile. Spark cũng tương tự qua listener ([`openlineage-spark.conf`](../../platform/observability/openlineage-spark.conf)) — chỉ cần thêm jar, không đổi code job.
 
 ### Bước 4 — Metrics: từ summary JSON sang Prometheus text
 `coffee-ingest run` in ra một JSON summary (rows_in / rows_out / quarantined / reasons theo bảng). Đó là **metric** nhưng chưa ai scrape được. Mở [`lab/metrics_exporter.py`](lab/metrics_exporter.py), điền TODO để đổi summary thành format Prometheus text:
@@ -76,9 +76,15 @@ uv run pytest videos/21-observability-lineage -q
 **Freshness SLA**: contract nói `freshness_hours: 26` — dữ liệu ngày D phải có trước 02:00 D+1. Metric: `now() − max(ts)` của silver, hoặc `now() − eventTime` của COMPLETE event cuối trong Marquez. **Alerting**: cảnh báo khi freshness vượt SLA hoặc `quarantined / rows_in` > 5%, chứ không alert mỗi task retry — retry là chuyện của Airflow.
 
 ## Kết quả mong đợi
-- Bước 1: terminal in `START → HTTP 201`, `COMPLETE → HTTP 201`. Marquez: namespace `dea2z-manual`, 2 job, 3 dataset, graph `pos_transactions → coffee.ingest → silver/pos_transactions → coffee.dbt → fct_daily_store_revenue`. <!-- TODO(thuy): dán ảnh graph Marquez sau khi quay -->
-- Bước 2: namespace `dea2z` có job `coffee_daily_pipeline.ingest_bronze_silver` với output `s3://lake/silver/pos_transactions`; `dbt_build` có output `duckdb://coffee_gold/gold`. <!-- TODO(thuy): xác nhận cách provider 1.9.1 đặt tên job/dataset trên bản quay thật -->
-- Bước 3: namespace `dea2z-dbt` có 11 job (5 staging + 6 marts) nối thành đồ thị, mỗi model có `rowCount` ở facet output. <!-- TODO(thuy): dán output thật của dbt-ol -->
+- Bước 1: terminal in `START → HTTP 201`, `COMPLETE → HTTP 201` cho mỗi lệnh. API thật:
+  ```
+  $ curl -s localhost:5050/api/v1/namespaces/dea2z-manual/jobs | python3 -c '...'
+  coffee.ingest in: ['pos_transactions'] out: ['pos_transactions']
+  coffee.dbt    in: ['pos_transactions'] out: ['fct_daily_store_revenue']
+  ```
+  Để ý: namespace `dea2z-manual` chỉ chứa **job**; dataset nằm trong namespace riêng theo nơi nó ở (`postgres://coffee_pos`, `s3://lake/silver`, `duckdb://coffee_gold`) — `emit_lineage.py` tách URI thành `namespace` + `name` bằng `rpartition("/")`. Graph trên UI: `pos_transactions → coffee.ingest → silver/pos_transactions → coffee.dbt → fct_daily_store_revenue`.
+- Bước 2: namespace `dea2z` có job `coffee_daily_pipeline.ingest_bronze_silver` với output `s3://lake/silver/pos_transactions`; `dbt_build` có output `duckdb://coffee_gold/gold`.
+- Bước 3: `dbt_lineage.py` in `sent 24/24 events → 12 job trong namespace dea2z-dbt` (5 staging + 6 marts + 1 snapshot `menu_price_snapshot`). Kiểm qua API: `coffee_gold.fct_sales` có inputs `main_staging.stg_pos_transactions, main_staging.stg_menu_items, main_staging.stg_pos_line_items`, output `main_gold.fct_sales`, `latestRun: COMPLETED`; namespace dataset `duckdb://coffee_gold` có 18 dataset (5 source silver + 12 model + 1).
 - Bước 4, với ngày 2026-02-15, exporter in **20 dòng metric** (5 bảng × 3 metric + 5 reason; chưa tính 8 dòng `# HELP/# TYPE`), trong đó:
   ```
   coffee_ingest_rows_in{table="pos_transactions",run_date="2026-02-15"} 799

@@ -11,7 +11,7 @@ USER ${NB_UID}
 
 RUN pip install --no-cache-dir \
     "duckdb>=1.1" "polars>=1.10" "pandas>=2.2" "pyarrow>=17" \
-    "psycopg[binary]>=3.2" "sqlalchemy>=2" "boto3>=1.35" "s3fs>=2024.9" \
+    "psycopg[binary]>=3.2" "sqlalchemy>=2" "boto3>=1.35" \
     "confluent-kafka>=2.5" "fastavro>=1.9" "great-expectations>=1.1,<2" \
     "jupysql>=0.10" "matplotlib>=3.9"
 

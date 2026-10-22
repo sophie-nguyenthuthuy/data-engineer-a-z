@@ -2,14 +2,16 @@
 
 ## 1. Bảng đo
 
-Số đo phụ thuộc máy; dưới đây là **hình dạng** kết quả bạn phải thấy. <!-- TODO(thuy): chạy 4 mode trên cluster compose (worker 2 core / 2 GB) và dán số thật -->
+Số đo thật (cluster compose, worker 2 core / 2 GB, `--rows 5000000`, đọc từ Spark event log; máy bạn sẽ khác về ms, không khác về hình dạng):
 
-| mode | tổng thời gian job | task dài nhất | task ngắn nhất | số task stage join | shuffle read của task dài nhất |
-|------|-------------------:|--------------:|---------------:|-------------------:|-------------------------------:|
-| naive | dài nhất | **≫** các task khác (task của SG01 ~40 % dữ liệu) | rất ngắn | 8 | ~40 % tổng shuffle |
-| salted | ngắn hơn naive | ≈ task khác (SG01 chia 8) | ≈ | 8 | ~1/8 của naive |
-| broadcast | **ngắn nhất** | ≈ (không còn stage shuffle join) | ≈ | = số partition đầu vào | **0** (không shuffle cho join) |
-| aqe | ≈ salted | ≈ (AQE tách partition skew) | ≈ | 8 + số partition bị tách | giảm so với naive |
+| mode | tổng thời gian job | task dài nhất | task ngắn nhất | median | số task stage join | shuffle read của task dài nhất |
+|------|-------------------:|--------------:|---------------:|-------:|-------------------:|-------------------------------:|
+| naive | 8,9 s | **1 115 ms** (4,5× median) | 15 ms | 250 ms | 8 | 1,2 MB · 2 333 336 dòng ≈ 47 % |
+| salted | 8,3 s | 807 ms (1,5× median) | 257 ms | 530 ms | 8 (+ stage groupBy 8 task, 2–27 ms) | 6,6 MB · 1 082 443 dòng ≈ 22 % |
+| broadcast | **6,4 s** | 88 ms | 4 ms | 6 ms | 8 (chỉ còn groupBy, 10 dòng/task) | ~0 (không shuffle cho join) |
+| aqe | 7,9 s | **2 293 ms** | — | — | **1** (AQE gộp 8 → 1) | 2,0 MB · 5 000 016 dòng = 100 % |
+
+Bất ngờ cần nhớ: với 5 M dòng, **AQE không tách skew mà còn gộp hết về 1 task** — tổng shuffle ~2 MB nhỏ hơn `advisoryPartitionSizeInBytes` (64 MB) nên `coalescePartitions` thắng, và partition SG01 1,2 MB xa ngưỡng tách 256 MB. AQE tối ưu theo *byte*, không theo *số dòng*; trên dữ liệu thật (GB/partition) nó hành xử đúng như lý thuyết bên dưới.
 
 Cách nhận ra skew trên UI: Stages → cột **Duration** của task: *Min / 25th / Median / 75th / Max*. Skew = Max lớn hơn Median hàng chục lần, và *Shuffle Read Size / Records* của task đó cũng lớn tương ứng.
 
@@ -20,7 +22,7 @@ Cách nhận ra skew trên UI: Stages → cột **Duration** của task: *Min / 
 | Ở mode `naive`, task nào dài nhất, xử lý store nào? | Task nhận partition của key `SG01` (`i % 10 < 4` → 40 % dòng). Biết vì hash(`SG01`) rơi vào đúng 1 trong 8 shuffle partition; Shuffle Read của task đó ≈ 40 % tổng. Bấm vào stage → *Tasks* → sort theo Duration. |
 | `salted` thêm gì? | Fact thêm cột `salt = rand() * 8` (int 0–7); dim `crossJoin` với `range(8)` để mỗi store có đủ 8 bản. Join trên (`store_id`, `salt`) → SG01 chia thành 8 key, mỗi key ~5 % dữ liệu. Giá: dim to gấp 8, code khó đọc hơn, phải nhớ `groupBy` lại theo `store_id` sau join (ở đây `groupBy("city","store_id")` làm việc đó). |
 | `broadcast` bỏ gì? | Bỏ **shuffle của fact** cho join: dim (16 dòng) được gửi nguyên bản tới mọi executor, mỗi partition fact join tại chỗ (BroadcastHashJoin). Chỉ dùng khi dim nhỏ vì toàn bộ dim phải nằm trong RAM của *từng* executor và driver phải thu gom nó. Ngưỡng tự động mặc định `spark.sql.autoBroadcastJoinThreshold = 10 MB`. Phép `groupBy` phía sau vẫn shuffle nhưng dữ liệu đã được partial-aggregate trước nên nhẹ. |
-| `aqe` sửa skew lúc nào? | **Runtime**: sau khi stage map của shuffle chạy xong, Spark đọc kích thước thật của từng shuffle partition (map output statistics). Partition nào > `skewedPartitionFactor` (5×) × median **và** > `skewedPartitionThresholdInBytes` (256 MB) thì tách nhỏ, phía dim được nhân bản tương ứng. Với 5 triệu dòng × vài chục byte, partition SG01 có thể **chưa chạm 256 MB** → AQE không tách; nếu thấy vậy, hạ `spark.sql.adaptive.skewJoin.skewedPartitionThresholdInBytes` xuống (vd `16m`) hoặc tăng `--rows`. Bài học: AQE không phải phép màu, phải biết ngưỡng. |
+| `aqe` sửa skew lúc nào? | **Runtime**: sau khi stage map của shuffle chạy xong, Spark đọc kích thước thật của từng shuffle partition (map output statistics). Partition nào > `skewedPartitionFactor` (5×) × median **và** > `skewedPartitionThresholdInBytes` (256 MB) thì tách nhỏ, phía dim được nhân bản tương ứng. Đo thật: partition SG01 chỉ **1,2 MB** → không tách; tệ hơn, `coalescePartitions` gộp 8 partition thành 1 task 2,3 s. Muốn thấy tách skew trên laptop: hạ cả hai ngưỡng (`skewedPartitionThresholdInBytes=100k`, `advisoryPartitionSizeInBytes=100k`) hoặc tăng `--rows` lên hàng trăm triệu. Bài học: AQE không phải phép màu, phải biết ngưỡng — và ngưỡng tính bằng byte. |
 | Chọn mode nào cho Phin Phố? | `broadcast` — dim `stores` 30 dòng, `menu_items` 23 dòng: nhỏ hơn 10 MB hàng nghìn lần, Spark tự broadcast mà không cần `F.broadcast`. Salting chỉ dành cho join **hai bảng lớn** bị skew; AQE để bật mặc định như lưới an toàn. Thứ tự ưu tiên thực tế: broadcast → AQE → salting (thủ công, cuối cùng). |
 
 ## 3. Config → tác dụng

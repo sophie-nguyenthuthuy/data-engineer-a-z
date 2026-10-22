@@ -78,7 +78,8 @@ def tap_kafka(
 def read_windows(parquet_path: str) -> list[tuple[int, str]]:
     """(window_start epoch ms, store_id) của mọi dòng trong một file Parquet của sink."""
     rows = duckdb.sql(
-        f"SELECT epoch_ms(window.start) AS w, store_id FROM read_parquet('{parquet_path}')"
+        # `window` là từ khoá của DuckDB → phải quote tên cột struct
+        f"""SELECT epoch_ms("window".start) AS w, store_id FROM read_parquet('{parquet_path}')"""
     ).fetchall()
     return [(int(w), s) for w, s in rows]
 

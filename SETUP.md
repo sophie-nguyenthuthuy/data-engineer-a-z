@@ -4,12 +4,14 @@ Toàn bộ khoá học chạy trên **một máy laptop** bằng Docker. Phần 
 
 ## 1. Yêu cầu máy
 
-| Profile | Dùng cho | RAM tối thiểu | Disk |
-|---------|----------|---------------|------|
-| `core` (mặc định: postgres + minio + jupyter) | Video #01–#12 | **8 GB** (Docker cấp ~4 GB) | 5 GB |
-| `streaming` (+ kafka, schema-registry, kafka-ui, debezium) | Video #13–#18 | 12 GB (Docker ~6 GB) | 8 GB |
-| `spark` (+ spark master/worker) | Video #10, #11, #15, #17 | 12 GB (Docker ~6 GB) | 8 GB |
-| `all` (mọi service, gồm airflow, marquez, trino) | Video #19–#23 | 16 GB (Docker ~10 GB) | 15 GB |
+| Profile | Dùng cho | RAM container đo thật (rảnh) | RAM máy nên có | Disk |
+|---------|----------|------------------------------|----------------|------|
+| `core` (mặc định: postgres + minio + jupyter) | Video #01–#12 | ~0,3 GB (Spark `local[*]` trong notebook: +1–2 GB) | **8 GB** (Docker cấp ~4 GB) | 5 GB |
+| `streaming` (+ kafka, schema-registry, kafka-ui, debezium) | Video #13–#18 | +1,1 GB | 8 GB nếu chỉ bật profile này, 12 GB thoải mái | 8 GB |
+| `spark` (+ spark master/worker) | Video #10, #11, #15, #17 | +0,5 GB rảnh, +2 GB khi chạy job | 12 GB (Docker ~6 GB) | 8 GB |
+| `all` (mọi service, gồm airflow, marquez, trino) | Video #19–#23 | ≈ 4,5 GB rảnh, 6–7 GB khi Spark + Trino cùng chạy | 16 GB (Docker ≥ 8 GB) | 15 GB |
+
+Số đo: `docker stats` trên Docker Desktop macOS giới hạn 7,75 GiB — `PROFILE=all` vẫn chạy trọn 24 lab trên giới hạn đó, nhưng chật.
 
 CPU: 4 core trở lên. Mac M1/M2/M3 và Windows/Linux x86_64 đều chạy được (image đã chọn đều có bản arm64).
 
@@ -58,7 +60,7 @@ make up               # postgres + minio + jupyter (profile core)
 make ps               # tất cả phải là "healthy" hoặc "running"
 ```
 
-Lần đầu `make up` build image Jupyter (~5 phút, tải jar Spark/Iceberg). Các lần sau chỉ vài giây.
+Lần đầu `make up` build image Jupyter (~5 phút, tải jar Spark/Iceberg + pip). `PROFILE=spark` build thêm image Spark (~2 phút), `PROFILE=all` build thêm Airflow (~5 phút). Các lần sau chỉ vài giây.
 
 ### Các profile khác
 ```bash
@@ -85,6 +87,7 @@ make reset                  # dừng và XOÁ volume — bắt đầu lại từ
 | Debezium Connect | http://localhost:8083 | — |
 | Airflow | http://localhost:8082 | `admin` / `admin` |
 | Marquez UI | http://localhost:3000 | — |
+| Marquez API | http://localhost:5050 | (port 5000 trên macOS đã bị AirPlay chiếm) |
 | Trino | http://localhost:8090 | user bất kỳ |
 
 Bên trong Docker network, service gọi nhau bằng tên: `postgres:5432`, `minio:9000`, `kafka:29092`, `spark-master:7077`.
@@ -105,13 +108,16 @@ Kết quả mong đợi: số dòng > 0 và ba thư mục `bronze/ silver/ gold/
 
 | Triệu chứng | Nguyên nhân thường gặp | Cách xử lý |
 |-------------|------------------------|------------|
-| `port is already allocated` | Máy bạn đang chạy Postgres/MinIO/Jupyter khác | Đổi port trong `.env` (ví dụ `POSTGRES_PORT=5433`) rồi `make up` lại |
+| `port is already allocated` / `address already in use` | Máy bạn đang chạy Postgres/MinIO/Jupyter khác; trên macOS port **5000** và **7000** thuộc AirPlay Receiver; **8080/8081** hay bị tool khác chiếm | Đổi port trong `.env` (ví dụ `POSTGRES_PORT=5433`, `SCHEMA_REGISTRY_PORT=8091`) rồi `make up` lại. Tìm thủ phạm: `lsof -nP -iTCP:8081 -sTCP:LISTEN` |
 | Service `unhealthy` mãi, nhất là Kafka/Airflow | Docker thiếu RAM | Tăng Memory trong Docker Desktop; chạy ít profile hơn |
 | `make up` báo `.env: No such file` | Chưa copy env | `make env` (hoặc `cp .env.example .env`) |
 | Postgres lên nhưng bảng rỗng | Volume cũ từ lần chạy trước, init SQL chỉ chạy khi volume mới | `make reset && make up`, hoặc `make seed` |
 | Jupyter không mở, hỏi token | — | Dùng token `dea2z`, hoặc `docker compose logs jupyter` để lấy URL |
 | Windows: build image rất chậm, lỗi `permission denied` | Repo nằm ở `/mnt/c` | Clone lại vào `~/` trong WSL |
 | Mac M-series: `no matching manifest for linux/arm64` | Image không có bản arm | Mọi image trong repo đều có arm64; nếu gặp, mở issue kèm tên image |
+| `pull access denied for bitnami/spark` hoặc `minio/minio` | Bitnami và MinIO đã gỡ image miễn phí khỏi Docker Hub (2025) | Repo đã đổi sang `apache/spark:3.5.3` (chính thức) và `bitnamilegacy/minio` (bản lưu trữ, có sẵn `mc`). `git pull` bản mới nhất |
+| Airflow task `ingest` lỗi `No module named coffee_ingestion` hoặc `pyarrow requires NumPy 2.0` | Image Airflow cũ | `docker compose build airflow-init && make up PROFILE=orchestration` |
+| Spark streaming không bao giờ ra `Batch: 0`, log lặp `UnknownTopicOrPartitionException` | Topic Kafka chưa tồn tại khi job start | Tạo topic trước (`kafka-topics.sh --create`), xem #15 |
 | Spark job lỗi `ClassNotFoundException: S3AFileSystem` | Chạy sai image (thiếu jar) | Dùng `dea2z/spark` hoặc Jupyter của repo, đừng dùng image gốc |
 | Debezium không bắt được thay đổi | Postgres chưa `wal_level=logical` | Repo đã cấu hình sẵn; nếu bạn dùng Postgres ngoài, bật `wal_level=logical` |
 | Kafka client từ host không kết nối | Dùng sai port | Host dùng `localhost:9092`; container dùng `kafka:29092` |

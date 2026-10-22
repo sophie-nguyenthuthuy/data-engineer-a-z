@@ -2,6 +2,39 @@
 
 Định dạng theo [Keep a Changelog](https://keepachangelog.com/vi/1.0.0/), commit theo Conventional Commits.
 
+## [0.2.0] — 2026-10-22 — Chạy end-to-end trên Docker, dán output thật
+
+Toàn bộ môi trường đã được dựng thật (`make up PROFILE=all`, macOS arm64, Docker Desktop) và mọi lab có bước Docker đã chạy
+một lượt. Những gì sửa dưới đây đều là lỗi lộ ra khi chạy thật, không phải khi lint.
+
+### Changed — hạ tầng
+- **Spark image**: `bitnami/spark:3.5.3` đã bị gỡ khỏi Docker Hub → chuyển sang `apache/spark:3.5.3-scala2.12-java17-python3-ubuntu` (chính thức, Python 3.10). Compose đổi `SPARK_MODE` sang lệnh `spark-class … Master/Worker`; `spark-submit` có trên PATH.
+- **MinIO image**: `minio/minio` và `minio/mc` cũng đã bị gỡ (Docker Hub lẫn quay.io) → `bitnamilegacy/minio:2024.10.13` (có sẵn `mc`, `MINIO_DEFAULT_BUCKETS` tạo bucket). `minio-init` chờ MinIO thật sự nhận kết nối (Bitnami khởi động 2 lần).
+- **Airflow image**: providers cài theo đúng constraints 2.9.3 (hết `ResolutionImpossible`); thêm `psycopg`, `pytest`; `pyarrow<19` (pyarrow mới đòi numpy ≥ 2, constraints giữ numpy 1.26); `PYTHONPATH=/opt/ingestion/src` để `coffee_ingestion` import được từ bind mount.
+- **Jupyter image**: bỏ `s3fs` (kéo `fsspec` đã bị yank → pip backtracking vô tận); không lab nào dùng.
+- **Iceberg catalog**: đã kiểm Trino 460 có sẵn driver postgres trong plugin iceberg; Spark và Trino đọc cùng bảng qua JDBC catalog.
+- Port Marquez API trên host mặc định **5050** (macOS dùng 5000 cho AirPlay Receiver). Trong network vẫn `marquez-api:5000`.
+
+### Fixed — code lộ ra khi chạy thật
+- `coffee_daily_pipeline`: `{{ ds }}` là ngày **UTC** → với lịch 02:00 giờ VN lệch đúng 1 ngày. Task `business_date` giờ đổi `data_interval_start` về Asia/Ho_Chi_Minh; `coffee_quality_checks` lấy ngày từ XCom của run upstream (hoặc `params.date` khi trigger tay). Task `notify` gửi Slack/Telegram qua Airflow Variable (`SLACK_WEBHOOK_URL`, `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`), lỗi gửi không làm pipeline đỏ.
+- `dbt_build` trong Airflow dùng `--target-path target_airflow`: dbt 1.11 (image) và 1.9 (máy dev) ghi layout `target/` khác nhau, dùng chung qua bind mount sẽ lỗi `Not a directory` ở snapshot.
+- `coffee_ingestion.Lake.write_parquet`: overwrite **cả partition** (xoá file khác tên còn lại, ví dụ `part-00000-<uuid>.parquet` + `_SUCCESS` của Spark) — trước đó hai writer luân phiên để lại hai bản dữ liệu → dbt `unique` fail. Xoá từng object vì MinIO từ chối bulk delete thiếu `Content-MD5`.
+- `coffee_ingestion.read_postgres`: `SET TIME ZONE 'Asia/Ho_Chi_Minh'` — session UTC làm hoá đơn 5–7h sáng rơi vào partition hôm trước (35 duplicate xuyên partition khi backfill từ Postgres rồi ingest từ CSV).
+- `contract_check.py` / `run_checkpoint.py`: đọc `s3://` qua MinIO cần `storage_options` cho Polars (`aws_endpoint_url`, `aws_allow_http`) — trước đó âm thầm gọi AWS thật và `InvalidAccessKeyId`.
+- `videos/13 consumer.py`: Ctrl+C đúng lúc vừa commit → `KafkaException _NO_OFFSET` làm chương trình crash; giờ bỏ qua mã đó.
+- `videos/18 latency_probe.py`: `window` là từ khoá DuckDB → `"window".start`.
+- `platform/airflow/dags/test_dag_integrity.py`: `DAG.test_cycle()` không tồn tại ở Airflow 2.9 → `check_cycle()`. Thêm `.airflowignore` để scheduler không parse file test.
+- `videos/23`: policy MinIO phải tách `s3:GetBucketLocation` khỏi condition `s3:prefix` (mc 2024-10 từ chối).
+
+### Added
+- `platform/observability/dbt_lineage.py`: gửi lineage model-level của dbt lên Marquez từ `manifest.json` + `run_results.json` (stdlib). Lý do: `dbt-ol` (openlineage-dbt 1.18) không hỗ trợ adapter duckdb.
+- Output thật dán vào "Kết quả mong đợi" của #02, #03, #05, #08, #09, #10, #11 (bảng Summary Metrics 4 mode từ event log), #13, #14, #15 (bảng watermark/tz_drift: ~63 % hoá đơn bị bỏ), #16, #17, #18 (p50/p95), #20, #21, #23 (giá AWS từ Price List API 22/10/2026). Vài kết luận trong README đã **đổi** vì số thật khác dự đoán: plan OLAP Postgres là `GroupAggregate` không phải `HashAggregate` (#02); Spark UI 14 job và 1 task/stage do AQE (#10); AQE gộp 8 partition thành 1 task thay vì tách skew ở 5 M dòng (#11); `.snapshots` có 3 dòng khi dùng `iceberg_silver.py` (#17).
+- SETUP.md: bảng troubleshooting thêm 4 tình huống gặp thật (image bị gỡ, port 5000/8081, Airflow image cũ, topic chưa tồn tại với Structured Streaming); RAM đo thật theo profile.
+
+### Notes
+- Số đo thời gian (ms, s) trong README là của máy mình (Apple M-series, Docker Desktop 7,75 GiB); hình dạng kết quả mới là thứ cần giống.
+- Chưa thử trên Linux x86_64 và Windows/WSL2 — image đều multi-arch nhưng chưa có người chạy.
+
 ## [0.1.0] — 2026-10-22 — Scaffold ban đầu
 
 ### Added
@@ -29,37 +62,15 @@
 
 ---
 
-## TODO còn lại cho Thuỷ (`grep -rn "TODO(thuy)"`)
+## TODO còn lại cho Thuỷ (`grep -rn "TODO(thuy)"` → chỉ còn mục nội dung)
 
-### Cần chạy Docker/cluster để lấy output thật (dán vào "Kết quả mong đợi" sau khi quay)
-| Video | Việc |
-|-------|------|
-| #02, #03 | output `EXPLAIN (ANALYZE, BUFFERS)` thật của Postgres |
-| #05 | `make ps` + `docker stats` thật |
-| #08 | output Avro schema evolution trong Jupyter |
-| #09 | `mc ls/du` thật trên MinIO |
-| #10 | log `spark-submit` thật + ảnh Spark UI (Jobs/Stages/SQL DAG) |
-| #11 | bảng Summary Metrics 4 mode; kiểm tra AQE có tách skew partition với 5 M dòng (ngưỡng 256 MB) |
-| #13 | `--describe` consumer group + vài dòng consumer |
-| #14 | output `dlq_consumer` + response 409 của Schema Registry |
-| #15 | console Batch thật; số cửa sổ mất khi watermark 1 phút với tz_drift |
-| #16 | status JSON connector + 4 envelope c/u/d thật |
-| #17 | `.snapshots` + `metadata_explorer` trên `./tmp-meta`; **kiểm chứng Trino 460 đọc bảng Spark tạo qua JDBC catalog** (driver postgres trong plugin iceberg — nếu thiếu, mount jar) |
-| #18 | `make ps` toàn bộ + p50/p95 latency (README và runbook) |
-| #19 | ảnh Graph + `ds` thật; đặt `sla` cho DAG (hiện là bài tập) |
-| #20 | output GX thật (xác nhận 8/8 trên samples); số `dbt test` PASS |
-| #21 | ảnh graph Marquez; cách provider openlineage 1.9.1 đặt tên job/dataset; output `dbt-ol` |
-| #22 | cập nhật bảng job khi `ci.yml` đổi; số resource từ `terraform plan` (hiện ghi 12) |
-| #23 | xác nhận giá S3/Athena ap-southeast-1 (README + 2 file `cost_model.py`); cú pháp `mc admin policy create` với image MinIO 2024-10 |
+### Nội dung — chỉ làm được khi quay/phát hành
+- Thêm PDF slide vào `videos/NN-*/slides/` sau mỗi video; đổi `TODO:youtube-link` và ⚪ → 🟢 trong README theo lịch.
+- Ảnh chụp màn hình (Spark UI Jobs/Stages/SQL DAG ở #10–#11, Marquez graph ở #21, Airflow Graph ở #19) — số liệu đã có trong README, chỉ thiếu ảnh.
+- #19: `sla` cho DAG hiện để làm bài tập; webhook Slack/Telegram đã nối qua Variable, cần điền giá trị thật khi demo.
 
-### Platform
-- `platform/spark/*.py`: đã lint, **chưa chạy end-to-end trên cluster compose** — chạy thử 4 job trước khi quay #10/#11/#15/#17.
-- `platform/airflow/dags/coffee_daily_pipeline.py`: nối Slack/Telegram webhook ở task `notify` (#19).
-- `infra/docker/trino/catalog/lake.properties`: xác nhận driver `org.postgresql.Driver` có trong plugin iceberg của Trino 460.
-- Build 3 image tuỳ biến lần đầu (`make up PROFILE=all`) trên cả Mac M-series và Linux x86 để chắc tất cả jar tải được và `healthcheck` lên.
-- dbt 1.9 đang bị đánh dấu deprecated khi chạy (warning vô hại); nâng khi dbt-duckdb hỗ trợ bản mới hơn.
-
-### Nội dung
-- Thêm PDF slide vào `videos/NN-*/slides/` sau mỗi video; đổi `TODO:youtube-link` và ⚪ → 🟢 trong README.
-- Bật GitHub Discussions cho repo (README và issue config đã trỏ tới).
-- Cân nhắc thêm GitHub Actions badge thật sau lần CI xanh đầu tiên (badge đã trỏ đúng workflow `ci.yml`).
+### Nên làm trước khi phát hành phần 3–4
+- Chạy một lượt `make up PROFILE=all` trên **Linux x86_64** và **Windows/WSL2** (mình chỉ chạy trên macOS arm64) — quan tâm nhất: image `bitnamilegacy/minio` và `apache/spark` kéo được, Airflow build ~5 phút.
+- `bitnamilegacy/*` là kho lưu trữ không cập nhật; nếu sau này bị gỡ nốt, phương án là tự build MinIO từ binary (`dl.min.io`) — để sẵn một `minio.Dockerfile` khi cần.
+- dbt 1.9 trên máy dev đang bị đánh dấu deprecated (warning vô hại); image Airflow đã dùng dbt 1.11. Nâng lock khi dbt-duckdb hỗ trợ.
+- Trên máy có process khác chiếm `127.0.0.1:9000` (mình gặp), DuckDB/Polars đôi lúc nói chuyện nhầm đích; đổi `MINIO_PORT` trong `.env` nếu thấy lỗi `invalid HTTP version`.
