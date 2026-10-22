@@ -2,6 +2,11 @@
 
 Định dạng theo [Keep a Changelog](https://keepachangelog.com/vi/1.0.0/), commit theo Conventional Commits.
 
+## [0.3.0] — 2026-10-22 — Slide cho 24 video
+
+### Added
+- `videos/NN-*/slides/`: deck PPTX (14–16 slide mỗi video, 8,9 MB tổng) + PDF xuất bằng LibreOffice headless (3,8 MB tổng) cho #01–#24; link 📑 Slide ngay dưới dòng 📺 Video trong README từng video. #00 intro không có slide (video nói chuyện trực tiếp).
+
 ## [0.2.1] — 2026-10-22 — Ảnh UI thật, Spark History Server
 
 ### Added
@@ -74,7 +79,7 @@ một lượt. Những gì sửa dưới đây đều là lỗi lộ ra khi ch�
 ## TODO còn lại cho Thuỷ (`grep -rn "TODO(thuy)"` → chỉ còn mục nội dung)
 
 ### Nội dung — chỉ làm được khi quay/phát hành
-- Thêm PDF slide vào `videos/NN-*/slides/` sau mỗi video; đổi `TODO:youtube-link` và ⚪ → 🟢 trong README theo lịch.
+- Đổi `TODO:youtube-link` và ⚪ → 🟢 trong README theo lịch phát hành.
 - #19: `sla` cho DAG hiện để làm bài tập; webhook Slack/Telegram đã nối qua Variable, cần điền giá trị thật khi demo.
 
 ### Nên làm trước khi phát hành phần 3–4

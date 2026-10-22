@@ -1,6 +1,6 @@
 # #10 — Apache Spark từ số 0
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V10-Apache-Spark-tu-so-0.pdf](slides/V10-Apache-Spark-tu-so-0.pdf)
 
 ## Bạn sẽ học được gì
 - Giải thích được 5 từ khoá bằng chính job của repo: **driver / executor / partition / shuffle / lazy evaluation** — và chỉ ra chúng trong Spark UI.

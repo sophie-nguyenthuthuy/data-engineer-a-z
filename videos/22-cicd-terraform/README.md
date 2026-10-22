@@ -1,6 +1,6 @@
 # #22 — CI/CD + Terraform
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V22-CICD-IaC.pdf](slides/V22-CICD-IaC.pdf)
 
 ## Bạn sẽ học được gì
 - Đọc hiểu CI của chính repo này ([`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)): 5 job chạy song song trên mỗi PR, mỗi job tương ứng một target trong `Makefile`.

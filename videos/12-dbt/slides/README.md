@@ -1,1 +1,1 @@
-Slide PDF sẽ được thêm vào đây sau khi video phát hành. License: CC BY-NC-SA 4.0 (xem LICENSE-CONTENT).
+Slide của video (CC BY-NC-SA 4.0, xem LICENSE-CONTENT ở root): `V12-dbt.pdf` để đọc, `V12-dbt.pptx` để sửa/dùng lại khi dạy.

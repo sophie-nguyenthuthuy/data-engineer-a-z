@@ -1,6 +1,6 @@
 # #02 — Kiến trúc dữ liệu hiện đại: OLTP, OLAP, Warehouse, Lake
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V02-Kien-truc-du-lieu-hien-dai.pdf](slides/V02-Kien-truc-du-lieu-hien-dai.pdf)
 
 ## Bạn sẽ học được gì
 - Phân biệt OLTP (máy tính tiền ghi hoá đơn) và OLAP (sếp hỏi doanh thu theo ngày × cửa hàng) bằng **query plan thật**, không bằng định nghĩa.

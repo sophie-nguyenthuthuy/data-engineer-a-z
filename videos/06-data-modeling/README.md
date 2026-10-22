@@ -1,6 +1,6 @@
 # #06 — Data Modeling: Star Schema, Snowflake, Data Vault
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V06-Data-Modeling.pdf](slides/V06-Data-Modeling.pdf)
 
 ## Bạn sẽ học được gì
 - Đi từ 5 bảng OLTP của POS tới một **star schema** trả lời được "doanh thu/margin theo ngày × cửa hàng × món × kênh" bằng 1 fact JOIN 3 dim — không CTE, không window.

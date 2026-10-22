@@ -1,6 +1,6 @@
 # #21 — Observability & Lineage: OpenLineage, Marquez
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V21-Observability-Lineage.pdf](slides/V21-Observability-Lineage.pdf)
 
 ## Bạn sẽ học được gì
 - Ba trụ observability (**logs / metrics / traces**) áp vào data pipeline, và trụ thứ tư riêng của data: **lineage**.

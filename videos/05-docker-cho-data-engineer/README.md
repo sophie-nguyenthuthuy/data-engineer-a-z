@@ -1,6 +1,6 @@
 # #05 — Docker cho Data Engineer
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V05-Docker-cho-Data-Engineer.pdf](slides/V05-Docker-cho-Data-Engineer.pdf)
 
 ## Bạn sẽ học được gì
 - Đọc hiểu [`docker-compose.yml`](../../docker-compose.yml) của repo — file bạn sẽ sống cùng 19 video còn lại: `profiles`, `healthcheck` + `depends_on: condition: service_healthy`, named volume vs bind mount, network và hostname, biến `${VAR:-default}`, YAML anchor `&hc` / `<<: *hc`.

@@ -1,6 +1,6 @@
 # #08 — Định dạng file: Parquet, Avro, ORC, Delta
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V08-Dinh-dang-file-du-lieu.pdf](slides/V08-Dinh-dang-file-du-lieu.pdf)
 
 ## Bạn sẽ học được gì
 - Giải thích được vì sao cùng 2 481 hoá đơn, CSV nặng 224 KB mà Parquet zstd chỉ 36 KB — và vì sao *kích thước* chưa phải lý do chính để chọn Parquet.

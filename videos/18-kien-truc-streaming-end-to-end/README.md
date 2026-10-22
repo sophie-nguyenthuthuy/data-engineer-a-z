@@ -1,6 +1,6 @@
 # #18 — Kiến trúc streaming end-to-end
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V18-Streaming-end-to-end.pdf](slides/V18-Streaming-end-to-end.pdf)
 
 ## Bạn sẽ học được gì
 - Ghép 5 video trước thành **một** hệ thống chạy thật: POS → Debezium → Kafka → Spark Streaming → Iceberg/Parquet → Trino/dbt; app events và IoT đi cùng đường.

@@ -1,6 +1,6 @@
 # #16 — CDC với Debezium
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V16-CDC-voi-Debezium.pdf](slides/V16-CDC-voi-Debezium.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu **Change Data Capture** là gì và vì sao đọc WAL (log-based) thắng cả hai cách cũ: poll theo `updated_at` và trigger.

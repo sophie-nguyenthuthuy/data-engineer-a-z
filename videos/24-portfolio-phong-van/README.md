@@ -1,6 +1,6 @@
 # #24 — Portfolio, CV, phỏng vấn
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V24-Portfolio-CV-phong-van.pdf](slides/V24-Portfolio-CV-phong-van.pdf)
 
 ## Bạn sẽ học được gì
 - Biến repo khoá học thành **portfolio của bạn**: fork, đổi dữ liệu/bài toán, viết README dự án theo khung Problem → Architecture → Data → Pipeline → Quality → Lessons, quay demo 3 phút.

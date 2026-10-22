@@ -1,1 +1,1 @@
-Slide PDF sẽ được thêm vào đây sau khi video phát hành. License: CC BY-NC-SA 4.0 (xem LICENSE-CONTENT).
+Video #00 là video giới thiệu, nói chuyện trực tiếp không có slide. Slide của #01–#24 nằm trong `videos/NN-*/slides/` (PDF + PPTX, CC BY-NC-SA 4.0).

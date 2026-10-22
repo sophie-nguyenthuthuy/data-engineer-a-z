@@ -34,7 +34,7 @@ Có, miễn phí, ghi nguồn, theo [CC BY-NC-SA 4.0](../LICENSE-CONTENT). Khoá
 Trả lời câu hỏi phỏng vấn dưới comment video. Bài tập code: tự làm, so với `solution/`. Muốn được review: mở Discussion kèm link gist/fork — mình và cộng đồng sẽ góp ý. Không PR bài tập vào repo chính.
 
 ### Slide ở đâu?
-`videos/NN-slug/slides/` — thêm sau khi mỗi video phát hành.
+`videos/NN-slug/slides/` — có sẵn cả PDF và PPTX cho 24 video (#01–#24), kể cả video chưa phát hành. Mình có thể chỉnh lại slide trước khi quay; file trong repo luôn là bản mới nhất.
 
 ### Lịch phát hành có đổi không?
 Có thể. Bảng trong README là nguồn chính xác nhất; mình cập nhật trạng thái 🟢/⚪ khi lên video.

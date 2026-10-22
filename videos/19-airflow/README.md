@@ -1,6 +1,6 @@
 # #19 — Airflow
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V19-Apache-Airflow-tu-so-0.pdf](slides/V19-Apache-Airflow-tu-so-0.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu Airflow làm gì và **không** làm gì: nó lên lịch và theo dõi, không xử lý dữ liệu. Mọi task trong repo chỉ gọi đúng CLI bạn đã chạy tay ở video #07 và #12.

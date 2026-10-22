@@ -1,6 +1,6 @@
 # #14 — Exactly-once / at-least-once, DLQ, Schema Registry
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V14-Khong-mat-khong-trung.pdf](slides/V14-Khong-mat-khong-trung.pdf)
 
 ## Bạn sẽ học được gì
 - Phân biệt **at-most-once / at-least-once / exactly-once** bằng một câu hỏi duy nhất: *commit offset trước hay sau khi xử lý?*

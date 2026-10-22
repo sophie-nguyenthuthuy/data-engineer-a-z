@@ -1,6 +1,6 @@
 # #07 — ETL vs ELT: pipeline đầu tiên bằng Python
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V07-ETL-vs-ELT.pdf](slides/V07-ETL-vs-ELT.pdf)
 
 ## Bạn sẽ học được gì
 - Phân biệt ETL và ELT bằng chính kiến trúc của repo: Python làm **E + L + T nhẹ** (bronze → silver), dbt làm **T nặng** ở gold (video #12).

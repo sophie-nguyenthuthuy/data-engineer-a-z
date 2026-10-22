@@ -1,6 +1,6 @@
 # #11 — Tối ưu Spark: skew, broadcast, AQE
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V11-Toi-uu-Spark.pdf](slides/V11-Toi-uu-Spark.pdf)
 
 ## Bạn sẽ học được gì
 - Nhận ra **data skew** trên Spark UI trong 30 giây (Max vs Median duration của task, Shuffle Read lệch) và tái hiện nó bằng [`platform/spark/skew_demo.py`](../../platform/spark/skew_demo.py).

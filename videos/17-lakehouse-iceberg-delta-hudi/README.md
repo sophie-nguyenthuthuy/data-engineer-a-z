@@ -1,6 +1,6 @@
 # #17 — Lakehouse: Iceberg vs Delta vs Hudi
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V17-Lakehouse-la-gi.pdf](slides/V17-Lakehouse-la-gi.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu vì sao "thư mục Parquet + `dt=`" ở #09 thiếu 4 thứ: **ACID**, **schema evolution**, **time travel**, **liệt kê file nhanh** — và table format ra đời để bù đúng 4 thứ đó.

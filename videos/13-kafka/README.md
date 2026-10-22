@@ -1,6 +1,6 @@
 # #13 — Kafka từ số 0
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V13-Apache-Kafka-tu-so-0.pdf](slides/V13-Apache-Kafka-tu-so-0.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu Kafka là gì bằng đúng 5 khái niệm: **topic, partition, offset, producer, consumer group** — và vì sao key của message quyết định thứ tự.

@@ -1,6 +1,6 @@
 # #23 — Chi phí & bảo mật: FinOps, PII, access control
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V23-Chi-phi-bao-mat.pdf](slides/V23-Chi-phi-bao-mat.pdf)
 
 ## Bạn sẽ học được gì
 - Tìm PII trong lake bằng một scanner 100 dòng (pattern số điện thoại VN, email, họ tên) và hiểu vì sao báo cáo PII **không được in PII**.

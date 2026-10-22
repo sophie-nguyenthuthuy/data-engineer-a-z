@@ -1,6 +1,6 @@
 # #12 — dbt: biến silver thành gold bằng SQL có kiểm thử
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V12-dbt.pdf](slides/V12-dbt.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu vì sao chữ **T** nặng của ELT nên viết bằng SQL + dbt thay vì Python: `ref()`/`source()` tạo DAG tự động, test đi kèm model, docs sinh từ code.

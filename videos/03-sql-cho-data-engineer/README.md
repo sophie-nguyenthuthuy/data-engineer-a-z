@@ -1,6 +1,6 @@
 # #03 — SQL cho Data Engineer: window function, CTE, query plan
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V03-SQL-cho-Data-Engineer.pdf](slides/V03-SQL-cho-Data-Engineer.pdf)
 
 ## Bạn sẽ học được gì
 - Dedup đúng cách bằng `ROW_NUMBER() OVER (PARTITION BY … ORDER BY …)` — và vì sao `DISTINCT` không đủ.

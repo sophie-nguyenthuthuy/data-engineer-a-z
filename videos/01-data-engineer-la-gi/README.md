@@ -1,6 +1,6 @@
 # #01 — Data Engineer là gì? Lộ trình từ số 0
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V01-Data-Engineer-la-gi.pdf](slides/V01-Data-Engineer-la-gi.pdf)
 
 ## Bạn sẽ học được gì
 - Nói được bằng một câu Data Engineer làm gì, và phân biệt với Data Analyst, Data Scientist, Analytics Engineer, Platform Engineer.

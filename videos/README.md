@@ -7,7 +7,7 @@ NN-slug/
 ├── README.md        # mục tiêu, lab từng bước, câu hỏi phỏng vấn, bài tập, "Kết quả mong đợi"
 ├── lab/             # starter code có TODO để bạn tự làm
 │   └── solution/    # lời giải — chỉ mở sau khi đã thử
-└── slides/          # PDF slide, thêm sau khi video phát hành
+└── slides/          # slide của video: PDF (đọc) + PPTX (sửa), CC BY-NC-SA 4.0
 ```
 
 Lab chạy trên môi trường chung (`make up`, xem [SETUP.md](../SETUP.md)) và bộ dữ liệu mẫu ở [data/samples](../data/samples).

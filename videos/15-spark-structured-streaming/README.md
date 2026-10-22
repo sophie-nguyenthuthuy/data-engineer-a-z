@@ -1,6 +1,6 @@
 # #15 — Spark Structured Streaming: watermark, window
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V15-Stream-Processing.pdf](slides/V15-Stream-Processing.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu Structured Streaming là "bảng vô hạn + micro-batch": cùng API DataFrame ở #10, chỉ khác `readStream`/`writeStream`.

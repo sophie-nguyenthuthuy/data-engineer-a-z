@@ -1,6 +1,6 @@
 # #04 — Python cho Data Engineer: Pandas, Polars, DuckDB
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V04-Python-cho-Data-Engineer.pdf](slides/V04-Python-cho-Data-Engineer.pdf)
 
 ## Bạn sẽ học được gì
 - Viết một pipeline nhỏ (đọc CSV → parse timestamp → lọc → group) bằng **3 engine** và hiểu khi nào dùng cái nào.

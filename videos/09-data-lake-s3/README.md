@@ -1,6 +1,6 @@
 # #09 — Data Lake trên S3: bronze/silver/gold
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V09-Data-Lake-tren-S3.pdf](slides/V09-Data-Lake-tren-S3.pdf)
 
 ## Bạn sẽ học được gì
 - Hiểu quy ước lake của repo ([`platform/lake/README.md`](../../platform/lake/README.md)): 3 layer, partition `dt=` kiểu Hive, overwrite nguyên partition, UTC, int64 VND, quarantine thay vì xoá — và **vì sao** từng quy ước tồn tại.

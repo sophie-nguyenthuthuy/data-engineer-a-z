@@ -1,6 +1,6 @@
 # #20 — Data Quality: Great Expectations, dbt test, contracts
 
-📺 Video: `TODO:youtube-link`
+📺 Video: `TODO:youtube-link` · 📑 Slide: [V20-Data-Quality.pdf](slides/V20-Data-Quality.pdf)
 
 ## Bạn sẽ học được gì
 - Phân biệt 3 lớp kiểm tra chất lượng và chi phí của từng lớp: **data contract** (schema + ràng buộc, rẻ nhất), **dbt test** (ở gold), **Great Expectations** (thống kê phân phối, đắt nhất).
