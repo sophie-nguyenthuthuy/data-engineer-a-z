@@ -87,7 +87,7 @@ terraform destroy                          # ĐỪNG QUÊN
 - **State backend**: `terraform.tfstate` local chỉ dùng cho lab một người. Team dùng backend S3 + DynamoDB lock (hoặc Terraform Cloud) để không hai người `apply` cùng lúc.
 
 ## Kết quả mong đợi
-- Bước 1 (số thật ở commit hiện tại): `make lint` → `All checks passed!` + `160 files already formatted`; `make test` → **101 passed** (test DagBag của Airflow không nằm trong `testpaths`, chạy riêng trong container ở #19); `make dbt-parse` với dbt 1.9 chỉ in `Performance info: …/target/perf_info.json` (không lỗi = parse OK — dòng `Found 11 models, 1 snapshot, 1 analysis, 33 data tests, 5 sources` chỉ xuất hiện ở `dbt build`); `make smoke` → JSON summary với `"rows_out": 792`.
+- Bước 1 (số thật ở commit hiện tại): `make lint` → `All checks passed!` + `160 files already formatted`; `make test` → **102 passed** (test DagBag của Airflow không nằm trong `testpaths`, chạy riêng trong container ở #19); `make dbt-parse` với dbt 1.9 chỉ in `Performance info: …/target/perf_info.json` (không lỗi = parse OK — dòng `Found 11 models, 1 snapshot, 1 analysis, 33 data tests, 5 sources` chỉ xuất hiện ở `dbt build`); `make smoke` → JSON summary với `"rows_out": 792`.
 - Bước 2: `pre-commit run --all-files` in từng hook `Passed`. Lần commit có `import os` thừa: `ruff....Failed` kèm `Fixed 1 error`, commit bị chặn.
 - Bước 3: `3 passed`. Lưu ý cú pháp YAML: PyYAML đọc key `on` thành boolean `True` (chuẩn YAML 1.1) — test đã xử lý cả hai trường hợp; đây là lý do nhiều người viết `"on":` có ngoặc kép.
 - Bước 4: `terraform fmt -check` không in gì (exit 0); `validate` → `Success! The configuration is valid.`
