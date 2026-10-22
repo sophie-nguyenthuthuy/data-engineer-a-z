@@ -38,7 +38,14 @@ docker compose exec spark-master spark-submit --master spark://spark-master:7077
 Để ý: `s3a://` (connector Hadoop của Spark) chứ không phải `s3://` như pyarrow ở #09 — cùng bucket, khác driver. Job đọc `s3a://lake/bronze/pos_transactions/dt=2026-02-15/` và **ghi đè** `silver/pos_transactions/dt=2026-02-15/` (xoá file `part-000.parquet` mà Python đã ghi, thay bằng `part-00000-<uuid>.parquet` + `_SUCCESS`).
 
 ### Bước 4 — Spark UI: tìm 5 từ khoá
-Mở http://localhost:8085 → application `bronze_to_silver_pos` (còn thấy trong *Completed Applications* sau khi job xong) → **Application Detail UI**:
+Ba địa chỉ, đừng nhầm:
+- http://localhost:8085 — **Master UI**: cluster có mấy worker, application nào đang/đã chạy. Link "Application Detail UI" ở đây trỏ vào hostname *bên trong* container nên bấm từ máy bạn sẽ không mở được.
+- http://localhost:4040 — **Application UI** của job đang chạy (driver nằm trong `spark-master`, compose đã publish port 4040). Chỉ sống khi job chạy; job 11 giây thì bạn không kịp bấm.
+- http://localhost:18080 — **History Server** (service `spark-history`, profile `spark`): đọc event log của mọi job đã xong (`spark.eventLog.enabled` bật sẵn trong image). Đây là chỗ bạn soi job sau khi nó chạy xong — và là chỗ chụp các ảnh dưới đây.
+
+![History Server](img/spark-history.png)
+
+Mở http://localhost:18080 → `bronze_to_silver_pos`:
 - **Jobs**: mỗi action (`count()`, `write`) là một job — code gọi `count()` 4 lần trong `print(...)` cộng 2 lần `write`, nên bạn đoán 6. Thực tế UI hiện **14 job** (id 0–13): vì AQE bật, mỗi action có shuffle bị tách thành *map-stage job* + job cuối; thêm 1 job đọc schema Parquet. Và vì **lazy**, 4 lần `count()` đọc lại bronze 4 lần (bài tập 1 sửa điều này).
 - **Stages**: job có shuffle sẽ tách thành ≥ 2 stage; ranh giới chính là `Exchange` trong plan (do `Window.partitionBy`).
 - **Tasks**: mỗi stage có N task = N partition. `spark.sql.shuffle.partitions = 8` nên bạn chờ 8 task sau shuffle — nhưng log thật ghi `Submitting 1 missing tasks from ShuffleMapStage` cho **mọi** stage: AQE (`coalescePartitions`) thấy 8 partition shuffle chỉ vài KB nên gộp thành 1. Tắt AQE (`--conf spark.sql.adaptive.enabled=false`) sẽ thấy đúng 8 task. Đây là ví dụ đầu tiên cho #11: config bạn đặt là *gợi ý*, AQE quyết định lúc chạy.
@@ -69,7 +76,15 @@ Hoặc chạy trên MinIO: `--lake s3a://lake`. Lời giải: [`lab/solution/wor
   INFO DAGScheduler: Submitting 1 missing tasks from ShuffleMapStage 1
   INFO DAGScheduler: Job 13 finished: count at NativeMethodAccessorImpl.java:0, took 0.050872 s
   ```
-- Spark UI: application `bronze_to_silver_pos`, **14 job**, 7 shuffle (`shuffle 0`–`6`), mỗi stage **1 task** (AQE gộp), 1 executor 2 core. Spark UI của application biến mất khi job xong (không có History Server trong compose) — chụp ảnh **trong lúc** job chạy, hoặc thêm `--conf spark.eventLog.enabled=true --conf spark.eventLog.dir=/tmp/spark-events` rồi đọc file event log (cách mình dùng để lấy số ở #11).
+- Spark UI (History Server, http://localhost:18080): application `bronze_to_silver_pos`, **14 job**, 7 shuffle (`shuffle 0`–`6`), mỗi stage **1 task** (AQE gộp), 1 executor 2 core.
+
+  ![Jobs](img/spark-ui-jobs.png)
+
+  Tab **SQL / DataFrame**: mỗi action một query; bấm vào query ghi silver để thấy DAG `Scan parquet → Filter → Exchange → Sort → Window → … → WriteFiles`:
+
+  ![SQL](img/spark-ui-sql.png)
+  ![SQL DAG](img/spark-ui-sql-dag.png)
+- Nếu bronze trên MinIO do Airflow (#19) nạp **từ Postgres** thay vì CSV, dòng cuối là `bronze=800 silver=793 quarantine=4 tz_fixed=0` — cùng rule, nguồn khác một dòng (xem #19 vì sao).
 - Bước 5, ngày 15/02: `rows=792`, 3 cách đều ra **30 cửa hàng**, tổng **76 939 000 VND**; top 5 giống nhau ở cả 3 cách:
 
 ```

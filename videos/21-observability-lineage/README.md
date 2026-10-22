@@ -82,9 +82,14 @@ uv run pytest videos/21-observability-lineage -q
   coffee.ingest in: ['pos_transactions'] out: ['pos_transactions']
   coffee.dbt    in: ['pos_transactions'] out: ['fct_daily_store_revenue']
   ```
+  ![Marquez manual](img/marquez-manual-lineage.png)
+
   Để ý: namespace `dea2z-manual` chỉ chứa **job**; dataset nằm trong namespace riêng theo nơi nó ở (`postgres://coffee_pos`, `s3://lake/silver`, `duckdb://coffee_gold`) — `emit_lineage.py` tách URI thành `namespace` + `name` bằng `rpartition("/")`. Graph trên UI: `pos_transactions → coffee.ingest → silver/pos_transactions → coffee.dbt → fct_daily_store_revenue`.
 - Bước 2: namespace `dea2z` có job `coffee_daily_pipeline.ingest_bronze_silver` với output `s3://lake/silver/pos_transactions`; `dbt_build` có output `duckdb://coffee_gold/gold`.
+- Bước 2, trang Jobs của Marquez sau khi Airflow chạy: [img/marquez-jobs-airflow.png](img/marquez-jobs-airflow.png) — 13 job trong namespace `dea2z` (mỗi task một job + một job cho cả DAG).
 - Bước 3: `dbt_lineage.py` in `sent 24/24 events → 12 job trong namespace dea2z-dbt` (5 staging + 6 marts + 1 snapshot `menu_price_snapshot`). Kiểm qua API: `coffee_gold.fct_sales` có inputs `main_staging.stg_pos_transactions, main_staging.stg_menu_items, main_staging.stg_pos_line_items`, output `main_gold.fct_sales`, `latestRun: COMPLETED`; namespace dataset `duckdb://coffee_gold` có 18 dataset (5 source silver + 12 model + 1).
+
+  ![Marquez dbt](img/marquez-dbt-lineage.png)
 - Bước 4, với ngày 2026-02-15, exporter in **20 dòng metric** (5 bảng × 3 metric + 5 reason; chưa tính 8 dòng `# HELP/# TYPE`), trong đó:
   ```
   coffee_ingest_rows_in{table="pos_transactions",run_date="2026-02-15"} 799

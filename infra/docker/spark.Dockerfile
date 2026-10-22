@@ -17,7 +17,8 @@ RUN cd /opt/spark/jars && \
     curl -fsSLO https://repo1.maven.org/maven2/org/apache/kafka/kafka-clients/3.4.1/kafka-clients-3.4.1.jar && \
     curl -fsSLO https://repo1.maven.org/maven2/org/apache/commons/commons-pool2/2.11.1/commons-pool2-2.11.1.jar && \
     curl -fsSLO https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar && \
-    mkdir -p /opt/spark/conf /opt/spark/work /opt/spark/logs && chown -R spark:spark /opt/spark/conf /opt/spark/work /opt/spark/logs
+    mkdir -p /opt/spark/conf /opt/spark/work /opt/spark/logs /opt/spark/events && \
+    chown -R spark:spark /opt/spark/conf /opt/spark/work /opt/spark/logs /opt/spark/events
 
 # Default S3A → MinIO. Override via spark-submit --conf when pointing at real S3 (video #09).
 COPY spark-defaults.conf /opt/spark/conf/spark-defaults.conf

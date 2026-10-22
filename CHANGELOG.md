@@ -2,6 +2,15 @@
 
 Định dạng theo [Keep a Changelog](https://keepachangelog.com/vi/1.0.0/), commit theo Conventional Commits.
 
+## [0.2.1] — 2026-10-22 — Ảnh UI thật, Spark History Server
+
+### Added
+- Ảnh chụp thật (Playwright, chromium headless) đưa vào README: Spark History Server / Jobs / SQL DAG (#10), Stages + Stage detail naive vs aqe (#11), Airflow Graph + Grid (#19), Marquez lineage manual + dbt (#21). `videos/NN-*/img/`, mỗi ảnh ~100–250 KB.
+- `spark-history` service (profile `spark`, http://localhost:18080) + `spark.eventLog.enabled` mặc định trong image; port 4040 của `spark-master` publish để mở Application UI của job đang chạy. Lý do: UI của application biến mất khi job xong, link từ Master UI trỏ vào hostname trong container.
+
+### Checked
+- Mọi image đều có `linux/amd64` + `linux/arm64`, trừ `marquezproject/marquez(-web):0.49.0` chỉ amd64 (Mac chạy qua Rosetta, đã chạy trọn #21). Chưa chạy thật trên Linux x86_64/Windows.
+
 ## [0.2.0] — 2026-10-22 — Chạy end-to-end trên Docker, dán output thật
 
 Toàn bộ môi trường đã được dựng thật (`make up PROFILE=all`, macOS arm64, Docker Desktop) và mọi lab có bước Docker đã chạy
@@ -66,7 +75,6 @@ một lượt. Những gì sửa dưới đây đều là lỗi lộ ra khi ch�
 
 ### Nội dung — chỉ làm được khi quay/phát hành
 - Thêm PDF slide vào `videos/NN-*/slides/` sau mỗi video; đổi `TODO:youtube-link` và ⚪ → 🟢 trong README theo lịch.
-- Ảnh chụp màn hình (Spark UI Jobs/Stages/SQL DAG ở #10–#11, Marquez graph ở #21, Airflow Graph ở #19) — số liệu đã có trong README, chỉ thiếu ảnh.
 - #19: `sla` cho DAG hiện để làm bài tập; webhook Slack/Telegram đã nối qua Variable, cần điền giá trị thật khi demo.
 
 ### Nên làm trước khi phát hành phần 3–4

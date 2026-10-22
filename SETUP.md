@@ -81,6 +81,8 @@ make reset                  # dừng và XOÁ volume — bắt đầu lại từ
 | MinIO S3 API | http://localhost:9000 | (dùng từ code) |
 | Postgres | `localhost:5432` db `coffee_pos` | `coffee` / `coffee` |
 | Spark Master UI | http://localhost:8085 | — |
+| Spark Application UI (job đang chạy) | http://localhost:4040 | — |
+| Spark History Server (job đã xong) | http://localhost:18080 | — |
 | Kafka (từ máy host) | `localhost:9092` | — |
 | Kafka UI | http://localhost:8080 | — |
 | Schema Registry | http://localhost:8081 | — |
@@ -116,6 +118,7 @@ Kết quả mong đợi: số dòng > 0 và ba thư mục `bronze/ silver/ gold/
 | Windows: build image rất chậm, lỗi `permission denied` | Repo nằm ở `/mnt/c` | Clone lại vào `~/` trong WSL |
 | Mac M-series: `no matching manifest for linux/arm64` | Image không có bản arm | Mọi image trong repo đều có arm64; nếu gặp, mở issue kèm tên image |
 | `pull access denied for bitnami/spark` hoặc `minio/minio` | Bitnami và MinIO đã gỡ image miễn phí khỏi Docker Hub (2025) | Repo đã đổi sang `apache/spark:3.5.3` (chính thức) và `bitnamilegacy/minio` (bản lưu trữ, có sẵn `mc`). `git pull` bản mới nhất |
+| Mac M-series: `marquez-api`/`marquez-web` chạy chậm, `docker ps` ghi `amd64` | Image Marquez 0.49 chỉ có bản amd64, Docker Desktop chạy qua Rosetta | Vẫn dùng được (mình chạy trọn #21 kiểu này); muốn native thì đợi tag mới của Marquez |
 | Airflow task `ingest` lỗi `No module named coffee_ingestion` hoặc `pyarrow requires NumPy 2.0` | Image Airflow cũ | `docker compose build airflow-init && make up PROFILE=orchestration` |
 | Spark streaming không bao giờ ra `Batch: 0`, log lặp `UnknownTopicOrPartitionException` | Topic Kafka chưa tồn tại khi job start | Tạo topic trước (`kafka-topics.sh --create`), xem #15 |
 | Spark job lỗi `ClassNotFoundException: S3AFileSystem` | Chạy sai image (thiếu jar) | Dùng `dea2z/spark` hoặc Jupyter của repo, đừng dùng image gốc |

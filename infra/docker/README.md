@@ -11,4 +11,6 @@ Dockerfile tuỳ biến cho các image không có sẵn đúng thứ mình cần
 
 MinIO dùng `bitnamilegacy/minio:2024.10.13` (MinIO cũng đã gỡ image khỏi Docker Hub/quay); image này có sẵn `mc` nên `docker compose exec minio mc …` chạy được, và `MINIO_DEFAULT_BUCKETS` tạo bucket lúc khởi động.
 
+`spark-defaults.conf` bật `spark.eventLog` vào volume `sparkevents`; service `spark-history` (cùng image) đọc volume đó tại http://localhost:18080 để xem lại job đã xong. Port 4040 của `spark-master` là Application UI của job đang chạy.
+
 Build lần đầu mất ~5–10 phút (tải jar + pip). Image được cache, lần sau `make up` lên trong vài giây. Đã build và chạy end-to-end trên macOS arm64 (Docker Desktop); Linux x86_64 dùng cùng tag (multi-arch).

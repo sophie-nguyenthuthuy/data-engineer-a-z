@@ -84,8 +84,11 @@ docker compose exec airflow-webserver python -m pytest /opt/airflow/dags -q    #
 ```
 
 ## Kết quả mong đợi
+![Graph daily](img/airflow-graph-daily.png)
+
 - Bước 1 (run `manual__2026-02-16T02:00:00+07:00`, chạy thật): 4 task `business_date → ingest_bronze_silver → dbt_build → notify` đều **success**. `business_date` trả `2026-02-15`. Log `ingest_bronze_silver` là JSON summary của `coffee-ingest`: `pos_transactions` **rows_out = 793, quarantined = 4** — khác CSV (792) đúng 1 dòng: `HN07-20260214-00014` thiếu offset nên Postgres đã lưu thành 04:06 ngày 15 (bài #03), từ Postgres nó thuộc ngày 15. `_tz_fixed` toàn `false` vì Postgres luôn trả chuỗi có offset — lỗi tz_drift ở nguồn này "biến mất" nhưng dữ liệu vẫn sai 7 giờ. `dbt_build`: `Done. PASS=45 WARN=0 ERROR=0 SKIP=0 TOTAL=45`. `notify`: `✅ coffee_daily_pipeline xong cho ngày 2026-02-15` rồi `no SLACK_WEBHOOK_URL / TELEGRAM_* Variable set → log only` — đặt Variable trong Admin → Variables để gửi thật.
-- Bước 2: Grid có `ingest [4]`, 4 task instance success; MinIO có `dt=2026-02-14 … dt=2026-02-17`, mỗi thư mục đúng **1 file** `part-000.parquet` kể cả sau khi chạy lại. Số dòng silver từ Postgres: 765 / 793 / 730 / 59 (CSV: 766 / 792 / 730 / 59); quarantine 3 / 4 / 1 / 0 — giống CSV.
+- Bước 2: Grid có `ingest [4]`, 4 task instance success (ảnh: [img/airflow-grid-backfill.png](img/airflow-grid-backfill.png); run đỏ bên trái là 2 lần mình chạy khi image Airflow còn thiếu `coffee_ingestion` — giữ lại cho thật); MinIO có `dt=2026-02-14 … dt=2026-02-17`, mỗi thư mục đúng **1 file** `part-000.parquet` kể cả sau khi chạy lại. Số dòng silver từ Postgres: 765 / 793 / 730 / 59 (CSV: 766 / 792 / 730 / 59); quarantine 3 / 4 / 1 / 0 — giống CSV.
+- Trang DAGs (ảnh: [img/airflow-home.png](img/airflow-home.png)) và grid của `coffee_quality_checks` ([img/airflow-grid-quality.png](img/airflow-grid-quality.png)).
 - `coffee_quality_checks` được Dataset `s3://lake/silver/pos_transactions` kích hoạt ngay sau `ingest_bronze_silver`; cả 4 task success, `business_date` lấy `2026-02-15` từ XCom của run upstream. Trigger tay: `airflow dags trigger coffee_quality_checks --conf '{"date": "2026-02-15"}'`.
 - Bước 4: với gold có đủ 14→17/02 (chạy backfill ở bước 2, hoặc `make smoke` + `coffee-ingest run --date` cho 3 ngày còn lại rồi `dbt build`), log `print_report` in:
 

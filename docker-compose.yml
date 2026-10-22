@@ -107,6 +107,7 @@ services:
     ports:
       - "${SPARK_MASTER_PORT:-7077}:7077"
       - "${SPARK_MASTER_UI_PORT:-8085}:8080"
+      - "${SPARK_DRIVER_UI_PORT:-4040}:4040"   # Application Detail UI của job spark-submit từ container này
     depends_on:
       postgres: { condition: service_healthy }
     volumes:
@@ -114,9 +115,24 @@ services:
       - ./platform/lake:/opt/lake:ro
       - ./videos:/opt/videos:ro
       - ./data/samples:/opt/samples:ro
+      - sparkevents:/opt/spark/events
     healthcheck:
       <<: *hc
       test: ["CMD-SHELL", "curl -sf http://localhost:8080 >/dev/null"]
+
+  # Spark UI của một application biến mất khi job xong; History Server đọc event log để xem lại (video #10, #11).
+  spark-history:
+    image: dea2z/spark:3.5.3
+    profiles: [spark]
+    depends_on:
+      spark-master: { condition: service_healthy }
+    command: /opt/spark/sbin/start-history-server.sh
+    environment:
+      SPARK_NO_DAEMONIZE: "true"
+      SPARK_HISTORY_OPTS: -Dspark.history.fs.logDirectory=file:///opt/spark/events -Dspark.history.ui.port=18080
+    ports: ["${SPARK_HISTORY_PORT:-18080}:18080"]
+    volumes:
+      - sparkevents:/opt/spark/events
 
   spark-worker:
     image: dea2z/spark:3.5.3
@@ -331,6 +347,7 @@ services:
 volumes:
   pgdata:
   miniodata:
+  sparkevents:
   kafkadata:
   airflowdb:
   marquezdb:

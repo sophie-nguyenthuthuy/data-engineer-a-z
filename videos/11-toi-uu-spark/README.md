@@ -25,7 +25,16 @@ for m in naive salted broadcast aqe; do
     /opt/jobs/skew_demo.py --mode $m --rows 5000000
 done
 ```
-Mỗi lần: http://localhost:8085 → application `skew_demo_<mode>` → Stages → bấm stage có *Shuffle Read* lớn nhất → bảng **Summary Metrics for Tasks** (Min / Median / Max của Duration và Shuffle Read Size). Điền vào [`lab/tuning_checklist.md`](lab/tuning_checklist.md) mục 1.
+Mỗi lần: http://localhost:18080 (History Server — job 10 giây thì UI :4040 không kịp xem) → application `skew_demo_<mode>` → Stages → bấm stage có *Shuffle Read* lớn nhất → bảng **Summary Metrics for Tasks** (Min / Median / Max của Duration và Shuffle Read Size). Điền vào [`lab/tuning_checklist.md`](lab/tuning_checklist.md) mục 1.
+
+`naive`: stage join 8 task, cột Duration lệch hẳn:
+
+![Stages naive](img/spark-ui-stages.png)
+![Stage detail naive](img/spark-ui-stage-tasks.png)
+
+`aqe`: cùng job, stage join còn **1 task** (AQE gộp partition nhỏ):
+
+![Stages aqe](img/spark-ui-stages-aqe.png)
 
 Máy yếu: giảm `--rows 1000000`. Máy 8 GB không chạy cluster: trong Jupyter `python work/platform/spark/skew_demo.py --mode naive --master "local[*]"`, UI ở http://localhost:4040 (chỉ sống khi job chạy — thêm `input()` tạm cuối `main()` trong bản copy của bạn nếu muốn xem).
 
