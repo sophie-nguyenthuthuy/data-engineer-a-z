@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+
+# Generated data (samples are committed, bulk output is not)
+out/
+data/generator/out/
+lake-local/
+*.duckdb
+*.duckdb.wal
+
+# dbt
+platform/dbt/target/
+platform/dbt/dbt_packages/
+platform/dbt/logs/
+
+# Airflow
+platform/airflow/logs/
+platform/airflow/airflow.db
+
+# Great Expectations
+platform/quality/gx/uncommitted/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Terraform
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.backup
+infra/terraform/*.tfvars
+!infra/terraform/example.tfvars
+
+# Env & OS
+.env
+.DS_Store
+.idea/
+.vscode/

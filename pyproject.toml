@@ -1,0 +1,57 @@
+[project]
+name = "data-engineer-a-z"
+version = "0.1.0"
+description = "Khoá học YouTube miễn phí 'Data Engineer từ A–Z' — monorepo: generator, pipelines, labs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Nguyễn Thu Thuỷ", email = "sophie.nguyenthuthuy@gmail.com" }]
+
+# The repo is a workspace: the installable packages live in
+#   data/generator      -> coffeegen
+#   platform/ingestion  -> coffee_ingestion
+# `make install` installs both in editable mode plus dev tools.
+
+[dependency-groups]
+dev = [
+  "ruff>=0.8",
+  "pytest>=8",
+  "pytest-cov>=5",
+  "pre-commit>=4",
+  "dbt-core>=1.8,<1.10",
+  "dbt-duckdb>=1.8,<1.10",
+  "duckdb>=1.1",
+  "polars>=1.10",
+  "pandas>=2.2",
+  "pyarrow>=17",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["data/generator", "platform/ingestion"]
+
+[tool.uv.sources]
+coffeegen = { workspace = true }
+coffee-ingestion = { workspace = true }
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["platform/dbt/target", "videos/*/slides"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W", "N", "SIM"]
+ignore = ["E501"]  # long Vietnamese comments are fine
+
+[tool.ruff.lint.per-file-ignores]
+"videos/**/lab/*.py" = ["F401", "B018"]  # starter files keep unused imports for learners
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["data/generator/tests", "platform/ingestion/tests", "videos"]
+python_files = ["test_*.py"]
+addopts = "-q"
