@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_LOCKED: "1"
+
+jobs:
+  lint:
+    name: ruff lint + format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --all-packages --group dev
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+
+  test:
+    name: unit tests (generator, ingestion, labs)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --all-packages --group dev
+      - run: uv run pytest -q -p no:warnings
+
+  dbt-parse:
+    name: dbt parse (duckdb, no services)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --all-packages --group dev
+      - run: make dbt-parse
+
+  smoke:
+    name: ingestion smoke run on samples
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv python install 3.11
+      - run: uv sync --all-packages --group dev
+      - name: samples are reproducible from the generator
+        run: |
+          make generate
+          git diff --exit-code --stat -- data/samples
+      - run: make smoke
+      - name: silver passes the data contract
+        run: |
+          uv run python platform/quality/contract_check.py \
+            --contract platform/quality/contracts/pos_transactions.yaml \
+            --parquet "lake-local/silver/pos_transactions/dt=2026-02-15/*.parquet"
+      - name: gold builds with dbt on the smoke output
+        run: cd platform/dbt && uv run dbt build --profiles-dir . --target dev
+
+  compose-and-terraform:
+    name: docker compose config + terraform fmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose --env-file .env.example config -q
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - run: terraform -chdir=infra/terraform fmt -check -recursive
+      - run: terraform -chdir=infra/terraform init -backend=false -input=false
+      - run: terraform -chdir=infra/terraform validate

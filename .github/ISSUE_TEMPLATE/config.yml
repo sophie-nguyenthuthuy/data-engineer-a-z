@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Thảo luận chung (lộ trình, công cụ, kinh nghiệm)
+    url: https://github.com/sophie-nguyenthuthuy/data-engineer-a-z/discussions
+    about: Không phải bug, không phải câu hỏi lab cụ thể → vào Discussions.

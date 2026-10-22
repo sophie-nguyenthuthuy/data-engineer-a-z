@@ -1,0 +1,55 @@
+name: ❓ Lab question
+description: Hỏi bài — bạn kẹt ở một bước trong lab hoặc chưa hiểu một khái niệm trong video.
+title: "[#NN] "
+labels: [question]
+body:
+  - type: dropdown
+    id: video
+    attributes:
+      label: Video
+      options:
+        - "00 — Giới thiệu & cài đặt"
+        - "01 — Data Engineer là gì"
+        - "02 — Kiến trúc dữ liệu"
+        - "03 — SQL cho DE"
+        - "04 — Python cho DE"
+        - "05 — Docker cho DE"
+        - "06 — Data Modeling"
+        - "07 — ETL vs ELT"
+        - "08 — Định dạng file"
+        - "09 — Data Lake trên S3"
+        - "10 — Apache Spark"
+        - "11 — Tối ưu Spark"
+        - "12 — dbt"
+        - "13 — Kafka"
+        - "14 — Delivery semantics, DLQ, schema registry"
+        - "15 — Spark Structured Streaming"
+        - "16 — CDC với Debezium"
+        - "17 — Lakehouse"
+        - "18 — Kiến trúc streaming end-to-end"
+        - "19 — Airflow"
+        - "20 — Data Quality"
+        - "21 — Observability & Lineage"
+        - "22 — CI/CD + Terraform"
+        - "23 — Chi phí & bảo mật"
+        - "24 — Portfolio, CV, phỏng vấn"
+        - "Khác / chung"
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Câu hỏi
+      description: Bạn đang làm bước nào, mong đợi gì, thấy gì? Đã thử gì rồi?
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Lệnh và output
+      description: Dán lệnh bạn chạy và toàn bộ output. `make ps` nếu liên quan Docker.
+      render: shell
+  - type: markdown
+    attributes:
+      value: |
+        Mẹo: viết lại vấn đề cho người khác hiểu được thường giúp bạn tự tìm ra 50% câu trả lời. Đó cũng là một kỹ năng của Data Engineer.

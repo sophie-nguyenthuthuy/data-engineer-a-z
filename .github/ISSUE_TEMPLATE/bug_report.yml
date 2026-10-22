@@ -1,0 +1,47 @@
+name: 🐛 Bug report
+description: Lỗi trong code, docker-compose, generator hoặc lab (không phải câu hỏi bài học).
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Cảm ơn bạn! Càng nhiều chi tiết, mình sửa càng nhanh.
+  - type: input
+    id: where
+    attributes:
+      label: Ở đâu
+      description: Thư mục video / file / lệnh `make`
+      placeholder: videos/07-etl-vs-elt, make smoke
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Kết quả mong đợi
+      description: README nói bạn sẽ thấy gì?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Kết quả thực tế
+      description: Dán nguyên văn lỗi / output (dùng ``` để bọc).
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Môi trường
+      description: OS, RAM, output của `docker --version`, `docker compose version`, `make ps`
+      render: shell
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Mình đã thử
+      options:
+        - label: Đọc phần Troubleshooting trong SETUP.md
+        - label: "`make reset && make up`"
+        - label: Pull code mới nhất (`git pull`)
