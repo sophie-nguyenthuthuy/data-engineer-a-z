@@ -7,7 +7,7 @@ s3://lake/
 ├── bronze/<table>/dt=YYYY-MM-DD/part-*.parquet     # raw, cột toàn string, + _ingested_at/_source/_run_date
 ├── silver/<table>/dt=YYYY-MM-DD/part-*.parquet     # typed, dedup, UTC; quarantine_* bên cạnh
 └── gold/   (dbt quản lý, hoặc Iceberg table ở warehouse/)
-s3://warehouse/                                      # Iceberg catalog (hadoop) — video #17
+s3://warehouse/                                      # Iceberg warehouse — catalog JDBC trong Postgres (db iceberg_catalog) — video #17
 └── silver/pos_transactions/{metadata,data}/
 ```
 

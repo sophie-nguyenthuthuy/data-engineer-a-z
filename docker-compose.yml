@@ -104,8 +104,12 @@ services:
     ports:
       - "${SPARK_MASTER_PORT:-7077}:7077"
       - "${SPARK_MASTER_UI_PORT:-8085}:8080"
+    depends_on:
+      postgres: { condition: service_healthy }
     volumes:
       - ./platform/spark:/opt/jobs:ro
+      - ./platform/lake:/opt/lake:ro
+      - ./videos:/opt/videos:ro
       - ./data/samples:/opt/samples:ro
     healthcheck:
       <<: *hc
@@ -127,6 +131,8 @@ services:
       AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
     volumes:
       - ./platform/spark:/opt/jobs:ro
+      - ./platform/lake:/opt/lake:ro
+      - ./videos:/opt/videos:ro
       - ./data/samples:/opt/samples:ro
 
   # ─────────────────────────── STREAMING ───────────────────────────
@@ -312,6 +318,7 @@ services:
     profiles: [analytics]
     depends_on:
       minio: { condition: service_healthy }
+      postgres: { condition: service_healthy }
     ports: ["${TRINO_PORT:-8090}:8080"]
     volumes:
       - ./infra/docker/trino/catalog:/etc/trino/catalog:ro

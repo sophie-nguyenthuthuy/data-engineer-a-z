@@ -53,6 +53,7 @@ def line_rows(t: Transaction) -> list[dict]:
 def txn_event(t: Transaction, dirty_kind: str | None) -> dict:
     """Nested JSON message for Kafka topic pos.transactions."""
     row = txn_row(t, dirty_kind)
+    row["is_rainy_day"] = t.is_rainy_day  # JSON có boolean thật; CSV mới cần chuỗi "true"/"false"
     row["items"] = [
         {
             "item_id": line.item_id,

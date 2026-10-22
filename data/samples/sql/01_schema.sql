@@ -63,6 +63,10 @@ CREATE TABLE pos_line_items (
 );
 CREATE INDEX idx_pos_line_items_txn ON pos_line_items (transaction_id);
 
+-- Bảng không có PK → Debezium cần REPLICA IDENTITY FULL để thấy UPDATE/DELETE (video #16).
+ALTER TABLE pos_transactions REPLICA IDENTITY FULL;
+ALTER TABLE pos_line_items  REPLICA IDENTITY FULL;
+
 -- Publication cho Debezium (video #16). Tạo sẵn để lab chỉ cần đăng ký connector.
 DROP PUBLICATION IF EXISTS dbz_publication;
 CREATE PUBLICATION dbz_publication FOR TABLE pos_transactions, pos_line_items, customers, menu_items, stores;

@@ -7,6 +7,8 @@ docker compose exec spark-master spark-submit --master spark://spark-master:7077
   /opt/jobs/bronze_to_silver_pos.py --date 2026-02-15 --lake s3a://lake
 ```
 
+Trong container: `platform/spark` → `/opt/jobs`, `platform/lake` → `/opt/lake`, `videos/` → `/opt/videos` (chạy lab trực tiếp: `spark-submit --py-files /opt/jobs/common.py /opt/videos/10-apache-spark/lab/wordcount_to_revenue.py`), `data/samples` → `/opt/samples`.
+
 hoặc local trong Jupyter (`SparkSession.builder.master("local[*]")`) — mọi job đều nhận `--lake` là đường dẫn local hay `s3a://`.
 
 | Job | Video | Việc |

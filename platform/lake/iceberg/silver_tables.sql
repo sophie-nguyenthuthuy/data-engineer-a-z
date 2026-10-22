@@ -1,5 +1,6 @@
--- Iceberg DDL cho silver (video #17). Catalog `lake` cấu hình sẵn trong infra/docker/spark-defaults.conf.
--- Chạy: docker compose exec spark-master spark-sql -f /opt/jobs/../lake/iceberg/silver_tables.sql
+-- Iceberg DDL cho silver (video #17). Catalog `lake` = JDBC catalog trong Postgres (db iceberg_catalog),
+-- cấu hình sẵn trong infra/docker/spark-defaults.conf; Trino dùng cùng catalog (infra/docker/trino/catalog/lake.properties).
+-- Chạy: docker compose exec spark-master spark-sql -f /opt/lake/iceberg/silver_tables.sql
 --   (hoặc copy từng lệnh vào notebook / Trino với catalog lake)
 
 CREATE NAMESPACE IF NOT EXISTS lake.silver;
