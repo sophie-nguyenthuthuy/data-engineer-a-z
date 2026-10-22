@@ -1,0 +1,22 @@
+[project]
+name = "coffeegen"
+version = "0.1.0"
+description = "Deterministic synthetic dataset for a 30-store Vietnamese coffee chain (POS, app events, espresso-machine IoT)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Nguyễn Thu Thuỷ" }]
+dependencies = []  # stdlib only on purpose — learners can read every line
+
+[project.optional-dependencies]
+kafka = ["confluent-kafka>=2.5"]
+
+[project.scripts]
+coffeegen = "coffeegen.cli:main"
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coffeegen"]

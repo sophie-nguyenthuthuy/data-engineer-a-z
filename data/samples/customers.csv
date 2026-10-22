@@ -1,0 +1,2001 @@
+customer_id,full_name,phone,email,city,joined_date,tier
+C000001,Trần Minh Lan,0959710580,user1@example.com,Hà Nội,2024-05-18,bronze
+C000002,Đỗ Minh Minh,0991124326,user2@example.com,TP.HCM,2024-07-12,bronze
+C000003,Trần Thu Minh,0936516942,user3@example.com,Hà Nội,2022-01-01,silver
+C000004,Lê Thị Hà,0920555960,user4@example.com,TP.HCM,2024-08-21,bronze
+C000005,Hoàng Thị Dũng,0982804682,user5@example.com,TP.HCM,2025-01-29,bronze
+C000006,Hồ Ngọc Thảo,0946496651,user6@example.com,TP.HCM,2023-03-02,bronze
+C000007,Bùi Hữu Phương,0921423911,user7@example.com,TP.HCM,2025-06-19,bronze
+C000008,Hồ Thị Thảo,0975683771,user8@example.com,Hà Nội,2022-11-17,silver
+C000009,Đỗ Minh Trang,0910810803,user9@example.com,TP.HCM,2022-01-29,silver
+C000010,Hồ Minh Lan,0976252491,user10@example.com,TP.HCM,2022-02-26,silver
+C000011,Hồ Minh Nam,0964312471,user11@example.com,Hà Nội,2023-07-09,bronze
+C000012,Nguyễn Thu Hùng,0969522151,user12@example.com,Hà Nội,2022-06-08,bronze
+C000013,Vũ Hữu Hà,0947252277,user13@example.com,TP.HCM,2022-07-06,bronze
+C000014,Vũ Ngọc Thảo,0975153120,user14@example.com,Hà Nội,2023-12-07,bronze
+C000015,Đặng Minh Minh,0954560298,user15@example.com,TP.HCM,2023-06-05,silver
+C000016,Hồ Hữu Lan,0995885755,user16@example.com,TP.HCM,2022-05-26,silver
+C000017,Lê Văn Dũng,0950807169,user17@example.com,Hà Nội,2022-02-12,bronze
+C000018,Hoàng Minh Ngọc,0953046897,user18@example.com,TP.HCM,2025-08-16,bronze
+C000019,Đặng Minh Hà,0997486975,user19@example.com,TP.HCM,2023-01-17,silver
+C000020,Vũ Văn Nam,0997147264,user20@example.com,TP.HCM,2025-05-31,bronze
+C000021,Đỗ Thị Phương,0962453331,user21@example.com,Hà Nội,2025-10-19,bronze
+C000022,Lê Thị Linh,0925360067,user22@example.com,Hà Nội,2023-10-16,bronze
+C000023,Đặng Thị Nam,0959711849,user23@example.com,Hà Nội,2023-11-18,bronze
+C000024,Lê Thu Dũng,0971857658,user24@example.com,Hà Nội,2022-11-29,bronze
+C000025,Đặng Ngọc Chi,0983374865,user25@example.com,TP.HCM,2025-04-24,bronze
+C000026,Hồ Hữu Phương,0923026146,user26@example.com,TP.HCM,2023-01-09,bronze
+C000027,Vũ Văn Thảo,0910412609,user27@example.com,TP.HCM,2022-12-18,silver
+C000028,Đặng Văn Bình,0951649275,user28@example.com,Hà Nội,2023-10-21,bronze
+C000029,Hoàng Ngọc Nam,0932207492,user29@example.com,TP.HCM,2022-05-27,bronze
+C000030,Bùi Ngọc Lan,0917233807,user30@example.com,Hà Nội,2022-11-18,bronze
+C000031,Nguyễn Ngọc Linh,0982320854,user31@example.com,Hà Nội,2025-04-10,bronze
+C000032,Đặng Văn Dũng,0961807621,user32@example.com,Hà Nội,2023-07-20,silver
+C000033,Hoàng Ngọc Quân,0963577698,user33@example.com,Hà Nội,2022-07-17,bronze
+C000034,Vũ Thu Chi,0964038870,user34@example.com,Hà Nội,2023-02-05,bronze
+C000035,Bùi Hữu Phương,0947599514,user35@example.com,TP.HCM,2025-07-16,bronze
+C000036,Bùi Ngọc Thảo,0936897005,user36@example.com,Hà Nội,2024-05-20,silver
+C000037,Hồ Văn Minh,0952864425,user37@example.com,Hà Nội,2024-02-26,gold
+C000038,Vũ Văn Tuấn,0983646232,user38@example.com,TP.HCM,2023-07-19,bronze
+C000039,Trần Văn Ngọc,0918171121,user39@example.com,TP.HCM,2022-03-12,silver
+C000040,Nguyễn Minh Linh,0985313190,user40@example.com,TP.HCM,2025-06-22,bronze
+C000041,Nguyễn Thu An,0978329983,user41@example.com,TP.HCM,2025-09-19,bronze
+C000042,Vũ Ngọc Minh,0963367415,user42@example.com,TP.HCM,2025-10-08,bronze
+C000043,Đỗ Thu Dũng,0963402486,user43@example.com,Hà Nội,2023-06-22,bronze
+C000044,Phạm Hữu Trang,0951073924,user44@example.com,TP.HCM,2025-03-23,bronze
+C000045,Bùi Hữu Hùng,0984933992,user45@example.com,TP.HCM,2024-12-27,bronze
+C000046,Đỗ Ngọc Minh,0913427901,user46@example.com,Hà Nội,2025-07-18,bronze
+C000047,Đỗ Văn Minh,0956213179,user47@example.com,Hà Nội,2022-01-18,bronze
+C000048,Vũ Thu Hà,0971337481,user48@example.com,Hà Nội,2025-08-26,silver
+C000049,Bùi Ngọc Quân,0951580437,user49@example.com,TP.HCM,2024-05-19,bronze
+C000050,Hoàng Hữu Trang,0919271947,user50@example.com,Hà Nội,2025-03-14,bronze
+C000051,Lê Minh Trang,0912402458,user51@example.com,TP.HCM,2024-11-29,bronze
+C000052,Hoàng Thị Trang,0994371863,user52@example.com,Hà Nội,2024-07-04,silver
+C000053,Bùi Hữu Nam,0958629603,user53@example.com,TP.HCM,2024-10-15,bronze
+C000054,Đỗ Minh Phương,0997642505,user54@example.com,Hà Nội,2022-12-08,bronze
+C000055,Lê Ngọc Trang,0920022333,user55@example.com,TP.HCM,2025-07-21,bronze
+C000056,Hồ Thu Minh,0917321376,user56@example.com,Hà Nội,2025-02-19,bronze
+C000057,Bùi Văn Quân,0929534473,user57@example.com,TP.HCM,2025-03-27,bronze
+C000058,Đỗ Thu Chi,0975687722,user58@example.com,Hà Nội,2022-02-15,bronze
+C000059,Bùi Minh Dũng,0953986178,user59@example.com,Hà Nội,2024-08-12,silver
+C000060,Hoàng Thị Dũng,0926159441,user60@example.com,Hà Nội,2025-04-30,silver
+C000061,Nguyễn Hữu Ngọc,0915809226,user61@example.com,TP.HCM,2023-02-09,bronze
+C000062,Hồ Văn Linh,0964887426,user62@example.com,TP.HCM,2025-02-28,bronze
+C000063,Nguyễn Minh Hà,0914626214,user63@example.com,Hà Nội,2024-03-17,bronze
+C000064,Vũ Minh Trang,0971493974,user64@example.com,Hà Nội,2024-03-17,bronze
+C000065,Hoàng Hữu Lan,0926002752,user65@example.com,TP.HCM,2022-01-09,bronze
+C000066,Đặng Hữu Minh,0996591443,user66@example.com,Hà Nội,2023-01-24,bronze
+C000067,Hồ Thu Hùng,0997512291,user67@example.com,TP.HCM,2025-01-20,bronze
+C000068,Phạm Ngọc Tuấn,0987446508,user68@example.com,Hà Nội,2024-05-01,bronze
+C000069,Vũ Ngọc Minh,0972016893,user69@example.com,Hà Nội,2022-05-26,bronze
+C000070,Lê Ngọc Quân,0927086594,user70@example.com,Hà Nội,2023-10-18,bronze
+C000071,Lê Hữu Hà,0952365503,user71@example.com,Hà Nội,2024-04-26,bronze
+C000072,Đỗ Minh Ngọc,0948004439,user72@example.com,Hà Nội,2023-05-03,silver
+C000073,Hoàng Minh Ngọc,0968323049,user73@example.com,TP.HCM,2025-05-24,bronze
+C000074,Đỗ Hữu Linh,0967361763,user74@example.com,TP.HCM,2024-10-26,bronze
+C000075,Vũ Thị Nam,0921584587,user75@example.com,TP.HCM,2022-06-13,bronze
+C000076,Hồ Hữu Thảo,0928661350,user76@example.com,TP.HCM,2024-06-12,bronze
+C000077,Đỗ Ngọc Trang,0910782657,user77@example.com,TP.HCM,2025-02-07,bronze
+C000078,Nguyễn Minh Nam,0930899471,user78@example.com,Hà Nội,2025-07-30,bronze
+C000079,Vũ Minh Lan,0958929337,user79@example.com,TP.HCM,2023-03-25,bronze
+C000080,Trần Văn Tuấn,0969195688,user80@example.com,TP.HCM,2023-05-04,bronze
+C000081,Hồ Hữu Tuấn,0980920542,user81@example.com,Hà Nội,2023-03-17,silver
+C000082,Đỗ Văn Lan,0941957359,user82@example.com,TP.HCM,2025-07-06,silver
+C000083,Hồ Minh Phương,0913148299,user83@example.com,Hà Nội,2023-09-19,bronze
+C000084,Phạm Thị Trang,0980531055,user84@example.com,Hà Nội,2022-06-07,silver
+C000085,Lê Minh Phương,0928060254,user85@example.com,Hà Nội,2023-09-08,bronze
+C000086,Đỗ Thị Chi,0968048316,user86@example.com,TP.HCM,2024-11-21,bronze
+C000087,Lê Văn Trang,0924104573,user87@example.com,TP.HCM,2023-11-23,bronze
+C000088,Hồ Ngọc Dũng,0993646604,user88@example.com,Hà Nội,2024-07-02,bronze
+C000089,Nguyễn Ngọc Lan,0992448217,user89@example.com,Hà Nội,2023-09-28,gold
+C000090,Hoàng Hữu Hà,0924398786,user90@example.com,TP.HCM,2024-05-06,silver
+C000091,Đỗ Minh Hùng,0948486009,user91@example.com,Hà Nội,2022-06-29,silver
+C000092,Đặng Thị Linh,0939795965,user92@example.com,TP.HCM,2023-04-23,bronze
+C000093,Đặng Hữu Hùng,0945914782,user93@example.com,TP.HCM,2025-09-11,bronze
+C000094,Đỗ Văn Bình,0951963128,user94@example.com,Hà Nội,2023-08-15,gold
+C000095,Trần Thu Chi,0984587328,user95@example.com,TP.HCM,2022-05-14,bronze
+C000096,Vũ Ngọc Quân,0986738840,user96@example.com,Hà Nội,2025-01-30,silver
+C000097,Đặng Minh Hà,0983147174,user97@example.com,TP.HCM,2023-08-15,bronze
+C000098,Trần Thu Minh,0950723063,user98@example.com,Hà Nội,2022-05-30,bronze
+C000099,Hoàng Hữu Bình,0922722289,user99@example.com,TP.HCM,2023-02-15,silver
+C000100,Đỗ Thu Phương,0990733102,user100@example.com,Hà Nội,2025-04-24,gold
+C000101,Bùi Ngọc Linh,0914234389,user101@example.com,TP.HCM,2024-05-22,bronze
+C000102,Phạm Văn Tuấn,0964885676,user102@example.com,TP.HCM,2023-03-19,silver
+C000103,Bùi Hữu Phương,0949991439,user103@example.com,Hà Nội,2022-08-04,bronze
+C000104,Hồ Thị Ngọc,0989783491,user104@example.com,TP.HCM,2023-01-15,bronze
+C000105,Đặng Hữu Bình,0988936190,user105@example.com,TP.HCM,2023-11-08,bronze
+C000106,Lê Thu Nam,0983563624,user106@example.com,Hà Nội,2023-01-24,silver
+C000107,Trần Thị Tuấn,0982380500,user107@example.com,Hà Nội,2023-04-24,silver
+C000108,Hồ Ngọc Lan,0940191792,user108@example.com,Hà Nội,2023-05-05,bronze
+C000109,Nguyễn Thu Minh,0968876182,user109@example.com,TP.HCM,2023-07-14,bronze
+C000110,Hoàng Minh Lan,0934300460,user110@example.com,Hà Nội,2025-06-28,gold
+C000111,Vũ Thu Minh,0989374206,user111@example.com,Hà Nội,2024-12-01,bronze
+C000112,Phạm Thị Thảo,0956845066,user112@example.com,TP.HCM,2024-12-17,bronze
+C000113,Nguyễn Thu Thảo,0941902506,user113@example.com,TP.HCM,2022-05-10,bronze
+C000114,Lê Thu Hùng,0964414935,user114@example.com,Hà Nội,2022-07-11,bronze
+C000115,Nguyễn Minh Ngọc,0985186644,user115@example.com,TP.HCM,2023-09-01,bronze
+C000116,Vũ Thu Tuấn,0920903382,user116@example.com,TP.HCM,2024-08-08,bronze
+C000117,Đỗ Thu Minh,0990315865,user117@example.com,TP.HCM,2024-05-02,bronze
+C000118,Phạm Minh Bình,0918164397,user118@example.com,Hà Nội,2024-08-30,silver
+C000119,Hoàng Văn Linh,0930652542,user119@example.com,Hà Nội,2022-06-04,bronze
+C000120,Trần Thu Nam,0998267187,user120@example.com,TP.HCM,2024-01-04,bronze
+C000121,Lê Minh Hà,0950055804,user121@example.com,TP.HCM,2023-06-30,bronze
+C000122,Hồ Thu Lan,0974689396,user122@example.com,TP.HCM,2024-07-31,bronze
+C000123,Nguyễn Minh Ngọc,0954340140,user123@example.com,TP.HCM,2023-11-23,bronze
+C000124,Nguyễn Thị Minh,0952444317,user124@example.com,Hà Nội,2025-01-11,bronze
+C000125,Vũ Minh Minh,0922786743,user125@example.com,Hà Nội,2022-10-09,silver
+C000126,Nguyễn Hữu Chi,0959347539,user126@example.com,TP.HCM,2024-04-05,silver
+C000127,Nguyễn Hữu Linh,0990612986,user127@example.com,TP.HCM,2025-04-10,bronze
+C000128,Hồ Hữu Chi,0936288942,user128@example.com,Hà Nội,2023-08-15,silver
+C000129,Hồ Ngọc Quân,0941261296,user129@example.com,Hà Nội,2022-01-07,bronze
+C000130,Đỗ Minh Dũng,0914687101,user130@example.com,TP.HCM,2022-09-04,bronze
+C000131,Đỗ Hữu Hùng,0939229620,user131@example.com,Hà Nội,2023-08-21,bronze
+C000132,Lê Hữu Phương,0919213257,user132@example.com,Hà Nội,2023-08-17,bronze
+C000133,Hồ Hữu Phương,0920531896,user133@example.com,Hà Nội,2024-02-09,bronze
+C000134,Đặng Thu Minh,0913807216,user134@example.com,TP.HCM,2022-12-26,silver
+C000135,Trần Minh Bình,0923906283,user135@example.com,TP.HCM,2023-06-22,bronze
+C000136,Hồ Văn Minh,0984246623,user136@example.com,Hà Nội,2024-08-10,bronze
+C000137,Nguyễn Hữu Hùng,0992343367,user137@example.com,Hà Nội,2025-05-22,bronze
+C000138,Nguyễn Văn Bình,0913385154,user138@example.com,TP.HCM,2024-10-10,bronze
+C000139,Trần Văn Ngọc,0911903411,user139@example.com,Hà Nội,2023-03-06,bronze
+C000140,Phạm Thu Chi,0952241349,user140@example.com,TP.HCM,2024-09-13,silver
+C000141,Hồ Minh Chi,0963785235,user141@example.com,TP.HCM,2024-08-03,silver
+C000142,Bùi Minh Phương,0913372770,user142@example.com,TP.HCM,2023-09-12,bronze
+C000143,Vũ Văn Minh,0948990653,user143@example.com,Hà Nội,2022-12-26,bronze
+C000144,Phạm Hữu Chi,0964891347,user144@example.com,TP.HCM,2022-10-29,silver
+C000145,Vũ Ngọc Trang,0928813819,user145@example.com,TP.HCM,2024-06-15,silver
+C000146,Vũ Thu Bình,0911008770,user146@example.com,Hà Nội,2022-04-05,bronze
+C000147,Phạm Ngọc Chi,0996590408,user147@example.com,TP.HCM,2022-01-19,silver
+C000148,Hồ Hữu Hùng,0957277216,user148@example.com,TP.HCM,2022-04-12,bronze
+C000149,Lê Văn Linh,0961627378,user149@example.com,TP.HCM,2023-07-27,silver
+C000150,Vũ Văn Linh,0932331891,user150@example.com,Hà Nội,2024-01-16,bronze
+C000151,Bùi Thu Chi,0957064305,user151@example.com,Hà Nội,2025-03-23,silver
+C000152,Trần Văn Phương,0948796316,user152@example.com,Hà Nội,2022-12-24,bronze
+C000153,Trần Minh Dũng,0968057864,user153@example.com,TP.HCM,2025-06-19,bronze
+C000154,Hồ Thị Ngọc,0941990390,user154@example.com,Hà Nội,2023-03-19,silver
+C000155,Nguyễn Thu An,0977785845,user155@example.com,TP.HCM,2022-01-20,bronze
+C000156,Bùi Ngọc Hà,0963522643,user156@example.com,TP.HCM,2022-08-03,bronze
+C000157,Vũ Hữu Hùng,0945572844,user157@example.com,TP.HCM,2024-02-05,silver
+C000158,Đặng Ngọc Trang,0977593338,user158@example.com,TP.HCM,2025-10-16,silver
+C000159,Vũ Thị Lan,0913306689,user159@example.com,Hà Nội,2025-01-02,bronze
+C000160,Vũ Hữu Dũng,0922393729,user160@example.com,TP.HCM,2022-12-03,bronze
+C000161,Phạm Minh Minh,0976319351,user161@example.com,TP.HCM,2022-05-29,bronze
+C000162,Bùi Minh Hà,0917253920,user162@example.com,Hà Nội,2025-01-23,silver
+C000163,Đặng Hữu Tuấn,0984544726,user163@example.com,TP.HCM,2024-07-14,bronze
+C000164,Nguyễn Ngọc Lan,0915750417,user164@example.com,Hà Nội,2022-09-08,silver
+C000165,Hoàng Thị Thảo,0988518879,user165@example.com,TP.HCM,2025-06-08,silver
+C000166,Bùi Minh Dũng,0964659303,user166@example.com,TP.HCM,2023-08-19,bronze
+C000167,Hồ Hữu Thảo,0959410240,user167@example.com,Hà Nội,2023-11-14,silver
+C000168,Đặng Hữu Tuấn,0962340570,user168@example.com,TP.HCM,2024-08-08,bronze
+C000169,Hoàng Minh Minh,0944081885,user169@example.com,TP.HCM,2025-06-25,bronze
+C000170,Hồ Văn Phương,0976269673,user170@example.com,TP.HCM,2022-10-31,bronze
+C000171,Đỗ Minh Trang,0931458057,user171@example.com,Hà Nội,2023-03-05,silver
+C000172,Đặng Văn Minh,0984574741,user172@example.com,Hà Nội,2022-10-02,silver
+C000173,Hồ Minh Lan,0930823917,user173@example.com,Hà Nội,2022-01-06,bronze
+C000174,Vũ Ngọc Hà,0946949937,user174@example.com,Hà Nội,2024-07-08,silver
+C000175,Nguyễn Hữu Trang,0944096104,user175@example.com,TP.HCM,2024-02-11,bronze
+C000176,Phạm Minh Bình,0986593633,user176@example.com,TP.HCM,2023-07-05,bronze
+C000177,Hồ Hữu Linh,0934839301,user177@example.com,TP.HCM,2024-12-22,bronze
+C000178,Nguyễn Hữu Tuấn,0912319150,user178@example.com,TP.HCM,2023-04-09,bronze
+C000179,Đỗ Ngọc Lan,0940522464,user179@example.com,TP.HCM,2023-06-08,gold
+C000180,Hồ Hữu Thảo,0970085468,user180@example.com,Hà Nội,2024-12-26,bronze
+C000181,Vũ Thị Linh,0965940370,user181@example.com,Hà Nội,2022-07-29,bronze
+C000182,Trần Ngọc Phương,0984693787,user182@example.com,TP.HCM,2024-09-14,gold
+C000183,Trần Minh Hùng,0958353839,user183@example.com,TP.HCM,2025-03-19,gold
+C000184,Lê Minh Bình,0997860893,user184@example.com,TP.HCM,2025-06-09,bronze
+C000185,Bùi Ngọc Quân,0930424663,user185@example.com,TP.HCM,2023-08-13,bronze
+C000186,Vũ Thu Quân,0955857639,user186@example.com,TP.HCM,2023-06-09,silver
+C000187,Nguyễn Minh Dũng,0990588717,user187@example.com,TP.HCM,2023-12-29,silver
+C000188,Hoàng Văn Nam,0918991263,user188@example.com,Hà Nội,2025-07-28,bronze
+C000189,Nguyễn Thị Trang,0993589173,user189@example.com,Hà Nội,2025-04-09,bronze
+C000190,Phạm Hữu An,0960898868,user190@example.com,Hà Nội,2024-04-10,bronze
+C000191,Hồ Văn Thảo,0968894109,user191@example.com,TP.HCM,2023-09-07,bronze
+C000192,Trần Thu Hà,0952016910,user192@example.com,Hà Nội,2023-03-01,bronze
+C000193,Trần Hữu Minh,0958070015,user193@example.com,TP.HCM,2025-09-25,bronze
+C000194,Lê Thị Quân,0968802608,user194@example.com,TP.HCM,2025-05-29,bronze
+C000195,Bùi Ngọc Nam,0977621977,user195@example.com,Hà Nội,2023-10-18,bronze
+C000196,Trần Minh An,0962187273,user196@example.com,TP.HCM,2023-07-13,bronze
+C000197,Phạm Hữu Lan,0976237433,user197@example.com,TP.HCM,2022-03-31,bronze
+C000198,Đặng Minh Hùng,0944813938,user198@example.com,Hà Nội,2024-06-05,bronze
+C000199,Đỗ Thị Trang,0943441276,user199@example.com,TP.HCM,2023-01-16,bronze
+C000200,Bùi Văn An,0956182503,user200@example.com,TP.HCM,2025-04-04,bronze
+C000201,Phạm Hữu Ngọc,0984555429,user201@example.com,Hà Nội,2022-10-21,silver
+C000202,Đặng Thu Thảo,0923919200,user202@example.com,Hà Nội,2022-12-29,bronze
+C000203,Lê Thị Hà,0994549855,user203@example.com,TP.HCM,2025-03-12,bronze
+C000204,Vũ Minh Lan,0972837011,user204@example.com,TP.HCM,2022-08-08,bronze
+C000205,Nguyễn Minh Bình,0967411540,user205@example.com,TP.HCM,2024-06-06,silver
+C000206,Lê Thị Ngọc,0924218099,user206@example.com,TP.HCM,2023-11-14,bronze
+C000207,Hồ Hữu Trang,0977943145,user207@example.com,Hà Nội,2023-03-21,bronze
+C000208,Nguyễn Văn Quân,0951734754,user208@example.com,Hà Nội,2025-09-13,bronze
+C000209,Bùi Hữu Dũng,0996390171,user209@example.com,Hà Nội,2022-05-17,silver
+C000210,Lê Minh Minh,0998006591,user210@example.com,Hà Nội,2023-12-19,bronze
+C000211,Hoàng Thị Thảo,0954740223,user211@example.com,TP.HCM,2022-12-28,silver
+C000212,Đặng Minh Nam,0971739597,user212@example.com,TP.HCM,2025-03-26,bronze
+C000213,Bùi Ngọc Minh,0933534926,user213@example.com,TP.HCM,2024-08-05,bronze
+C000214,Hoàng Thị Minh,0919851462,user214@example.com,TP.HCM,2025-07-13,bronze
+C000215,Nguyễn Thị Phương,0981238656,user215@example.com,TP.HCM,2023-07-05,bronze
+C000216,Đỗ Minh Thảo,0913948611,user216@example.com,Hà Nội,2025-10-30,bronze
+C000217,Đặng Văn Dũng,0986154490,user217@example.com,TP.HCM,2022-07-26,silver
+C000218,Đặng Hữu Dũng,0972535378,user218@example.com,Hà Nội,2022-10-03,gold
+C000219,Bùi Văn Tuấn,0958528101,user219@example.com,Hà Nội,2022-11-13,bronze
+C000220,Đặng Ngọc An,0996858398,user220@example.com,Hà Nội,2024-03-21,bronze
+C000221,Vũ Văn Quân,0994832659,user221@example.com,Hà Nội,2022-02-15,bronze
+C000222,Trần Hữu Thảo,0925522765,user222@example.com,Hà Nội,2024-02-01,bronze
+C000223,Bùi Minh Thảo,0984439298,user223@example.com,Hà Nội,2024-05-22,gold
+C000224,Lê Thị Quân,0946448475,user224@example.com,TP.HCM,2023-01-06,bronze
+C000225,Hoàng Thu Trang,0954060601,user225@example.com,TP.HCM,2024-02-11,bronze
+C000226,Lê Văn Tuấn,0973342472,user226@example.com,TP.HCM,2024-08-16,bronze
+C000227,Phạm Văn Bình,0971343521,user227@example.com,Hà Nội,2024-12-27,silver
+C000228,Phạm Thị Phương,0920465265,user228@example.com,TP.HCM,2024-09-27,bronze
+C000229,Lê Văn Hùng,0933362795,user229@example.com,Hà Nội,2022-11-27,silver
+C000230,Hoàng Văn Lan,0979735137,user230@example.com,Hà Nội,2025-10-25,bronze
+C000231,Bùi Ngọc Quân,0955006347,user231@example.com,Hà Nội,2024-05-31,silver
+C000232,Đặng Hữu Hùng,0945765497,user232@example.com,TP.HCM,2024-08-29,bronze
+C000233,Bùi Văn Hà,0987023978,user233@example.com,TP.HCM,2025-05-31,bronze
+C000234,Đỗ Minh Dũng,0944968641,user234@example.com,Hà Nội,2024-08-28,bronze
+C000235,Hoàng Văn Hùng,0921181662,user235@example.com,Hà Nội,2022-02-10,bronze
+C000236,Hồ Thị Trang,0931735414,user236@example.com,TP.HCM,2023-12-20,silver
+C000237,Bùi Minh An,0995725038,user237@example.com,TP.HCM,2023-04-30,silver
+C000238,Đặng Ngọc Ngọc,0996713665,user238@example.com,Hà Nội,2023-08-24,bronze
+C000239,Lê Hữu Ngọc,0946338874,user239@example.com,Hà Nội,2024-06-24,gold
+C000240,Vũ Văn Quân,0923466432,user240@example.com,Hà Nội,2025-05-08,gold
+C000241,Phạm Văn Hà,0997246707,user241@example.com,TP.HCM,2025-06-11,bronze
+C000242,Vũ Ngọc Tuấn,0934194916,user242@example.com,Hà Nội,2023-11-23,bronze
+C000243,Lê Minh Bình,0986640641,user243@example.com,Hà Nội,2024-10-17,bronze
+C000244,Vũ Ngọc Phương,0939464624,user244@example.com,Hà Nội,2023-07-24,bronze
+C000245,Hồ Hữu Chi,0950387603,user245@example.com,Hà Nội,2025-03-24,silver
+C000246,Lê Minh Thảo,0991523864,user246@example.com,Hà Nội,2024-12-05,silver
+C000247,Vũ Ngọc Phương,0984814411,user247@example.com,TP.HCM,2022-08-08,bronze
+C000248,Đỗ Văn Nam,0966495909,user248@example.com,Hà Nội,2023-09-16,bronze
+C000249,Trần Ngọc Thảo,0968724484,user249@example.com,Hà Nội,2023-06-10,bronze
+C000250,Hồ Văn Chi,0981132049,user250@example.com,TP.HCM,2022-09-19,bronze
+C000251,Hồ Minh Tuấn,0954515364,user251@example.com,TP.HCM,2024-12-28,bronze
+C000252,Đỗ Ngọc Linh,0986455193,user252@example.com,Hà Nội,2022-09-08,silver
+C000253,Đỗ Văn Lan,0959347980,user253@example.com,TP.HCM,2024-09-22,bronze
+C000254,Vũ Minh Bình,0937604672,user254@example.com,Hà Nội,2025-03-27,bronze
+C000255,Vũ Hữu Thảo,0935176435,user255@example.com,Hà Nội,2024-07-13,bronze
+C000256,Bùi Ngọc Trang,0941820384,user256@example.com,TP.HCM,2022-12-21,silver
+C000257,Hồ Thu An,0968440728,user257@example.com,TP.HCM,2022-01-11,bronze
+C000258,Vũ Minh Hà,0981279091,user258@example.com,TP.HCM,2022-02-02,silver
+C000259,Đỗ Thị Nam,0960224585,user259@example.com,Hà Nội,2025-01-23,bronze
+C000260,Hoàng Hữu Linh,0984011285,user260@example.com,Hà Nội,2023-08-21,bronze
+C000261,Hồ Hữu Thảo,0935059911,user261@example.com,Hà Nội,2022-03-27,bronze
+C000262,Bùi Ngọc Hùng,0941836709,user262@example.com,TP.HCM,2024-05-15,bronze
+C000263,Đỗ Minh Hùng,0991212380,user263@example.com,Hà Nội,2024-12-23,bronze
+C000264,Hoàng Thị Phương,0914819829,user264@example.com,Hà Nội,2022-10-23,bronze
+C000265,Trần Thị Trang,0965240366,user265@example.com,Hà Nội,2022-08-17,bronze
+C000266,Vũ Thị Minh,0989226064,user266@example.com,TP.HCM,2024-03-31,bronze
+C000267,Hồ Hữu Hùng,0984847905,user267@example.com,Hà Nội,2023-10-10,bronze
+C000268,Hồ Hữu Bình,0977958669,user268@example.com,TP.HCM,2025-08-23,bronze
+C000269,Trần Văn Chi,0976486994,user269@example.com,TP.HCM,2025-03-02,bronze
+C000270,Hoàng Hữu Nam,0999162961,user270@example.com,TP.HCM,2022-01-16,bronze
+C000271,Hoàng Văn Tuấn,0965476989,user271@example.com,TP.HCM,2022-04-04,silver
+C000272,Nguyễn Văn Hùng,0974782987,user272@example.com,TP.HCM,2024-07-23,bronze
+C000273,Hồ Minh Hà,0967424797,user273@example.com,Hà Nội,2023-07-05,bronze
+C000274,Đặng Ngọc Hùng,0923148931,user274@example.com,TP.HCM,2022-11-29,bronze
+C000275,Lê Ngọc Hà,0923996426,user275@example.com,TP.HCM,2023-08-09,gold
+C000276,Hồ Thị Hà,0914697761,user276@example.com,Hà Nội,2022-01-28,gold
+C000277,Trần Ngọc Nam,0919438557,user277@example.com,TP.HCM,2022-03-02,bronze
+C000278,Hoàng Thị Ngọc,0940926284,user278@example.com,TP.HCM,2025-04-21,bronze
+C000279,Trần Thu Quân,0967744331,user279@example.com,Hà Nội,2024-01-29,bronze
+C000280,Vũ Văn Quân,0949906614,user280@example.com,Hà Nội,2025-02-05,silver
+C000281,Trần Minh Lan,0944833837,user281@example.com,TP.HCM,2025-05-14,bronze
+C000282,Đặng Minh Trang,0987622093,user282@example.com,Hà Nội,2022-03-29,silver
+C000283,Phạm Minh Minh,0911374740,user283@example.com,TP.HCM,2023-04-01,silver
+C000284,Lê Văn Nam,0968091718,user284@example.com,Hà Nội,2024-03-17,silver
+C000285,Bùi Ngọc Hùng,0960780662,user285@example.com,Hà Nội,2025-10-09,bronze
+C000286,Vũ Ngọc Thảo,0935959628,user286@example.com,Hà Nội,2022-05-19,bronze
+C000287,Hoàng Minh Hà,0932667852,user287@example.com,TP.HCM,2024-12-01,silver
+C000288,Trần Thị Hùng,0992122855,user288@example.com,Hà Nội,2023-02-12,bronze
+C000289,Vũ Văn An,0928034650,user289@example.com,Hà Nội,2024-12-05,bronze
+C000290,Nguyễn Hữu Nam,0997956895,user290@example.com,TP.HCM,2022-12-30,bronze
+C000291,Trần Ngọc Phương,0945209938,user291@example.com,Hà Nội,2025-01-29,bronze
+C000292,Vũ Ngọc Linh,0998443438,user292@example.com,TP.HCM,2023-01-23,silver
+C000293,Hoàng Ngọc Ngọc,0987370170,user293@example.com,TP.HCM,2025-03-07,bronze
+C000294,Đỗ Văn An,0916881616,user294@example.com,TP.HCM,2025-08-08,silver
+C000295,Bùi Ngọc Linh,0931489740,user295@example.com,Hà Nội,2024-07-28,bronze
+C000296,Đỗ Ngọc Thảo,0954412663,user296@example.com,Hà Nội,2024-07-09,bronze
+C000297,Hoàng Hữu Chi,0977344352,user297@example.com,Hà Nội,2023-10-04,bronze
+C000298,Hồ Văn Lan,0978983568,user298@example.com,Hà Nội,2023-05-26,bronze
+C000299,Đặng Hữu An,0984696452,user299@example.com,TP.HCM,2025-02-13,bronze
+C000300,Hồ Thu Trang,0927816914,user300@example.com,Hà Nội,2025-08-30,bronze
+C000301,Hoàng Thị Hùng,0985663991,user301@example.com,TP.HCM,2024-07-16,bronze
+C000302,Trần Ngọc Quân,0964576725,user302@example.com,Hà Nội,2024-06-03,bronze
+C000303,Bùi Ngọc Trang,0996244981,user303@example.com,TP.HCM,2024-02-10,bronze
+C000304,Lê Minh Ngọc,0994686036,user304@example.com,Hà Nội,2024-05-31,bronze
+C000305,Trần Ngọc Quân,0954345035,user305@example.com,TP.HCM,2024-07-22,bronze
+C000306,Trần Minh Chi,0959875449,user306@example.com,Hà Nội,2022-03-09,bronze
+C000307,Hồ Ngọc Quân,0985899255,user307@example.com,Hà Nội,2022-04-02,silver
+C000308,Đặng Minh Hùng,0931594576,user308@example.com,Hà Nội,2025-03-25,bronze
+C000309,Lê Thu Phương,0929612768,user309@example.com,Hà Nội,2022-11-06,bronze
+C000310,Bùi Thị Phương,0995800702,user310@example.com,Hà Nội,2023-12-28,bronze
+C000311,Lê Văn Dũng,0959563047,user311@example.com,Hà Nội,2023-05-19,bronze
+C000312,Lê Văn Phương,0989492422,user312@example.com,Hà Nội,2025-03-09,bronze
+C000313,Trần Văn Minh,0913921256,user313@example.com,TP.HCM,2022-12-18,silver
+C000314,Bùi Hữu Bình,0928905912,user314@example.com,Hà Nội,2024-08-04,silver
+C000315,Hoàng Hữu Phương,0948724026,user315@example.com,Hà Nội,2024-05-23,bronze
+C000316,Đặng Thu Minh,0922771786,user316@example.com,Hà Nội,2022-10-13,bronze
+C000317,Đỗ Minh Tuấn,0956956353,user317@example.com,Hà Nội,2024-03-04,silver
+C000318,Đỗ Ngọc Thảo,0955021865,user318@example.com,Hà Nội,2022-10-07,bronze
+C000319,Vũ Thu Minh,0991730204,user319@example.com,Hà Nội,2025-07-10,bronze
+C000320,Nguyễn Hữu Linh,0981769737,user320@example.com,Hà Nội,2025-08-30,silver
+C000321,Trần Thị Phương,0920573861,user321@example.com,Hà Nội,2023-12-12,bronze
+C000322,Phạm Thu Hà,0944612500,user322@example.com,Hà Nội,2023-05-21,bronze
+C000323,Đặng Hữu Nam,0916123156,user323@example.com,TP.HCM,2022-12-24,gold
+C000324,Phạm Văn Thảo,0956439033,user324@example.com,TP.HCM,2025-08-17,bronze
+C000325,Đặng Văn An,0922423590,user325@example.com,Hà Nội,2023-11-19,silver
+C000326,Vũ Hữu Hùng,0938807148,user326@example.com,TP.HCM,2022-01-02,bronze
+C000327,Đặng Minh Hùng,0910509043,user327@example.com,Hà Nội,2023-07-20,silver
+C000328,Phạm Ngọc Lan,0967679910,user328@example.com,Hà Nội,2024-06-27,bronze
+C000329,Bùi Minh Ngọc,0951786155,user329@example.com,TP.HCM,2025-08-06,silver
+C000330,Trần Văn Lan,0997973891,user330@example.com,TP.HCM,2025-07-19,bronze
+C000331,Vũ Ngọc Trang,0932207527,user331@example.com,Hà Nội,2023-03-07,bronze
+C000332,Hoàng Ngọc Trang,0980760074,user332@example.com,TP.HCM,2025-10-08,bronze
+C000333,Bùi Thị Hùng,0910740618,user333@example.com,TP.HCM,2023-02-27,bronze
+C000334,Phạm Văn Chi,0912863889,user334@example.com,Hà Nội,2024-04-22,bronze
+C000335,Đặng Minh Hùng,0956699197,user335@example.com,TP.HCM,2024-11-11,bronze
+C000336,Trần Ngọc Lan,0948323402,user336@example.com,TP.HCM,2025-01-12,bronze
+C000337,Phạm Hữu Thảo,0945357886,user337@example.com,TP.HCM,2024-07-02,bronze
+C000338,Nguyễn Minh Ngọc,0915914855,user338@example.com,Hà Nội,2025-08-12,silver
+C000339,Đặng Thu Minh,0939758802,user339@example.com,TP.HCM,2023-03-17,bronze
+C000340,Phạm Văn Hà,0942803568,user340@example.com,TP.HCM,2022-06-30,bronze
+C000341,Đỗ Văn Thảo,0970457876,user341@example.com,Hà Nội,2025-07-29,bronze
+C000342,Vũ Minh Hà,0923350373,user342@example.com,TP.HCM,2023-12-10,bronze
+C000343,Trần Thị An,0999875414,user343@example.com,Hà Nội,2023-08-23,silver
+C000344,Nguyễn Ngọc Ngọc,0967530534,user344@example.com,TP.HCM,2024-12-15,silver
+C000345,Hoàng Thu Thảo,0954630686,user345@example.com,TP.HCM,2025-06-13,silver
+C000346,Bùi Ngọc Trang,0958873452,user346@example.com,TP.HCM,2022-02-07,silver
+C000347,Hoàng Văn Hà,0937468031,user347@example.com,TP.HCM,2022-03-09,bronze
+C000348,Trần Hữu An,0992226643,user348@example.com,TP.HCM,2025-07-08,silver
+C000349,Bùi Hữu Nam,0924730791,user349@example.com,Hà Nội,2022-02-14,bronze
+C000350,Đỗ Thị Minh,0914913467,user350@example.com,Hà Nội,2022-09-25,gold
+C000351,Bùi Thu Tuấn,0991576093,user351@example.com,Hà Nội,2023-09-26,silver
+C000352,Phạm Văn Minh,0922441355,user352@example.com,Hà Nội,2023-10-19,silver
+C000353,Lê Thị Nam,0925015637,user353@example.com,Hà Nội,2022-09-16,bronze
+C000354,Hoàng Thu Nam,0921814044,user354@example.com,Hà Nội,2025-07-17,bronze
+C000355,Phạm Thu Linh,0921854075,user355@example.com,Hà Nội,2023-06-08,silver
+C000356,Lê Minh Ngọc,0950161311,user356@example.com,TP.HCM,2025-08-20,bronze
+C000357,Bùi Văn Hùng,0952312349,user357@example.com,Hà Nội,2022-12-20,bronze
+C000358,Trần Văn Trang,0949760280,user358@example.com,Hà Nội,2022-08-24,bronze
+C000359,Hồ Thị Hà,0986434432,user359@example.com,TP.HCM,2024-08-14,bronze
+C000360,Hoàng Văn Dũng,0959389682,user360@example.com,TP.HCM,2022-11-08,bronze
+C000361,Đỗ Văn Minh,0917798837,user361@example.com,TP.HCM,2024-06-23,bronze
+C000362,Lê Thu Bình,0913979779,user362@example.com,TP.HCM,2024-06-29,bronze
+C000363,Hoàng Thu Minh,0956158203,user363@example.com,Hà Nội,2023-11-26,bronze
+C000364,Đặng Thu Thảo,0995404862,user364@example.com,TP.HCM,2024-04-30,bronze
+C000365,Phạm Minh Chi,0930942058,user365@example.com,TP.HCM,2025-02-02,bronze
+C000366,Trần Thu Chi,0998465095,user366@example.com,Hà Nội,2023-01-15,bronze
+C000367,Phạm Văn Hùng,0989756032,user367@example.com,TP.HCM,2025-06-10,bronze
+C000368,Đặng Ngọc Thảo,0917267839,user368@example.com,Hà Nội,2024-10-11,bronze
+C000369,Lê Minh Quân,0923413149,user369@example.com,Hà Nội,2022-09-30,bronze
+C000370,Bùi Hữu Tuấn,0949448915,user370@example.com,Hà Nội,2024-12-26,bronze
+C000371,Lê Thu Bình,0941692742,user371@example.com,Hà Nội,2022-03-16,bronze
+C000372,Đặng Văn Hùng,0947109670,user372@example.com,TP.HCM,2024-02-07,bronze
+C000373,Đặng Minh Linh,0980808671,user373@example.com,Hà Nội,2022-09-22,bronze
+C000374,Đặng Thị Hà,0940459967,user374@example.com,Hà Nội,2022-04-18,silver
+C000375,Phạm Văn Nam,0955002532,user375@example.com,TP.HCM,2023-05-04,bronze
+C000376,Vũ Thu Dũng,0962004849,user376@example.com,TP.HCM,2023-04-22,bronze
+C000377,Vũ Ngọc Linh,0944897108,user377@example.com,Hà Nội,2025-04-06,silver
+C000378,Nguyễn Văn Trang,0972283151,user378@example.com,TP.HCM,2024-09-13,bronze
+C000379,Trần Ngọc Nam,0921063994,user379@example.com,TP.HCM,2022-11-11,silver
+C000380,Bùi Minh Lan,0919558110,user380@example.com,TP.HCM,2023-01-07,bronze
+C000381,Hồ Ngọc Minh,0996330061,user381@example.com,TP.HCM,2024-04-25,bronze
+C000382,Lê Thu Lan,0958244854,user382@example.com,Hà Nội,2025-02-26,bronze
+C000383,Hồ Ngọc Minh,0981237920,user383@example.com,TP.HCM,2022-07-10,bronze
+C000384,Nguyễn Thị Bình,0998882762,user384@example.com,Hà Nội,2023-09-18,silver
+C000385,Đỗ Minh Quân,0926751792,user385@example.com,TP.HCM,2023-02-09,silver
+C000386,Phạm Minh Lan,0939791536,user386@example.com,TP.HCM,2025-10-16,silver
+C000387,Bùi Hữu Quân,0924840544,user387@example.com,TP.HCM,2025-07-24,bronze
+C000388,Trần Văn Lan,0970151612,user388@example.com,TP.HCM,2024-04-26,bronze
+C000389,Hồ Hữu Dũng,0951896214,user389@example.com,Hà Nội,2024-07-05,gold
+C000390,Vũ Thu Phương,0986395812,user390@example.com,Hà Nội,2025-03-21,bronze
+C000391,Trần Hữu Phương,0957011659,user391@example.com,Hà Nội,2023-08-18,bronze
+C000392,Nguyễn Thu Quân,0998134596,user392@example.com,Hà Nội,2023-02-13,bronze
+C000393,Vũ Thu Ngọc,0998900592,user393@example.com,Hà Nội,2023-10-07,bronze
+C000394,Trần Ngọc Hùng,0929509163,user394@example.com,Hà Nội,2025-02-12,bronze
+C000395,Đặng Hữu Dũng,0969519695,user395@example.com,TP.HCM,2025-08-17,bronze
+C000396,Phạm Ngọc An,0949965286,user396@example.com,TP.HCM,2022-10-23,gold
+C000397,Hồ Thị Hà,0996966969,user397@example.com,Hà Nội,2023-06-23,bronze
+C000398,Phạm Thu Trang,0959391188,user398@example.com,TP.HCM,2024-01-31,silver
+C000399,Đỗ Minh Thảo,0993136912,user399@example.com,Hà Nội,2022-10-17,bronze
+C000400,Đặng Thu Tuấn,0916879230,user400@example.com,Hà Nội,2025-09-27,bronze
+C000401,Phạm Ngọc Ngọc,0989848421,user401@example.com,Hà Nội,2025-01-31,bronze
+C000402,Lê Thu Trang,0972153244,user402@example.com,TP.HCM,2025-01-18,gold
+C000403,Nguyễn Minh Minh,0995700549,user403@example.com,Hà Nội,2022-04-10,silver
+C000404,Đặng Ngọc Phương,0959155536,user404@example.com,TP.HCM,2024-01-28,bronze
+C000405,Vũ Ngọc Lan,0944157486,user405@example.com,Hà Nội,2024-05-19,bronze
+C000406,Nguyễn Văn Bình,0988902441,user406@example.com,Hà Nội,2022-04-13,bronze
+C000407,Nguyễn Thu Minh,0911572381,user407@example.com,TP.HCM,2025-06-29,gold
+C000408,Phạm Thị Trang,0975862132,user408@example.com,Hà Nội,2025-07-08,bronze
+C000409,Đỗ Thu Quân,0941945317,user409@example.com,TP.HCM,2024-07-25,bronze
+C000410,Đặng Minh An,0910558856,user410@example.com,Hà Nội,2024-03-06,bronze
+C000411,Trần Minh Lan,0969297449,user411@example.com,Hà Nội,2023-02-05,silver
+C000412,Phạm Văn Thảo,0922446002,user412@example.com,Hà Nội,2024-09-03,bronze
+C000413,Bùi Văn Nam,0983644309,user413@example.com,TP.HCM,2023-05-05,bronze
+C000414,Hồ Văn Dũng,0967345630,user414@example.com,TP.HCM,2024-09-18,bronze
+C000415,Trần Minh Linh,0981014315,user415@example.com,TP.HCM,2022-12-07,bronze
+C000416,Nguyễn Thu Trang,0948265825,user416@example.com,TP.HCM,2022-01-20,bronze
+C000417,Bùi Thu Chi,0926978311,user417@example.com,Hà Nội,2024-02-27,bronze
+C000418,Trần Ngọc Thảo,0931718474,user418@example.com,Hà Nội,2025-06-16,bronze
+C000419,Phạm Ngọc Hà,0940457349,user419@example.com,Hà Nội,2023-09-10,bronze
+C000420,Lê Thu Thảo,0960294789,user420@example.com,Hà Nội,2022-06-17,silver
+C000421,Hoàng Thị Bình,0927306424,user421@example.com,TP.HCM,2024-10-30,bronze
+C000422,Lê Thu Phương,0947661655,user422@example.com,Hà Nội,2025-04-25,bronze
+C000423,Trần Hữu Tuấn,0942921707,user423@example.com,TP.HCM,2022-08-09,bronze
+C000424,Hồ Ngọc Chi,0992253214,user424@example.com,TP.HCM,2023-04-17,bronze
+C000425,Phạm Thu Quân,0937008979,user425@example.com,Hà Nội,2024-01-24,silver
+C000426,Bùi Minh Minh,0987377454,user426@example.com,TP.HCM,2022-08-20,bronze
+C000427,Lê Hữu Ngọc,0991768044,user427@example.com,TP.HCM,2023-06-10,bronze
+C000428,Phạm Hữu Minh,0992863768,user428@example.com,Hà Nội,2024-02-09,bronze
+C000429,Hoàng Ngọc Dũng,0945006706,user429@example.com,TP.HCM,2025-10-27,bronze
+C000430,Hoàng Thị Trang,0945665123,user430@example.com,TP.HCM,2023-06-19,bronze
+C000431,Vũ Minh Trang,0986393889,user431@example.com,Hà Nội,2024-11-13,silver
+C000432,Trần Minh Quân,0974282948,user432@example.com,Hà Nội,2022-12-15,bronze
+C000433,Nguyễn Ngọc Tuấn,0942894923,user433@example.com,TP.HCM,2023-10-27,silver
+C000434,Đỗ Hữu Dũng,0968640886,user434@example.com,TP.HCM,2023-05-30,bronze
+C000435,Đặng Ngọc Hà,0991155985,user435@example.com,TP.HCM,2024-07-01,bronze
+C000436,Hồ Văn Tuấn,0924358316,user436@example.com,Hà Nội,2025-08-21,bronze
+C000437,Vũ Minh Thảo,0942112499,user437@example.com,TP.HCM,2024-06-24,bronze
+C000438,Phạm Hữu An,0925188295,user438@example.com,Hà Nội,2022-12-07,bronze
+C000439,Vũ Ngọc Minh,0938387818,user439@example.com,TP.HCM,2022-02-16,bronze
+C000440,Hoàng Thị Quân,0964226392,user440@example.com,Hà Nội,2024-02-16,bronze
+C000441,Hồ Thị An,0977680258,user441@example.com,TP.HCM,2022-04-22,silver
+C000442,Bùi Minh Lan,0939596095,user442@example.com,Hà Nội,2024-03-13,silver
+C000443,Hoàng Hữu Quân,0932573641,user443@example.com,TP.HCM,2022-06-24,silver
+C000444,Hồ Thu Lan,0955749936,user444@example.com,TP.HCM,2025-01-08,bronze
+C000445,Đỗ Văn Phương,0916133524,user445@example.com,TP.HCM,2025-06-22,silver
+C000446,Đặng Hữu Trang,0983177511,user446@example.com,Hà Nội,2024-12-02,bronze
+C000447,Đỗ Thu Nam,0912367462,user447@example.com,Hà Nội,2023-05-21,bronze
+C000448,Hoàng Minh Quân,0933769426,user448@example.com,TP.HCM,2023-11-08,bronze
+C000449,Bùi Minh Trang,0972844432,user449@example.com,Hà Nội,2022-09-21,bronze
+C000450,Bùi Ngọc Hà,0964950187,user450@example.com,TP.HCM,2022-03-01,bronze
+C000451,Lê Thu An,0942043593,user451@example.com,TP.HCM,2024-12-02,bronze
+C000452,Hồ Minh Tuấn,0962248442,user452@example.com,Hà Nội,2024-04-12,bronze
+C000453,Đặng Thị Bình,0991301554,user453@example.com,Hà Nội,2023-06-03,bronze
+C000454,Hồ Ngọc Phương,0989351537,user454@example.com,TP.HCM,2024-03-16,silver
+C000455,Trần Ngọc An,0953784216,user455@example.com,Hà Nội,2023-10-02,silver
+C000456,Lê Hữu Trang,0924924592,user456@example.com,TP.HCM,2022-06-01,bronze
+C000457,Đặng Hữu Minh,0951691520,user457@example.com,Hà Nội,2023-06-25,bronze
+C000458,Đỗ Thị Phương,0974698981,user458@example.com,TP.HCM,2023-11-28,silver
+C000459,Bùi Minh Lan,0970307147,user459@example.com,Hà Nội,2024-02-28,silver
+C000460,Lê Ngọc Hùng,0914113080,user460@example.com,Hà Nội,2025-04-12,silver
+C000461,Bùi Hữu Dũng,0962540517,user461@example.com,TP.HCM,2025-06-01,bronze
+C000462,Hồ Thị Hà,0975594742,user462@example.com,TP.HCM,2022-11-18,bronze
+C000463,Bùi Hữu Chi,0991595237,user463@example.com,Hà Nội,2022-12-15,bronze
+C000464,Đặng Hữu Lan,0961871466,user464@example.com,TP.HCM,2025-10-25,bronze
+C000465,Vũ Thu Hùng,0963035592,user465@example.com,TP.HCM,2022-10-21,bronze
+C000466,Lê Hữu Hùng,0945525918,user466@example.com,TP.HCM,2025-08-06,bronze
+C000467,Hồ Hữu Lan,0919548009,user467@example.com,Hà Nội,2024-11-03,bronze
+C000468,Hồ Hữu Ngọc,0938082916,user468@example.com,Hà Nội,2024-05-13,bronze
+C000469,Lê Thị Trang,0988313744,user469@example.com,TP.HCM,2024-10-02,silver
+C000470,Đỗ Ngọc Bình,0965639602,user470@example.com,Hà Nội,2022-04-23,bronze
+C000471,Đỗ Minh Bình,0930788988,user471@example.com,TP.HCM,2025-07-02,bronze
+C000472,Hồ Minh Hùng,0934113503,user472@example.com,Hà Nội,2022-03-07,bronze
+C000473,Trần Văn Quân,0992260004,user473@example.com,TP.HCM,2022-07-20,silver
+C000474,Hoàng Ngọc Chi,0910064714,user474@example.com,TP.HCM,2023-12-11,bronze
+C000475,Hoàng Thu Thảo,0947779650,user475@example.com,Hà Nội,2024-01-20,bronze
+C000476,Đặng Văn Trang,0960380865,user476@example.com,TP.HCM,2022-06-27,silver
+C000477,Vũ Thu Chi,0974828007,user477@example.com,TP.HCM,2025-09-28,silver
+C000478,Vũ Hữu Phương,0935500432,user478@example.com,TP.HCM,2025-06-27,bronze
+C000479,Lê Văn Minh,0923584958,user479@example.com,TP.HCM,2023-02-08,silver
+C000480,Lê Văn Quân,0983902740,user480@example.com,Hà Nội,2025-01-19,bronze
+C000481,Đặng Thu Tuấn,0982846945,user481@example.com,TP.HCM,2025-03-07,silver
+C000482,Phạm Thu Quân,0946438350,user482@example.com,Hà Nội,2025-07-02,silver
+C000483,Lê Minh Linh,0967330481,user483@example.com,TP.HCM,2023-06-26,gold
+C000484,Hoàng Minh Hà,0989758441,user484@example.com,TP.HCM,2025-10-27,bronze
+C000485,Hồ Minh Thảo,0922560671,user485@example.com,TP.HCM,2024-11-29,bronze
+C000486,Phạm Ngọc Tuấn,0976085890,user486@example.com,Hà Nội,2025-07-27,bronze
+C000487,Hồ Thu Linh,0913616242,user487@example.com,Hà Nội,2025-09-15,bronze
+C000488,Đỗ Hữu Trang,0991055615,user488@example.com,Hà Nội,2024-12-14,bronze
+C000489,Bùi Thu Trang,0927038200,user489@example.com,TP.HCM,2022-11-27,gold
+C000490,Đỗ Thu Thảo,0951192193,user490@example.com,Hà Nội,2023-06-16,bronze
+C000491,Phạm Ngọc Minh,0929195691,user491@example.com,Hà Nội,2024-07-22,bronze
+C000492,Hồ Ngọc Thảo,0994764520,user492@example.com,Hà Nội,2023-11-05,bronze
+C000493,Bùi Ngọc An,0998445475,user493@example.com,Hà Nội,2022-04-01,bronze
+C000494,Đặng Thị Bình,0959925318,user494@example.com,Hà Nội,2022-09-09,bronze
+C000495,Trần Thu Thảo,0995195560,user495@example.com,Hà Nội,2024-12-22,bronze
+C000496,Hồ Minh Linh,0926483269,user496@example.com,Hà Nội,2025-03-31,silver
+C000497,Trần Ngọc Thảo,0996709964,user497@example.com,TP.HCM,2024-01-12,silver
+C000498,Nguyễn Thu Thảo,0949367422,user498@example.com,Hà Nội,2022-06-21,bronze
+C000499,Trần Hữu Minh,0957889501,user499@example.com,TP.HCM,2024-05-04,bronze
+C000500,Lê Văn Hùng,0971721873,user500@example.com,TP.HCM,2022-09-09,silver
+C000501,Nguyễn Minh Ngọc,0922004145,user501@example.com,Hà Nội,2022-01-30,bronze
+C000502,Trần Hữu Tuấn,0998649667,user502@example.com,Hà Nội,2022-09-28,bronze
+C000503,Lê Ngọc Chi,0945089177,user503@example.com,Hà Nội,2022-12-10,bronze
+C000504,Trần Thị Tuấn,0978628170,user504@example.com,Hà Nội,2024-02-20,bronze
+C000505,Đỗ Hữu Bình,0991710932,user505@example.com,TP.HCM,2025-05-18,bronze
+C000506,Hoàng Thu Trang,0974260850,user506@example.com,Hà Nội,2023-02-03,bronze
+C000507,Đỗ Thị Bình,0962590787,user507@example.com,Hà Nội,2022-07-13,silver
+C000508,Đỗ Thu Thảo,0987786973,user508@example.com,TP.HCM,2025-02-20,bronze
+C000509,Vũ Minh Bình,0989895461,user509@example.com,TP.HCM,2022-06-03,bronze
+C000510,Lê Hữu Tuấn,0999077542,user510@example.com,TP.HCM,2025-03-09,bronze
+C000511,Bùi Thu Linh,0985894369,user511@example.com,Hà Nội,2023-04-19,silver
+C000512,Đỗ Thị Trang,0920552892,user512@example.com,Hà Nội,2025-05-31,bronze
+C000513,Phạm Thu Thảo,0936995646,user513@example.com,TP.HCM,2022-11-25,bronze
+C000514,Bùi Ngọc Lan,0930704223,user514@example.com,Hà Nội,2023-05-28,bronze
+C000515,Đỗ Ngọc Nam,0913592412,user515@example.com,TP.HCM,2024-06-14,bronze
+C000516,Hoàng Thu Trang,0953182628,user516@example.com,Hà Nội,2023-07-08,silver
+C000517,Trần Thị Trang,0991417816,user517@example.com,Hà Nội,2023-02-10,bronze
+C000518,Bùi Hữu Chi,0992059714,user518@example.com,Hà Nội,2024-06-03,bronze
+C000519,Đặng Minh Hùng,0957279366,user519@example.com,Hà Nội,2023-05-21,bronze
+C000520,Vũ Thu Phương,0953115647,user520@example.com,Hà Nội,2022-10-07,bronze
+C000521,Bùi Thị Chi,0962692207,user521@example.com,Hà Nội,2022-05-01,silver
+C000522,Đỗ Văn Hà,0988344069,user522@example.com,Hà Nội,2024-04-29,bronze
+C000523,Phạm Thu Hà,0918411570,user523@example.com,Hà Nội,2024-03-07,bronze
+C000524,Lê Hữu Hà,0914294259,user524@example.com,Hà Nội,2022-09-14,bronze
+C000525,Bùi Ngọc Tuấn,0997012489,user525@example.com,TP.HCM,2022-09-13,silver
+C000526,Phạm Hữu Quân,0977125005,user526@example.com,TP.HCM,2022-03-27,bronze
+C000527,Phạm Ngọc Phương,0950238955,user527@example.com,TP.HCM,2022-08-19,silver
+C000528,Đặng Ngọc Trang,0941733445,user528@example.com,TP.HCM,2024-03-23,bronze
+C000529,Trần Minh Hà,0925886216,user529@example.com,Hà Nội,2023-01-01,bronze
+C000530,Nguyễn Thị Quân,0997439049,user530@example.com,Hà Nội,2025-06-08,bronze
+C000531,Trần Văn Lan,0932458111,user531@example.com,Hà Nội,2024-12-19,bronze
+C000532,Trần Ngọc Minh,0991459743,user532@example.com,Hà Nội,2023-02-22,silver
+C000533,Trần Thị Linh,0923923322,user533@example.com,Hà Nội,2025-07-21,bronze
+C000534,Phạm Ngọc Bình,0933018368,user534@example.com,TP.HCM,2022-11-02,silver
+C000535,Phạm Minh Lan,0943359864,user535@example.com,Hà Nội,2025-09-12,bronze
+C000536,Trần Thu Linh,0991019004,user536@example.com,TP.HCM,2022-05-23,bronze
+C000537,Phạm Thị Chi,0953221306,user537@example.com,Hà Nội,2025-10-14,bronze
+C000538,Hồ Ngọc An,0976164705,user538@example.com,TP.HCM,2023-11-07,bronze
+C000539,Đặng Thị Phương,0917709423,user539@example.com,Hà Nội,2022-06-19,bronze
+C000540,Nguyễn Thị Hùng,0950534546,user540@example.com,Hà Nội,2022-05-17,silver
+C000541,Vũ Minh Nam,0966230244,user541@example.com,TP.HCM,2024-01-30,silver
+C000542,Hồ Hữu Hùng,0915793173,user542@example.com,TP.HCM,2022-10-23,bronze
+C000543,Bùi Hữu Lan,0915035702,user543@example.com,TP.HCM,2025-03-21,bronze
+C000544,Lê Thị Quân,0951868321,user544@example.com,Hà Nội,2023-10-10,bronze
+C000545,Nguyễn Minh Ngọc,0964581429,user545@example.com,Hà Nội,2023-12-20,silver
+C000546,Đặng Thị Minh,0946381324,user546@example.com,Hà Nội,2023-11-28,bronze
+C000547,Hoàng Ngọc Nam,0927164204,user547@example.com,TP.HCM,2024-05-18,bronze
+C000548,Nguyễn Hữu Tuấn,0990201446,user548@example.com,TP.HCM,2023-07-17,silver
+C000549,Đặng Văn Trang,0925192189,user549@example.com,TP.HCM,2022-02-14,silver
+C000550,Đặng Văn An,0977396579,user550@example.com,Hà Nội,2023-03-31,bronze
+C000551,Bùi Hữu Minh,0968940092,user551@example.com,Hà Nội,2023-08-17,bronze
+C000552,Hồ Ngọc Hà,0990940208,user552@example.com,Hà Nội,2024-06-11,gold
+C000553,Nguyễn Minh Trang,0973954229,user553@example.com,TP.HCM,2024-05-27,bronze
+C000554,Hoàng Hữu Bình,0983058228,user554@example.com,Hà Nội,2025-08-07,bronze
+C000555,Phạm Thị Tuấn,0935286078,user555@example.com,Hà Nội,2023-03-23,bronze
+C000556,Đặng Ngọc Thảo,0992261107,user556@example.com,Hà Nội,2023-07-03,bronze
+C000557,Trần Ngọc Quân,0933767056,user557@example.com,TP.HCM,2023-04-28,bronze
+C000558,Đỗ Thị Lan,0993541603,user558@example.com,TP.HCM,2024-02-11,bronze
+C000559,Bùi Ngọc Nam,0974406509,user559@example.com,Hà Nội,2023-02-10,silver
+C000560,Đặng Văn Quân,0970310575,user560@example.com,Hà Nội,2023-07-02,bronze
+C000561,Vũ Văn Tuấn,0938468311,user561@example.com,Hà Nội,2022-05-01,bronze
+C000562,Nguyễn Văn Ngọc,0934374847,user562@example.com,TP.HCM,2025-08-16,bronze
+C000563,Bùi Minh Tuấn,0983452382,user563@example.com,Hà Nội,2024-09-26,bronze
+C000564,Đặng Hữu Trang,0913565100,user564@example.com,TP.HCM,2024-07-11,bronze
+C000565,Hoàng Thị Thảo,0911482881,user565@example.com,TP.HCM,2024-09-14,bronze
+C000566,Hoàng Minh Trang,0990978794,user566@example.com,Hà Nội,2022-02-23,silver
+C000567,Đặng Ngọc Nam,0988946377,user567@example.com,Hà Nội,2023-05-28,bronze
+C000568,Trần Hữu Tuấn,0922377390,user568@example.com,TP.HCM,2025-08-14,silver
+C000569,Đặng Thu Quân,0947618253,user569@example.com,TP.HCM,2023-06-04,bronze
+C000570,Lê Văn Tuấn,0977903205,user570@example.com,TP.HCM,2024-01-01,bronze
+C000571,Lê Văn Dũng,0991664643,user571@example.com,TP.HCM,2025-02-21,bronze
+C000572,Trần Thu Hùng,0989378180,user572@example.com,Hà Nội,2025-06-06,bronze
+C000573,Lê Minh Chi,0913685701,user573@example.com,TP.HCM,2022-10-12,bronze
+C000574,Nguyễn Ngọc Hà,0964548045,user574@example.com,TP.HCM,2023-12-26,bronze
+C000575,Lê Ngọc Hà,0962232438,user575@example.com,Hà Nội,2023-05-11,silver
+C000576,Trần Thị Ngọc,0985734265,user576@example.com,TP.HCM,2024-03-25,silver
+C000577,Vũ Văn Bình,0927552816,user577@example.com,Hà Nội,2025-06-18,bronze
+C000578,Trần Văn Ngọc,0986861357,user578@example.com,TP.HCM,2025-06-06,bronze
+C000579,Đặng Ngọc Ngọc,0949404357,user579@example.com,Hà Nội,2024-11-14,bronze
+C000580,Vũ Thu Tuấn,0997537008,user580@example.com,TP.HCM,2022-04-13,gold
+C000581,Lê Văn Chi,0911120777,user581@example.com,Hà Nội,2023-11-22,silver
+C000582,Vũ Thu Minh,0949493234,user582@example.com,Hà Nội,2024-09-23,bronze
+C000583,Hoàng Minh Hà,0919424143,user583@example.com,TP.HCM,2022-11-24,bronze
+C000584,Phạm Minh Bình,0960990463,user584@example.com,Hà Nội,2023-01-10,bronze
+C000585,Bùi Thị Tuấn,0960366107,user585@example.com,TP.HCM,2023-02-07,bronze
+C000586,Hồ Thị Ngọc,0991549685,user586@example.com,TP.HCM,2023-11-05,silver
+C000587,Bùi Thị Trang,0934816870,user587@example.com,Hà Nội,2022-04-25,bronze
+C000588,Hoàng Thu Linh,0959646857,user588@example.com,Hà Nội,2024-11-21,silver
+C000589,Trần Hữu Hùng,0982151710,user589@example.com,Hà Nội,2022-12-12,silver
+C000590,Phạm Thị Tuấn,0932751558,user590@example.com,TP.HCM,2025-06-30,bronze
+C000591,Hồ Hữu Chi,0915656225,user591@example.com,Hà Nội,2025-02-27,silver
+C000592,Hoàng Ngọc Quân,0968803627,user592@example.com,Hà Nội,2022-10-08,silver
+C000593,Phạm Thị Minh,0943268088,user593@example.com,TP.HCM,2022-01-31,bronze
+C000594,Đỗ Thị Ngọc,0920026553,user594@example.com,Hà Nội,2023-07-26,bronze
+C000595,Lê Thu Trang,0978243503,user595@example.com,TP.HCM,2025-02-28,bronze
+C000596,Trần Thị Phương,0956905676,user596@example.com,Hà Nội,2025-03-01,bronze
+C000597,Nguyễn Văn Quân,0942987843,user597@example.com,TP.HCM,2025-06-14,bronze
+C000598,Trần Hữu Trang,0989223060,user598@example.com,TP.HCM,2024-12-04,bronze
+C000599,Đỗ Minh Dũng,0966647368,user599@example.com,TP.HCM,2023-05-09,bronze
+C000600,Đặng Thị Hùng,0977185590,user600@example.com,TP.HCM,2023-11-03,bronze
+C000601,Phạm Văn Bình,0913750991,user601@example.com,Hà Nội,2023-04-15,silver
+C000602,Hoàng Thị Dũng,0997837406,user602@example.com,TP.HCM,2025-04-27,bronze
+C000603,Trần Thị Nam,0977757368,user603@example.com,Hà Nội,2023-05-11,silver
+C000604,Đỗ Thu Dũng,0933170853,user604@example.com,Hà Nội,2022-01-01,bronze
+C000605,Vũ Văn An,0986888247,user605@example.com,Hà Nội,2023-12-24,bronze
+C000606,Đỗ Hữu Nam,0993355468,user606@example.com,TP.HCM,2023-05-05,bronze
+C000607,Hồ Ngọc Linh,0975904257,user607@example.com,Hà Nội,2023-12-13,silver
+C000608,Hồ Ngọc Dũng,0937257283,user608@example.com,TP.HCM,2025-05-04,bronze
+C000609,Vũ Thị Phương,0957559734,user609@example.com,Hà Nội,2022-07-22,bronze
+C000610,Bùi Minh Minh,0988175040,user610@example.com,Hà Nội,2022-06-05,bronze
+C000611,Hồ Minh Lan,0980493222,user611@example.com,TP.HCM,2023-12-23,bronze
+C000612,Hoàng Ngọc Ngọc,0990110693,user612@example.com,Hà Nội,2024-01-14,bronze
+C000613,Hoàng Hữu Trang,0967802887,user613@example.com,Hà Nội,2024-09-02,bronze
+C000614,Bùi Ngọc Hùng,0947101396,user614@example.com,TP.HCM,2024-09-27,silver
+C000615,Phạm Ngọc Bình,0942699624,user615@example.com,TP.HCM,2023-03-29,bronze
+C000616,Trần Ngọc Dũng,0916884393,user616@example.com,TP.HCM,2022-09-13,bronze
+C000617,Bùi Thị An,0960667790,user617@example.com,Hà Nội,2022-09-05,silver
+C000618,Lê Minh Quân,0950807422,user618@example.com,Hà Nội,2023-03-10,bronze
+C000619,Hồ Văn Minh,0913352578,user619@example.com,Hà Nội,2023-08-31,bronze
+C000620,Hồ Hữu Ngọc,0928100856,user620@example.com,TP.HCM,2022-02-06,bronze
+C000621,Nguyễn Ngọc Nam,0981169862,user621@example.com,Hà Nội,2022-12-11,silver
+C000622,Trần Thị Quân,0927222861,user622@example.com,Hà Nội,2024-07-31,bronze
+C000623,Đặng Ngọc Trang,0954209728,user623@example.com,TP.HCM,2024-01-17,bronze
+C000624,Lê Hữu An,0926218744,user624@example.com,Hà Nội,2022-04-06,silver
+C000625,Hoàng Thị Thảo,0917708645,user625@example.com,Hà Nội,2023-06-07,bronze
+C000626,Đặng Ngọc Ngọc,0951100112,user626@example.com,TP.HCM,2023-09-06,bronze
+C000627,Bùi Hữu Nam,0930018548,user627@example.com,TP.HCM,2023-04-01,silver
+C000628,Đặng Thu Tuấn,0998673564,user628@example.com,Hà Nội,2025-06-22,bronze
+C000629,Nguyễn Văn Bình,0963278568,user629@example.com,Hà Nội,2025-01-16,bronze
+C000630,Lê Thị An,0913108108,user630@example.com,TP.HCM,2025-10-25,bronze
+C000631,Phạm Thu An,0926037838,user631@example.com,TP.HCM,2025-10-02,bronze
+C000632,Phạm Văn Ngọc,0950740796,user632@example.com,Hà Nội,2025-03-30,silver
+C000633,Hoàng Ngọc Linh,0912190328,user633@example.com,Hà Nội,2024-03-10,bronze
+C000634,Hồ Minh Thảo,0965387385,user634@example.com,Hà Nội,2023-10-01,gold
+C000635,Hoàng Thu Phương,0960305856,user635@example.com,TP.HCM,2024-12-13,bronze
+C000636,Đặng Hữu Minh,0982019662,user636@example.com,Hà Nội,2022-06-15,bronze
+C000637,Nguyễn Văn Minh,0920754378,user637@example.com,Hà Nội,2023-12-30,bronze
+C000638,Trần Minh Phương,0918186272,user638@example.com,Hà Nội,2023-09-05,silver
+C000639,Bùi Minh An,0983689894,user639@example.com,Hà Nội,2023-02-02,bronze
+C000640,Phạm Thu Lan,0978354063,user640@example.com,Hà Nội,2023-08-26,bronze
+C000641,Lê Văn An,0930061446,user641@example.com,TP.HCM,2023-10-29,bronze
+C000642,Vũ Văn Quân,0929983795,user642@example.com,TP.HCM,2022-02-08,silver
+C000643,Hồ Văn Thảo,0946152527,user643@example.com,TP.HCM,2025-01-08,silver
+C000644,Bùi Minh Hà,0956168555,user644@example.com,TP.HCM,2024-12-20,silver
+C000645,Đỗ Minh Chi,0914193729,user645@example.com,Hà Nội,2022-12-23,bronze
+C000646,Hồ Thu Dũng,0959306662,user646@example.com,Hà Nội,2023-04-10,bronze
+C000647,Đặng Minh An,0996513644,user647@example.com,TP.HCM,2025-01-05,bronze
+C000648,Hồ Thu Dũng,0984419131,user648@example.com,TP.HCM,2024-04-11,bronze
+C000649,Bùi Văn Dũng,0972761536,user649@example.com,TP.HCM,2025-09-18,bronze
+C000650,Hoàng Ngọc Tuấn,0994855117,user650@example.com,TP.HCM,2023-06-06,silver
+C000651,Phạm Văn Minh,0955395510,user651@example.com,TP.HCM,2024-07-20,bronze
+C000652,Phạm Ngọc An,0940442645,user652@example.com,Hà Nội,2024-10-31,bronze
+C000653,Vũ Minh Ngọc,0997168302,user653@example.com,TP.HCM,2022-12-20,bronze
+C000654,Đặng Văn Ngọc,0944009904,user654@example.com,TP.HCM,2023-03-31,bronze
+C000655,Phạm Ngọc Tuấn,0927926915,user655@example.com,TP.HCM,2022-10-05,bronze
+C000656,Đỗ Hữu Quân,0947285040,user656@example.com,Hà Nội,2024-01-03,bronze
+C000657,Nguyễn Hữu Minh,0952380825,user657@example.com,TP.HCM,2025-01-16,bronze
+C000658,Đỗ Ngọc Hà,0987380099,user658@example.com,TP.HCM,2025-02-13,silver
+C000659,Trần Minh Hà,0936642847,user659@example.com,Hà Nội,2023-03-05,bronze
+C000660,Nguyễn Thị Trang,0945357790,user660@example.com,Hà Nội,2023-06-19,bronze
+C000661,Lê Hữu Thảo,0927318189,user661@example.com,Hà Nội,2022-03-04,bronze
+C000662,Hồ Thu An,0960252467,user662@example.com,Hà Nội,2024-01-03,bronze
+C000663,Vũ Hữu Bình,0915955838,user663@example.com,TP.HCM,2023-03-26,bronze
+C000664,Bùi Ngọc Hà,0924552648,user664@example.com,TP.HCM,2024-06-09,bronze
+C000665,Hồ Thu Lan,0935689063,user665@example.com,Hà Nội,2025-03-28,bronze
+C000666,Nguyễn Thị Ngọc,0939631310,user666@example.com,Hà Nội,2025-05-15,silver
+C000667,Trần Ngọc Minh,0936858288,user667@example.com,Hà Nội,2023-02-07,silver
+C000668,Nguyễn Minh Nam,0974543737,user668@example.com,TP.HCM,2024-12-02,bronze
+C000669,Phạm Thu Phương,0989017214,user669@example.com,Hà Nội,2024-08-31,bronze
+C000670,Hoàng Văn Lan,0939931534,user670@example.com,TP.HCM,2023-12-13,bronze
+C000671,Hồ Thị Chi,0918130003,user671@example.com,TP.HCM,2023-03-23,bronze
+C000672,Phạm Thu Chi,0991670211,user672@example.com,TP.HCM,2022-05-30,silver
+C000673,Phạm Minh Dũng,0988029865,user673@example.com,TP.HCM,2024-10-08,bronze
+C000674,Lê Hữu Chi,0955607473,user674@example.com,TP.HCM,2022-10-17,bronze
+C000675,Đỗ Hữu Tuấn,0979126480,user675@example.com,TP.HCM,2023-04-28,silver
+C000676,Trần Hữu Ngọc,0978207517,user676@example.com,TP.HCM,2025-04-07,bronze
+C000677,Đặng Thị Quân,0960100069,user677@example.com,TP.HCM,2024-08-07,silver
+C000678,Vũ Ngọc Trang,0971071710,user678@example.com,Hà Nội,2024-02-10,bronze
+C000679,Bùi Minh Hà,0969775696,user679@example.com,TP.HCM,2024-05-22,bronze
+C000680,Nguyễn Minh Trang,0948441321,user680@example.com,TP.HCM,2022-10-30,bronze
+C000681,Bùi Minh Quân,0914910475,user681@example.com,TP.HCM,2025-07-26,bronze
+C000682,Phạm Hữu Ngọc,0934235001,user682@example.com,TP.HCM,2025-04-10,bronze
+C000683,Trần Thị Nam,0933516760,user683@example.com,Hà Nội,2022-04-01,bronze
+C000684,Hồ Ngọc Linh,0953093650,user684@example.com,TP.HCM,2024-07-13,bronze
+C000685,Lê Thu Hùng,0982360709,user685@example.com,Hà Nội,2022-09-20,silver
+C000686,Đặng Minh Quân,0949511257,user686@example.com,Hà Nội,2024-04-01,bronze
+C000687,Vũ Thị Thảo,0922782917,user687@example.com,TP.HCM,2022-09-09,silver
+C000688,Hồ Hữu Linh,0923801022,user688@example.com,Hà Nội,2022-05-03,bronze
+C000689,Nguyễn Thị Minh,0971559639,user689@example.com,Hà Nội,2024-01-30,silver
+C000690,Hoàng Văn Chi,0921554360,user690@example.com,TP.HCM,2024-03-04,bronze
+C000691,Hoàng Hữu Thảo,0984805629,user691@example.com,TP.HCM,2022-04-11,bronze
+C000692,Hoàng Thu Dũng,0931224072,user692@example.com,Hà Nội,2023-03-05,bronze
+C000693,Lê Thu Quân,0925487540,user693@example.com,TP.HCM,2025-06-12,bronze
+C000694,Phạm Minh Trang,0963047318,user694@example.com,TP.HCM,2024-01-08,silver
+C000695,Trần Thu Ngọc,0960409976,user695@example.com,Hà Nội,2022-05-27,bronze
+C000696,Hồ Minh Trang,0981960025,user696@example.com,TP.HCM,2022-01-08,bronze
+C000697,Phạm Thị Quân,0932424652,user697@example.com,Hà Nội,2025-02-13,bronze
+C000698,Trần Ngọc Hà,0943864779,user698@example.com,Hà Nội,2024-02-26,bronze
+C000699,Trần Hữu Linh,0996346808,user699@example.com,Hà Nội,2023-08-12,bronze
+C000700,Hoàng Văn Hà,0952696420,user700@example.com,TP.HCM,2022-02-01,silver
+C000701,Bùi Thu Bình,0972709801,user701@example.com,TP.HCM,2022-08-13,bronze
+C000702,Hoàng Thị Linh,0967783958,user702@example.com,Hà Nội,2023-11-10,bronze
+C000703,Hoàng Minh Ngọc,0945782595,user703@example.com,Hà Nội,2022-12-03,bronze
+C000704,Hồ Thị Hùng,0980997153,user704@example.com,TP.HCM,2024-08-26,bronze
+C000705,Hồ Văn Nam,0917847277,user705@example.com,Hà Nội,2023-09-02,silver
+C000706,Hoàng Ngọc Dũng,0960016465,user706@example.com,TP.HCM,2024-07-29,silver
+C000707,Đỗ Văn Quân,0972335070,user707@example.com,TP.HCM,2023-06-23,gold
+C000708,Bùi Minh Thảo,0996363429,user708@example.com,TP.HCM,2024-01-30,bronze
+C000709,Hồ Minh Thảo,0931132938,user709@example.com,Hà Nội,2024-08-21,silver
+C000710,Phạm Thu Lan,0944155771,user710@example.com,Hà Nội,2024-10-29,bronze
+C000711,Vũ Thị Lan,0981326593,user711@example.com,TP.HCM,2023-02-21,bronze
+C000712,Đỗ Văn An,0922530776,user712@example.com,Hà Nội,2023-07-19,bronze
+C000713,Đỗ Minh Nam,0924003128,user713@example.com,TP.HCM,2022-04-27,bronze
+C000714,Lê Ngọc Quân,0930038682,user714@example.com,Hà Nội,2023-05-13,silver
+C000715,Đỗ Minh Tuấn,0990955315,user715@example.com,TP.HCM,2025-08-05,bronze
+C000716,Đặng Thu Hùng,0983904370,user716@example.com,Hà Nội,2022-10-21,silver
+C000717,Hồ Thị Nam,0966072568,user717@example.com,Hà Nội,2023-11-23,bronze
+C000718,Đặng Minh An,0999695809,user718@example.com,TP.HCM,2023-01-17,bronze
+C000719,Đỗ Ngọc Phương,0941499231,user719@example.com,Hà Nội,2023-10-01,silver
+C000720,Đặng Văn An,0941272188,user720@example.com,Hà Nội,2025-02-13,gold
+C000721,Lê Thu Nam,0965839496,user721@example.com,TP.HCM,2022-10-17,bronze
+C000722,Đỗ Minh Nam,0979423777,user722@example.com,TP.HCM,2023-06-03,bronze
+C000723,Đỗ Thu Chi,0955243729,user723@example.com,Hà Nội,2024-05-07,bronze
+C000724,Trần Văn Lan,0941738776,user724@example.com,Hà Nội,2022-08-23,bronze
+C000725,Trần Hữu Phương,0924649500,user725@example.com,TP.HCM,2023-09-18,silver
+C000726,Hoàng Hữu Linh,0921182435,user726@example.com,TP.HCM,2023-01-05,bronze
+C000727,Vũ Hữu Ngọc,0939310110,user727@example.com,TP.HCM,2024-12-13,bronze
+C000728,Lê Thu Bình,0913320534,user728@example.com,Hà Nội,2024-03-04,bronze
+C000729,Lê Hữu Thảo,0991303192,user729@example.com,Hà Nội,2022-10-08,bronze
+C000730,Trần Thu Ngọc,0947803892,user730@example.com,Hà Nội,2025-04-24,bronze
+C000731,Vũ Thu Trang,0952003187,user731@example.com,Hà Nội,2023-07-28,bronze
+C000732,Trần Thị Bình,0994295829,user732@example.com,Hà Nội,2023-03-05,bronze
+C000733,Trần Ngọc Minh,0969429717,user733@example.com,TP.HCM,2024-07-26,silver
+C000734,Đỗ Ngọc Quân,0923965397,user734@example.com,TP.HCM,2024-01-25,silver
+C000735,Hồ Minh Bình,0929739147,user735@example.com,Hà Nội,2025-07-09,bronze
+C000736,Đặng Văn Linh,0979012801,user736@example.com,TP.HCM,2025-08-30,silver
+C000737,Hoàng Hữu Thảo,0929915781,user737@example.com,Hà Nội,2024-01-11,silver
+C000738,Phạm Thị Lan,0942109572,user738@example.com,TP.HCM,2022-01-05,bronze
+C000739,Bùi Minh Tuấn,0934298381,user739@example.com,TP.HCM,2023-07-14,gold
+C000740,Phạm Hữu Quân,0966634523,user740@example.com,Hà Nội,2024-12-21,silver
+C000741,Phạm Thu Chi,0945246662,user741@example.com,Hà Nội,2024-01-28,gold
+C000742,Hồ Minh Minh,0938866559,user742@example.com,TP.HCM,2024-05-11,bronze
+C000743,Hồ Ngọc Quân,0975105432,user743@example.com,Hà Nội,2022-09-17,bronze
+C000744,Đặng Văn Lan,0999168732,user744@example.com,TP.HCM,2022-07-10,bronze
+C000745,Nguyễn Ngọc Linh,0957511735,user745@example.com,TP.HCM,2023-04-03,bronze
+C000746,Vũ Minh Tuấn,0936298243,user746@example.com,TP.HCM,2022-09-21,bronze
+C000747,Đỗ Văn An,0956382437,user747@example.com,Hà Nội,2022-01-01,bronze
+C000748,Vũ Thị Linh,0993957199,user748@example.com,Hà Nội,2023-02-24,bronze
+C000749,Hoàng Ngọc Bình,0950286528,user749@example.com,Hà Nội,2022-08-02,silver
+C000750,Phạm Thị Hà,0946690594,user750@example.com,TP.HCM,2025-01-14,bronze
+C000751,Đặng Văn An,0958029074,user751@example.com,Hà Nội,2023-11-07,bronze
+C000752,Trần Thu Ngọc,0986979571,user752@example.com,Hà Nội,2022-11-23,bronze
+C000753,Hồ Ngọc Trang,0956972450,user753@example.com,TP.HCM,2024-07-08,bronze
+C000754,Hoàng Hữu Lan,0915068219,user754@example.com,Hà Nội,2024-10-20,bronze
+C000755,Đỗ Thị Linh,0926840350,user755@example.com,TP.HCM,2022-11-03,bronze
+C000756,Phạm Hữu An,0980593631,user756@example.com,Hà Nội,2022-02-12,bronze
+C000757,Hồ Hữu Nam,0919827749,user757@example.com,Hà Nội,2023-04-13,bronze
+C000758,Nguyễn Minh Phương,0914582559,user758@example.com,Hà Nội,2025-04-06,gold
+C000759,Lê Hữu Bình,0946769969,user759@example.com,Hà Nội,2023-04-08,bronze
+C000760,Vũ Văn Thảo,0943694011,user760@example.com,Hà Nội,2024-08-10,bronze
+C000761,Vũ Thị Trang,0962241597,user761@example.com,TP.HCM,2022-08-13,bronze
+C000762,Hoàng Văn Chi,0911419605,user762@example.com,Hà Nội,2024-05-28,bronze
+C000763,Trần Thị Nam,0922068212,user763@example.com,Hà Nội,2025-03-22,bronze
+C000764,Trần Hữu Bình,0924084746,user764@example.com,TP.HCM,2024-07-26,bronze
+C000765,Trần Hữu Phương,0990861390,user765@example.com,Hà Nội,2023-11-21,bronze
+C000766,Vũ Văn Hùng,0971046340,user766@example.com,Hà Nội,2022-01-21,silver
+C000767,Bùi Hữu Hà,0976818947,user767@example.com,TP.HCM,2022-07-13,bronze
+C000768,Nguyễn Hữu Trang,0919800608,user768@example.com,Hà Nội,2023-07-20,bronze
+C000769,Hoàng Minh Chi,0974400883,user769@example.com,Hà Nội,2023-12-25,bronze
+C000770,Nguyễn Hữu Tuấn,0967620739,user770@example.com,Hà Nội,2024-09-19,silver
+C000771,Vũ Thị Hà,0991171123,user771@example.com,TP.HCM,2024-10-14,bronze
+C000772,Hoàng Văn Dũng,0914245518,user772@example.com,TP.HCM,2022-05-16,bronze
+C000773,Đặng Hữu Trang,0952160050,user773@example.com,Hà Nội,2024-06-25,gold
+C000774,Hoàng Thu Trang,0913296778,user774@example.com,Hà Nội,2024-02-11,bronze
+C000775,Lê Hữu Bình,0939847341,user775@example.com,Hà Nội,2023-12-15,bronze
+C000776,Bùi Văn Hùng,0989287533,user776@example.com,TP.HCM,2023-09-15,bronze
+C000777,Lê Minh Tuấn,0982030600,user777@example.com,Hà Nội,2022-11-11,bronze
+C000778,Đỗ Văn Linh,0914979924,user778@example.com,Hà Nội,2025-08-10,gold
+C000779,Bùi Văn Thảo,0926089263,user779@example.com,TP.HCM,2025-04-12,bronze
+C000780,Đặng Thu An,0972502479,user780@example.com,TP.HCM,2025-09-05,bronze
+C000781,Lê Ngọc Quân,0965073400,user781@example.com,TP.HCM,2023-07-20,gold
+C000782,Hồ Minh Bình,0946166029,user782@example.com,Hà Nội,2023-01-07,bronze
+C000783,Bùi Thị Minh,0971193001,user783@example.com,Hà Nội,2025-01-31,bronze
+C000784,Nguyễn Thu Quân,0913716635,user784@example.com,TP.HCM,2023-12-06,bronze
+C000785,Vũ Thu Dũng,0927692638,user785@example.com,Hà Nội,2022-09-05,bronze
+C000786,Hoàng Thu Linh,0921930874,user786@example.com,Hà Nội,2024-07-26,bronze
+C000787,Vũ Thị Minh,0998285097,user787@example.com,Hà Nội,2023-12-22,silver
+C000788,Phạm Văn Hùng,0937860468,user788@example.com,Hà Nội,2023-03-25,silver
+C000789,Bùi Hữu Trang,0999451460,user789@example.com,Hà Nội,2023-06-30,bronze
+C000790,Đặng Văn Linh,0954381276,user790@example.com,Hà Nội,2025-06-18,bronze
+C000791,Vũ Thị Ngọc,0964244060,user791@example.com,Hà Nội,2024-11-02,bronze
+C000792,Đặng Ngọc Lan,0955436435,user792@example.com,TP.HCM,2022-06-27,silver
+C000793,Nguyễn Văn Tuấn,0916784490,user793@example.com,Hà Nội,2025-08-31,gold
+C000794,Bùi Văn An,0986121267,user794@example.com,TP.HCM,2023-01-21,bronze
+C000795,Vũ Hữu Minh,0926298731,user795@example.com,Hà Nội,2022-05-05,bronze
+C000796,Đỗ Văn Linh,0980832570,user796@example.com,TP.HCM,2024-08-24,silver
+C000797,Bùi Thị Tuấn,0953769217,user797@example.com,TP.HCM,2022-12-09,bronze
+C000798,Lê Ngọc Phương,0961810068,user798@example.com,TP.HCM,2024-05-20,bronze
+C000799,Đỗ Văn Hà,0934130915,user799@example.com,TP.HCM,2023-08-22,bronze
+C000800,Đặng Thu Hùng,0939592756,user800@example.com,TP.HCM,2022-09-15,bronze
+C000801,Đặng Hữu Thảo,0953568976,user801@example.com,Hà Nội,2025-07-29,bronze
+C000802,Hoàng Thu Ngọc,0984114979,user802@example.com,TP.HCM,2022-02-14,silver
+C000803,Vũ Hữu Linh,0971351823,user803@example.com,Hà Nội,2024-02-11,bronze
+C000804,Hồ Hữu Hùng,0914153212,user804@example.com,Hà Nội,2024-06-08,bronze
+C000805,Hồ Văn Trang,0911883721,user805@example.com,TP.HCM,2022-07-12,bronze
+C000806,Phạm Ngọc Dũng,0952180028,user806@example.com,TP.HCM,2023-09-20,bronze
+C000807,Bùi Ngọc Lan,0994989645,user807@example.com,Hà Nội,2022-08-02,silver
+C000808,Hồ Thị Bình,0968814913,user808@example.com,TP.HCM,2025-07-08,bronze
+C000809,Lê Thị Phương,0927047035,user809@example.com,Hà Nội,2023-03-02,gold
+C000810,Phạm Hữu Nam,0967770082,user810@example.com,Hà Nội,2023-06-04,silver
+C000811,Nguyễn Ngọc Lan,0995866011,user811@example.com,TP.HCM,2024-11-06,bronze
+C000812,Vũ Minh Lan,0972650993,user812@example.com,Hà Nội,2024-04-14,silver
+C000813,Lê Hữu Minh,0995743258,user813@example.com,TP.HCM,2023-12-06,silver
+C000814,Đặng Hữu Thảo,0938270093,user814@example.com,Hà Nội,2024-01-19,bronze
+C000815,Phạm Văn Phương,0995368448,user815@example.com,Hà Nội,2024-07-26,bronze
+C000816,Vũ Ngọc Tuấn,0981044778,user816@example.com,TP.HCM,2024-08-17,bronze
+C000817,Vũ Hữu Tuấn,0964941297,user817@example.com,Hà Nội,2022-08-20,bronze
+C000818,Lê Văn Quân,0943213390,user818@example.com,TP.HCM,2024-11-12,bronze
+C000819,Hồ Ngọc Nam,0978628691,user819@example.com,Hà Nội,2022-01-24,silver
+C000820,Hồ Văn Hùng,0927189630,user820@example.com,TP.HCM,2022-11-23,bronze
+C000821,Hồ Ngọc Phương,0937661128,user821@example.com,TP.HCM,2023-11-26,bronze
+C000822,Nguyễn Minh Chi,0981949340,user822@example.com,Hà Nội,2024-05-29,gold
+C000823,Phạm Văn Phương,0988230009,user823@example.com,Hà Nội,2023-12-06,silver
+C000824,Phạm Hữu Nam,0956734892,user824@example.com,Hà Nội,2023-05-13,silver
+C000825,Hoàng Văn Nam,0951191626,user825@example.com,TP.HCM,2023-12-24,bronze
+C000826,Đỗ Thu Hà,0921344799,user826@example.com,TP.HCM,2024-09-09,bronze
+C000827,Đặng Văn Nam,0953419485,user827@example.com,TP.HCM,2023-06-24,silver
+C000828,Đỗ Thu Tuấn,0984621673,user828@example.com,Hà Nội,2024-03-29,silver
+C000829,Bùi Văn Phương,0996882739,user829@example.com,TP.HCM,2023-03-10,bronze
+C000830,Đặng Thị Trang,0977300278,user830@example.com,TP.HCM,2022-04-16,gold
+C000831,Nguyễn Hữu Nam,0919314772,user831@example.com,TP.HCM,2022-11-13,bronze
+C000832,Hồ Thu Hà,0956022719,user832@example.com,TP.HCM,2024-09-29,bronze
+C000833,Hồ Ngọc Lan,0922252042,user833@example.com,TP.HCM,2023-10-01,bronze
+C000834,Nguyễn Thu Hà,0931447419,user834@example.com,Hà Nội,2023-02-09,silver
+C000835,Hồ Thị Lan,0985446911,user835@example.com,Hà Nội,2024-10-25,bronze
+C000836,Vũ Minh Thảo,0937991030,user836@example.com,Hà Nội,2022-02-23,bronze
+C000837,Vũ Hữu Trang,0919395216,user837@example.com,TP.HCM,2023-07-13,silver
+C000838,Nguyễn Ngọc An,0917864384,user838@example.com,Hà Nội,2023-04-25,bronze
+C000839,Phạm Ngọc Phương,0918805097,user839@example.com,Hà Nội,2024-08-19,bronze
+C000840,Hồ Hữu Thảo,0913307685,user840@example.com,TP.HCM,2022-11-08,bronze
+C000841,Hồ Hữu Bình,0976285560,user841@example.com,Hà Nội,2022-05-20,bronze
+C000842,Nguyễn Văn Dũng,0936870549,user842@example.com,TP.HCM,2022-04-03,gold
+C000843,Phạm Hữu Thảo,0934006628,user843@example.com,Hà Nội,2025-07-10,bronze
+C000844,Đặng Hữu Hùng,0950418453,user844@example.com,Hà Nội,2022-11-04,bronze
+C000845,Trần Thị Chi,0915560891,user845@example.com,Hà Nội,2024-11-08,bronze
+C000846,Phạm Thu Linh,0929783002,user846@example.com,TP.HCM,2022-06-01,silver
+C000847,Hồ Hữu Bình,0944081606,user847@example.com,TP.HCM,2025-04-20,bronze
+C000848,Hồ Hữu Trang,0946915057,user848@example.com,TP.HCM,2024-01-18,bronze
+C000849,Nguyễn Minh Tuấn,0980668855,user849@example.com,Hà Nội,2022-08-24,bronze
+C000850,Hồ Minh Ngọc,0985621661,user850@example.com,TP.HCM,2023-02-26,bronze
+C000851,Trần Thu An,0945961101,user851@example.com,TP.HCM,2023-01-18,bronze
+C000852,Vũ Hữu Chi,0992440916,user852@example.com,TP.HCM,2022-10-28,bronze
+C000853,Vũ Minh Linh,0943865051,user853@example.com,TP.HCM,2024-06-27,silver
+C000854,Đỗ Minh Phương,0921115864,user854@example.com,Hà Nội,2022-03-03,bronze
+C000855,Phạm Ngọc Hà,0945936010,user855@example.com,TP.HCM,2024-08-05,gold
+C000856,Hoàng Ngọc An,0966183642,user856@example.com,TP.HCM,2023-10-26,bronze
+C000857,Nguyễn Minh Dũng,0973301385,user857@example.com,Hà Nội,2022-09-06,bronze
+C000858,Đỗ Thu Lan,0994228006,user858@example.com,TP.HCM,2023-09-11,gold
+C000859,Trần Hữu Bình,0979970700,user859@example.com,TP.HCM,2024-02-25,bronze
+C000860,Đặng Minh Dũng,0929522865,user860@example.com,Hà Nội,2022-12-09,silver
+C000861,Vũ Văn Quân,0939906755,user861@example.com,Hà Nội,2025-09-02,bronze
+C000862,Nguyễn Hữu Linh,0943510699,user862@example.com,Hà Nội,2023-05-04,silver
+C000863,Hoàng Ngọc Minh,0938178629,user863@example.com,TP.HCM,2022-11-20,bronze
+C000864,Hồ Minh Bình,0917083170,user864@example.com,TP.HCM,2022-12-09,silver
+C000865,Hồ Ngọc Phương,0914128637,user865@example.com,TP.HCM,2024-12-25,bronze
+C000866,Đặng Hữu Bình,0920526428,user866@example.com,TP.HCM,2024-08-28,bronze
+C000867,Phạm Thị Trang,0973191887,user867@example.com,Hà Nội,2025-05-07,bronze
+C000868,Đỗ Hữu Linh,0951268338,user868@example.com,Hà Nội,2024-01-13,silver
+C000869,Đặng Thị Hùng,0951619759,user869@example.com,TP.HCM,2024-07-13,bronze
+C000870,Lê Minh Hùng,0995372316,user870@example.com,Hà Nội,2023-06-23,bronze
+C000871,Hoàng Thị An,0941660622,user871@example.com,Hà Nội,2025-04-12,bronze
+C000872,Đặng Thị Chi,0999860233,user872@example.com,Hà Nội,2024-03-25,bronze
+C000873,Phạm Văn Lan,0918760848,user873@example.com,Hà Nội,2023-05-29,gold
+C000874,Lê Thị Thảo,0970996077,user874@example.com,Hà Nội,2023-06-16,bronze
+C000875,Đỗ Ngọc Hà,0935170748,user875@example.com,TP.HCM,2022-06-16,silver
+C000876,Hồ Hữu Minh,0946333851,user876@example.com,Hà Nội,2023-03-27,silver
+C000877,Bùi Hữu Bình,0914290075,user877@example.com,TP.HCM,2024-09-04,silver
+C000878,Hoàng Thu Thảo,0991511478,user878@example.com,TP.HCM,2023-09-30,bronze
+C000879,Hồ Hữu Hùng,0961835925,user879@example.com,TP.HCM,2025-04-17,silver
+C000880,Trần Hữu An,0947234194,user880@example.com,Hà Nội,2024-08-27,bronze
+C000881,Phạm Thu Nam,0940778369,user881@example.com,TP.HCM,2022-05-13,bronze
+C000882,Vũ Thu Minh,0947156212,user882@example.com,TP.HCM,2025-06-04,bronze
+C000883,Nguyễn Minh Dũng,0951741406,user883@example.com,TP.HCM,2024-09-25,bronze
+C000884,Phạm Ngọc Chi,0973318103,user884@example.com,Hà Nội,2024-05-11,bronze
+C000885,Trần Hữu Nam,0939938220,user885@example.com,Hà Nội,2025-02-25,bronze
+C000886,Trần Thu Lan,0939053062,user886@example.com,Hà Nội,2024-09-21,bronze
+C000887,Đặng Hữu Chi,0930939624,user887@example.com,TP.HCM,2024-09-07,bronze
+C000888,Nguyễn Ngọc Chi,0914119228,user888@example.com,Hà Nội,2022-06-12,bronze
+C000889,Hoàng Minh Dũng,0917498504,user889@example.com,TP.HCM,2022-09-04,bronze
+C000890,Hoàng Thị Hà,0979540290,user890@example.com,TP.HCM,2023-11-21,bronze
+C000891,Nguyễn Thu Quân,0939989923,user891@example.com,TP.HCM,2023-07-27,bronze
+C000892,Nguyễn Hữu Lan,0963514928,user892@example.com,TP.HCM,2025-10-29,bronze
+C000893,Đặng Thị Quân,0929632824,user893@example.com,Hà Nội,2024-01-21,silver
+C000894,Lê Thu Thảo,0977307559,user894@example.com,TP.HCM,2023-08-09,silver
+C000895,Hoàng Hữu Linh,0933527055,user895@example.com,TP.HCM,2025-05-03,bronze
+C000896,Hoàng Văn Thảo,0956976351,user896@example.com,TP.HCM,2023-05-14,bronze
+C000897,Vũ Ngọc Tuấn,0989750820,user897@example.com,Hà Nội,2023-07-20,silver
+C000898,Trần Thị Phương,0982776641,user898@example.com,TP.HCM,2025-08-23,bronze
+C000899,Hồ Văn Hùng,0997508731,user899@example.com,Hà Nội,2024-07-03,bronze
+C000900,Đỗ Văn Hùng,0953163507,user900@example.com,Hà Nội,2024-12-25,bronze
+C000901,Hoàng Minh Trang,0921048547,user901@example.com,Hà Nội,2023-10-06,silver
+C000902,Đỗ Thị Trang,0962128532,user902@example.com,TP.HCM,2023-08-22,bronze
+C000903,Đỗ Ngọc Hà,0996886241,user903@example.com,TP.HCM,2022-03-28,silver
+C000904,Vũ Thị Ngọc,0964844798,user904@example.com,TP.HCM,2025-06-02,silver
+C000905,Trần Văn Tuấn,0967189397,user905@example.com,TP.HCM,2025-07-27,bronze
+C000906,Phạm Minh Hùng,0956371770,user906@example.com,Hà Nội,2025-10-16,bronze
+C000907,Đặng Ngọc Thảo,0954944545,user907@example.com,Hà Nội,2022-11-08,bronze
+C000908,Vũ Thị Ngọc,0957482197,user908@example.com,Hà Nội,2024-08-16,silver
+C000909,Vũ Ngọc Linh,0983586431,user909@example.com,Hà Nội,2025-04-20,bronze
+C000910,Lê Thị Minh,0938952815,user910@example.com,Hà Nội,2025-03-30,silver
+C000911,Trần Thu An,0964915787,user911@example.com,TP.HCM,2025-06-11,bronze
+C000912,Phạm Hữu Hùng,0928371881,user912@example.com,Hà Nội,2024-12-26,silver
+C000913,Đỗ Minh Chi,0952780603,user913@example.com,Hà Nội,2022-05-02,silver
+C000914,Đỗ Minh Phương,0921858616,user914@example.com,Hà Nội,2025-01-27,bronze
+C000915,Đặng Ngọc Trang,0914090140,user915@example.com,Hà Nội,2025-07-14,silver
+C000916,Vũ Văn Linh,0930328931,user916@example.com,Hà Nội,2023-10-28,bronze
+C000917,Đặng Hữu Tuấn,0976355065,user917@example.com,TP.HCM,2024-05-04,bronze
+C000918,Trần Hữu Trang,0958012309,user918@example.com,Hà Nội,2022-06-03,silver
+C000919,Bùi Thu Trang,0933448004,user919@example.com,TP.HCM,2023-03-25,gold
+C000920,Hoàng Hữu Minh,0953902229,user920@example.com,TP.HCM,2023-09-07,bronze
+C000921,Vũ Văn Thảo,0920755466,user921@example.com,Hà Nội,2024-05-23,silver
+C000922,Hồ Ngọc Thảo,0913978620,user922@example.com,TP.HCM,2023-11-17,bronze
+C000923,Lê Thu Quân,0950797755,user923@example.com,Hà Nội,2022-05-02,bronze
+C000924,Đỗ Thu Tuấn,0990109141,user924@example.com,Hà Nội,2023-12-25,bronze
+C000925,Trần Thu Hùng,0916613221,user925@example.com,TP.HCM,2025-06-13,bronze
+C000926,Đỗ Thị Tuấn,0958081292,user926@example.com,TP.HCM,2025-03-28,bronze
+C000927,Phạm Minh Lan,0947687111,user927@example.com,Hà Nội,2025-08-31,bronze
+C000928,Bùi Hữu Bình,0929828639,user928@example.com,Hà Nội,2024-03-01,bronze
+C000929,Nguyễn Ngọc Lan,0997356259,user929@example.com,Hà Nội,2022-05-16,bronze
+C000930,Bùi Ngọc Minh,0925071933,user930@example.com,TP.HCM,2022-06-17,silver
+C000931,Phạm Hữu Trang,0918213084,user931@example.com,TP.HCM,2023-11-21,silver
+C000932,Đỗ Văn Phương,0996540393,user932@example.com,Hà Nội,2025-02-15,bronze
+C000933,Hoàng Hữu Dũng,0971562378,user933@example.com,TP.HCM,2023-08-22,silver
+C000934,Đặng Văn An,0977508195,user934@example.com,Hà Nội,2022-07-18,bronze
+C000935,Trần Thu Minh,0951737584,user935@example.com,Hà Nội,2022-10-14,bronze
+C000936,Lê Ngọc Hùng,0930294311,user936@example.com,TP.HCM,2022-09-27,bronze
+C000937,Nguyễn Thu Tuấn,0916566285,user937@example.com,TP.HCM,2022-12-27,bronze
+C000938,Phạm Hữu Linh,0980766892,user938@example.com,TP.HCM,2024-11-21,bronze
+C000939,Bùi Thu Trang,0967806456,user939@example.com,TP.HCM,2023-10-30,bronze
+C000940,Hồ Minh Trang,0961005996,user940@example.com,Hà Nội,2022-02-21,bronze
+C000941,Lê Ngọc Trang,0924075313,user941@example.com,Hà Nội,2023-03-30,silver
+C000942,Nguyễn Văn Minh,0999453522,user942@example.com,Hà Nội,2022-10-19,bronze
+C000943,Đặng Thị Dũng,0963227842,user943@example.com,Hà Nội,2022-09-10,bronze
+C000944,Nguyễn Thị Hà,0957716760,user944@example.com,Hà Nội,2024-04-24,bronze
+C000945,Trần Thị Hùng,0914804113,user945@example.com,TP.HCM,2022-03-17,bronze
+C000946,Đỗ Thị Bình,0987611659,user946@example.com,Hà Nội,2024-12-23,bronze
+C000947,Phạm Minh Chi,0941463668,user947@example.com,TP.HCM,2024-06-18,bronze
+C000948,Lê Thị Quân,0930357692,user948@example.com,TP.HCM,2023-12-15,silver
+C000949,Phạm Văn Minh,0942494094,user949@example.com,TP.HCM,2022-05-15,bronze
+C000950,Nguyễn Hữu Trang,0995153572,user950@example.com,TP.HCM,2024-11-26,bronze
+C000951,Vũ Văn Tuấn,0914262286,user951@example.com,TP.HCM,2023-09-16,bronze
+C000952,Đặng Thị Hùng,0929472384,user952@example.com,TP.HCM,2024-01-12,silver
+C000953,Bùi Hữu Nam,0961346014,user953@example.com,Hà Nội,2024-12-05,silver
+C000954,Hồ Ngọc Linh,0957169466,user954@example.com,TP.HCM,2022-03-09,gold
+C000955,Vũ Hữu Thảo,0928085548,user955@example.com,Hà Nội,2022-12-16,bronze
+C000956,Hồ Văn Chi,0919079725,user956@example.com,Hà Nội,2024-02-14,bronze
+C000957,Lê Ngọc Bình,0989291468,user957@example.com,TP.HCM,2024-01-11,bronze
+C000958,Đặng Thị Dũng,0911945973,user958@example.com,TP.HCM,2022-11-08,bronze
+C000959,Đặng Minh Trang,0971338830,user959@example.com,TP.HCM,2022-06-02,bronze
+C000960,Nguyễn Minh Phương,0984382455,user960@example.com,Hà Nội,2023-03-21,silver
+C000961,Bùi Thị Dũng,0994372614,user961@example.com,TP.HCM,2025-03-27,bronze
+C000962,Lê Văn Hà,0985876234,user962@example.com,Hà Nội,2025-01-31,bronze
+C000963,Lê Thị Ngọc,0936368374,user963@example.com,TP.HCM,2022-07-02,bronze
+C000964,Hoàng Văn Minh,0979741423,user964@example.com,TP.HCM,2023-06-27,silver
+C000965,Bùi Thị Tuấn,0973421131,user965@example.com,Hà Nội,2022-10-27,silver
+C000966,Vũ Ngọc Linh,0981767660,user966@example.com,TP.HCM,2024-01-22,bronze
+C000967,Trần Thị Trang,0966848922,user967@example.com,TP.HCM,2023-01-15,bronze
+C000968,Bùi Thu Quân,0993170939,user968@example.com,Hà Nội,2025-10-29,bronze
+C000969,Phạm Minh Hùng,0959608022,user969@example.com,Hà Nội,2023-03-24,bronze
+C000970,Phạm Ngọc Bình,0954885272,user970@example.com,TP.HCM,2025-03-22,silver
+C000971,Vũ Minh Bình,0938346508,user971@example.com,TP.HCM,2024-06-28,bronze
+C000972,Hoàng Hữu Trang,0998722170,user972@example.com,Hà Nội,2023-08-18,silver
+C000973,Lê Ngọc Hà,0977578639,user973@example.com,Hà Nội,2025-05-05,silver
+C000974,Nguyễn Minh Linh,0920502279,user974@example.com,Hà Nội,2024-08-29,bronze
+C000975,Trần Ngọc Dũng,0940162775,user975@example.com,Hà Nội,2022-12-11,bronze
+C000976,Bùi Thị Minh,0979719220,user976@example.com,TP.HCM,2025-06-03,bronze
+C000977,Đặng Văn Trang,0970904192,user977@example.com,TP.HCM,2025-10-12,silver
+C000978,Đỗ Văn Bình,0928049569,user978@example.com,TP.HCM,2023-08-14,bronze
+C000979,Hồ Minh Chi,0968939705,user979@example.com,TP.HCM,2022-11-17,bronze
+C000980,Vũ Văn Lan,0945350862,user980@example.com,Hà Nội,2024-08-31,silver
+C000981,Bùi Minh Bình,0929059159,user981@example.com,TP.HCM,2023-10-29,bronze
+C000982,Vũ Văn Lan,0950015524,user982@example.com,Hà Nội,2024-02-14,bronze
+C000983,Lê Thị Ngọc,0966764105,user983@example.com,Hà Nội,2022-05-31,bronze
+C000984,Bùi Hữu Dũng,0929456070,user984@example.com,Hà Nội,2022-05-29,bronze
+C000985,Đặng Hữu Lan,0944110976,user985@example.com,TP.HCM,2025-04-18,bronze
+C000986,Hồ Ngọc Tuấn,0956670676,user986@example.com,TP.HCM,2024-03-20,bronze
+C000987,Lê Văn Lan,0991700640,user987@example.com,TP.HCM,2024-09-02,gold
+C000988,Phạm Thị Trang,0978994244,user988@example.com,TP.HCM,2023-08-14,bronze
+C000989,Nguyễn Minh Lan,0997767662,user989@example.com,Hà Nội,2023-05-11,bronze
+C000990,Nguyễn Thu Trang,0960632545,user990@example.com,Hà Nội,2022-06-19,bronze
+C000991,Lê Thu Quân,0918084605,user991@example.com,TP.HCM,2022-09-30,bronze
+C000992,Nguyễn Minh Dũng,0952708590,user992@example.com,TP.HCM,2024-12-04,bronze
+C000993,Bùi Thu Lan,0918443448,user993@example.com,TP.HCM,2023-04-20,silver
+C000994,Trần Thu Phương,0997902455,user994@example.com,Hà Nội,2023-10-06,bronze
+C000995,Đỗ Văn Chi,0998788062,user995@example.com,TP.HCM,2023-04-26,bronze
+C000996,Phạm Ngọc Ngọc,0925218438,user996@example.com,Hà Nội,2025-10-17,bronze
+C000997,Hồ Thu Hà,0954885829,user997@example.com,Hà Nội,2022-09-20,bronze
+C000998,Bùi Thị Minh,0926152697,user998@example.com,TP.HCM,2025-03-18,bronze
+C000999,Hoàng Thu Linh,0988071310,user999@example.com,TP.HCM,2024-08-07,silver
+C001000,Hồ Minh Trang,0925636817,user1000@example.com,Hà Nội,2023-10-14,silver
+C001001,Đặng Thu Hà,0986735150,user1001@example.com,TP.HCM,2025-05-07,bronze
+C001002,Đặng Hữu Phương,0995023838,user1002@example.com,TP.HCM,2022-06-30,bronze
+C001003,Lê Thu An,0962958808,user1003@example.com,TP.HCM,2022-05-10,bronze
+C001004,Trần Văn Tuấn,0918690116,user1004@example.com,TP.HCM,2025-06-15,bronze
+C001005,Đỗ Thu Tuấn,0926334891,user1005@example.com,TP.HCM,2022-03-12,bronze
+C001006,Hoàng Ngọc Lan,0998391654,user1006@example.com,TP.HCM,2022-11-24,silver
+C001007,Đỗ Thu Bình,0998605926,user1007@example.com,TP.HCM,2022-03-14,silver
+C001008,Hoàng Văn Hà,0985228074,user1008@example.com,TP.HCM,2022-11-12,bronze
+C001009,Bùi Minh Ngọc,0933122440,user1009@example.com,Hà Nội,2025-10-03,bronze
+C001010,Trần Thu Phương,0966857542,user1010@example.com,TP.HCM,2024-08-18,silver
+C001011,Hồ Thu Linh,0991043741,user1011@example.com,Hà Nội,2023-08-17,silver
+C001012,Nguyễn Ngọc Trang,0938906042,user1012@example.com,TP.HCM,2025-09-29,bronze
+C001013,Hoàng Văn Hùng,0948392851,user1013@example.com,TP.HCM,2023-05-19,bronze
+C001014,Hồ Thị Trang,0977360395,user1014@example.com,TP.HCM,2025-09-15,bronze
+C001015,Phạm Minh Thảo,0984330027,user1015@example.com,TP.HCM,2024-05-12,bronze
+C001016,Trần Thị Nam,0929002032,user1016@example.com,Hà Nội,2022-07-04,bronze
+C001017,Hoàng Hữu Minh,0964721176,user1017@example.com,Hà Nội,2025-06-04,bronze
+C001018,Hoàng Văn Nam,0975713720,user1018@example.com,Hà Nội,2022-03-18,bronze
+C001019,Lê Hữu Ngọc,0940727532,user1019@example.com,TP.HCM,2023-12-25,bronze
+C001020,Hồ Hữu Lan,0951810267,user1020@example.com,TP.HCM,2022-01-13,gold
+C001021,Lê Ngọc Linh,0987987626,user1021@example.com,TP.HCM,2023-05-28,bronze
+C001022,Lê Hữu An,0911508703,user1022@example.com,TP.HCM,2025-06-26,silver
+C001023,Bùi Thị Chi,0943190119,user1023@example.com,TP.HCM,2024-03-09,bronze
+C001024,Vũ Hữu Nam,0940145181,user1024@example.com,Hà Nội,2023-04-11,silver
+C001025,Lê Hữu Dũng,0919784981,user1025@example.com,TP.HCM,2025-08-31,bronze
+C001026,Nguyễn Thị Chi,0945022098,user1026@example.com,Hà Nội,2024-12-25,silver
+C001027,Nguyễn Thu Chi,0913271135,user1027@example.com,Hà Nội,2023-02-03,silver
+C001028,Hoàng Văn Bình,0953484872,user1028@example.com,Hà Nội,2024-07-09,silver
+C001029,Vũ Ngọc Minh,0955226966,user1029@example.com,Hà Nội,2022-01-13,bronze
+C001030,Trần Thu An,0955330836,user1030@example.com,TP.HCM,2025-01-25,bronze
+C001031,Đỗ Hữu Nam,0959674592,user1031@example.com,Hà Nội,2025-03-09,silver
+C001032,Hồ Văn Minh,0922871255,user1032@example.com,TP.HCM,2022-09-01,silver
+C001033,Đặng Văn Ngọc,0967858919,user1033@example.com,Hà Nội,2022-12-16,bronze
+C001034,Vũ Ngọc Phương,0938991301,user1034@example.com,Hà Nội,2023-05-07,silver
+C001035,Vũ Văn Quân,0986772880,user1035@example.com,Hà Nội,2022-09-30,bronze
+C001036,Hồ Văn Nam,0955001465,user1036@example.com,TP.HCM,2025-10-24,bronze
+C001037,Lê Thu Trang,0961343318,user1037@example.com,TP.HCM,2022-04-23,bronze
+C001038,Bùi Ngọc Linh,0913494382,user1038@example.com,TP.HCM,2023-08-24,bronze
+C001039,Đỗ Thu Ngọc,0984627964,user1039@example.com,Hà Nội,2025-04-25,bronze
+C001040,Phạm Thu Tuấn,0995222667,user1040@example.com,Hà Nội,2023-08-03,silver
+C001041,Hoàng Thu An,0997318195,user1041@example.com,TP.HCM,2023-02-06,bronze
+C001042,Vũ Văn Lan,0997691343,user1042@example.com,TP.HCM,2024-11-21,bronze
+C001043,Vũ Văn An,0960341223,user1043@example.com,TP.HCM,2022-03-23,silver
+C001044,Bùi Văn Quân,0932039156,user1044@example.com,TP.HCM,2024-08-14,bronze
+C001045,Lê Thị Hùng,0991615544,user1045@example.com,TP.HCM,2022-07-25,bronze
+C001046,Lê Văn An,0953907371,user1046@example.com,TP.HCM,2024-05-06,bronze
+C001047,Hoàng Hữu Quân,0918205587,user1047@example.com,Hà Nội,2022-03-03,bronze
+C001048,Đỗ Minh Hà,0953900015,user1048@example.com,Hà Nội,2022-08-26,bronze
+C001049,Bùi Ngọc Bình,0913150976,user1049@example.com,TP.HCM,2024-02-06,silver
+C001050,Lê Hữu Hùng,0982659497,user1050@example.com,Hà Nội,2022-08-15,bronze
+C001051,Trần Minh Tuấn,0976166397,user1051@example.com,Hà Nội,2024-07-10,gold
+C001052,Trần Minh Chi,0968610465,user1052@example.com,TP.HCM,2023-07-26,bronze
+C001053,Nguyễn Minh Minh,0953845723,user1053@example.com,TP.HCM,2025-09-15,bronze
+C001054,Vũ Ngọc Hùng,0956511188,user1054@example.com,Hà Nội,2024-01-24,gold
+C001055,Trần Hữu Trang,0938615420,user1055@example.com,Hà Nội,2024-04-12,silver
+C001056,Nguyễn Minh Ngọc,0923830182,user1056@example.com,Hà Nội,2023-12-13,bronze
+C001057,Trần Văn Bình,0982148427,user1057@example.com,Hà Nội,2022-12-28,bronze
+C001058,Vũ Ngọc Ngọc,0946636346,user1058@example.com,TP.HCM,2023-10-17,bronze
+C001059,Bùi Thị Linh,0962693018,user1059@example.com,TP.HCM,2022-05-09,bronze
+C001060,Nguyễn Hữu Ngọc,0921559373,user1060@example.com,TP.HCM,2025-06-01,silver
+C001061,Vũ Thị Hà,0945156712,user1061@example.com,TP.HCM,2025-09-11,bronze
+C001062,Hoàng Hữu Thảo,0934993471,user1062@example.com,Hà Nội,2024-11-05,silver
+C001063,Vũ Thị Bình,0959787980,user1063@example.com,Hà Nội,2024-06-08,bronze
+C001064,Vũ Hữu Quân,0999989259,user1064@example.com,Hà Nội,2024-10-12,bronze
+C001065,Nguyễn Thị Minh,0926743709,user1065@example.com,TP.HCM,2023-10-17,bronze
+C001066,Bùi Văn Ngọc,0943228452,user1066@example.com,Hà Nội,2023-08-14,bronze
+C001067,Lê Thu Tuấn,0917264607,user1067@example.com,Hà Nội,2023-11-20,bronze
+C001068,Lê Văn Dũng,0981933451,user1068@example.com,Hà Nội,2024-01-21,bronze
+C001069,Lê Văn Trang,0949775755,user1069@example.com,TP.HCM,2025-08-14,bronze
+C001070,Đặng Thị Dũng,0985887450,user1070@example.com,Hà Nội,2025-08-26,bronze
+C001071,Phạm Thu Dũng,0940565108,user1071@example.com,TP.HCM,2024-09-12,bronze
+C001072,Hồ Minh Linh,0987953034,user1072@example.com,TP.HCM,2022-07-04,silver
+C001073,Đỗ Thị Chi,0959410705,user1073@example.com,Hà Nội,2023-10-24,bronze
+C001074,Vũ Văn Thảo,0982862075,user1074@example.com,Hà Nội,2023-08-05,bronze
+C001075,Bùi Thu Phương,0918540614,user1075@example.com,TP.HCM,2025-09-08,silver
+C001076,Đỗ Thu Minh,0958112361,user1076@example.com,Hà Nội,2022-07-15,bronze
+C001077,Phạm Thu Lan,0967199858,user1077@example.com,TP.HCM,2025-07-09,bronze
+C001078,Bùi Văn Minh,0993318480,user1078@example.com,TP.HCM,2025-02-27,bronze
+C001079,Phạm Ngọc Chi,0931467858,user1079@example.com,Hà Nội,2025-03-02,silver
+C001080,Hồ Minh Phương,0933962279,user1080@example.com,Hà Nội,2023-12-14,silver
+C001081,Bùi Hữu Trang,0947646130,user1081@example.com,Hà Nội,2022-09-06,bronze
+C001082,Đặng Ngọc An,0982765047,user1082@example.com,TP.HCM,2023-07-14,bronze
+C001083,Đặng Thu Tuấn,0951654854,user1083@example.com,Hà Nội,2022-07-06,silver
+C001084,Nguyễn Văn Hà,0991110453,user1084@example.com,Hà Nội,2022-04-27,silver
+C001085,Hồ Minh Ngọc,0950987920,user1085@example.com,Hà Nội,2022-04-06,bronze
+C001086,Đặng Văn Chi,0971855928,user1086@example.com,TP.HCM,2022-02-23,bronze
+C001087,Nguyễn Thu Hà,0983148475,user1087@example.com,TP.HCM,2023-08-25,bronze
+C001088,Lê Ngọc Minh,0937063959,user1088@example.com,TP.HCM,2024-02-17,bronze
+C001089,Đỗ Thị Phương,0968350049,user1089@example.com,TP.HCM,2024-08-08,bronze
+C001090,Bùi Ngọc Hùng,0916633243,user1090@example.com,Hà Nội,2024-04-18,bronze
+C001091,Hồ Thị Ngọc,0983141250,user1091@example.com,Hà Nội,2025-01-14,bronze
+C001092,Hoàng Hữu Nam,0997977869,user1092@example.com,TP.HCM,2024-07-31,bronze
+C001093,Hoàng Thị Nam,0915439812,user1093@example.com,TP.HCM,2025-05-01,silver
+C001094,Trần Ngọc Phương,0925620577,user1094@example.com,Hà Nội,2022-05-27,bronze
+C001095,Phạm Ngọc Linh,0973094445,user1095@example.com,TP.HCM,2023-09-22,silver
+C001096,Đỗ Hữu Trang,0912491812,user1096@example.com,Hà Nội,2023-02-04,bronze
+C001097,Phạm Ngọc Chi,0977908055,user1097@example.com,Hà Nội,2024-02-18,silver
+C001098,Bùi Văn Chi,0926800266,user1098@example.com,TP.HCM,2023-01-28,bronze
+C001099,Hồ Ngọc Lan,0931415302,user1099@example.com,TP.HCM,2023-04-17,bronze
+C001100,Đỗ Văn Quân,0912568365,user1100@example.com,TP.HCM,2023-06-19,silver
+C001101,Hồ Ngọc Bình,0987001865,user1101@example.com,TP.HCM,2022-02-17,bronze
+C001102,Lê Hữu Ngọc,0923670003,user1102@example.com,Hà Nội,2022-03-03,bronze
+C001103,Hồ Thu Hùng,0929236725,user1103@example.com,Hà Nội,2024-01-23,silver
+C001104,Vũ Văn Hùng,0959045588,user1104@example.com,TP.HCM,2024-12-13,bronze
+C001105,Nguyễn Hữu Dũng,0912394332,user1105@example.com,TP.HCM,2024-12-27,silver
+C001106,Đặng Thị Linh,0963572454,user1106@example.com,TP.HCM,2022-01-14,silver
+C001107,Đặng Minh Hà,0982131373,user1107@example.com,Hà Nội,2022-04-09,bronze
+C001108,Đặng Ngọc Trang,0976096370,user1108@example.com,TP.HCM,2023-12-17,bronze
+C001109,Nguyễn Thị Ngọc,0965636553,user1109@example.com,Hà Nội,2025-10-25,silver
+C001110,Vũ Minh Minh,0919721837,user1110@example.com,Hà Nội,2025-05-14,gold
+C001111,Hoàng Thu An,0912395514,user1111@example.com,Hà Nội,2023-03-01,bronze
+C001112,Phạm Hữu Lan,0969159552,user1112@example.com,Hà Nội,2023-05-17,gold
+C001113,Nguyễn Hữu Hùng,0940513146,user1113@example.com,TP.HCM,2023-12-08,bronze
+C001114,Bùi Minh Hùng,0929718915,user1114@example.com,Hà Nội,2024-08-08,silver
+C001115,Đỗ Minh Hà,0914729876,user1115@example.com,TP.HCM,2023-10-10,silver
+C001116,Trần Thu Lan,0987442895,user1116@example.com,TP.HCM,2023-07-20,bronze
+C001117,Hồ Thị Nam,0976666616,user1117@example.com,Hà Nội,2023-11-21,silver
+C001118,Bùi Thị Tuấn,0986578789,user1118@example.com,TP.HCM,2023-10-28,silver
+C001119,Nguyễn Hữu Hà,0991184026,user1119@example.com,TP.HCM,2022-06-14,bronze
+C001120,Đỗ Thị Tuấn,0973316355,user1120@example.com,Hà Nội,2023-12-12,bronze
+C001121,Hồ Thị Ngọc,0952618729,user1121@example.com,TP.HCM,2023-01-19,bronze
+C001122,Hoàng Ngọc Linh,0920535985,user1122@example.com,Hà Nội,2023-10-16,silver
+C001123,Bùi Minh Linh,0954922059,user1123@example.com,TP.HCM,2022-08-06,bronze
+C001124,Đỗ Ngọc An,0946303529,user1124@example.com,Hà Nội,2024-06-08,bronze
+C001125,Vũ Thị Hà,0982193947,user1125@example.com,TP.HCM,2025-08-25,bronze
+C001126,Phạm Hữu Ngọc,0999143865,user1126@example.com,Hà Nội,2022-10-11,bronze
+C001127,Đặng Minh Phương,0967214277,user1127@example.com,TP.HCM,2024-07-11,bronze
+C001128,Lê Thu Dũng,0944113525,user1128@example.com,TP.HCM,2025-03-16,bronze
+C001129,Hoàng Thu Linh,0998815571,user1129@example.com,TP.HCM,2024-09-28,silver
+C001130,Phạm Hữu Linh,0916917313,user1130@example.com,TP.HCM,2024-08-06,bronze
+C001131,Trần Thu An,0963117286,user1131@example.com,TP.HCM,2023-09-12,silver
+C001132,Đặng Minh Thảo,0986895194,user1132@example.com,TP.HCM,2022-10-19,silver
+C001133,Lê Thị Thảo,0967289583,user1133@example.com,TP.HCM,2023-09-04,bronze
+C001134,Hoàng Văn Ngọc,0977159516,user1134@example.com,TP.HCM,2022-09-20,bronze
+C001135,Đặng Thu Ngọc,0936042456,user1135@example.com,TP.HCM,2024-03-26,bronze
+C001136,Lê Văn Lan,0949505811,user1136@example.com,TP.HCM,2024-07-22,bronze
+C001137,Trần Thị Lan,0990225845,user1137@example.com,TP.HCM,2023-02-06,bronze
+C001138,Trần Thu Hùng,0992737104,user1138@example.com,Hà Nội,2022-10-19,bronze
+C001139,Lê Minh Linh,0944541209,user1139@example.com,Hà Nội,2022-10-30,bronze
+C001140,Trần Thị Minh,0991771381,user1140@example.com,TP.HCM,2023-09-12,gold
+C001141,Lê Minh Hùng,0946248732,user1141@example.com,TP.HCM,2025-07-11,bronze
+C001142,Đỗ Thị Nam,0946339031,user1142@example.com,Hà Nội,2025-06-10,bronze
+C001143,Bùi Hữu Chi,0910231645,user1143@example.com,TP.HCM,2025-08-01,silver
+C001144,Đặng Văn Tuấn,0984590477,user1144@example.com,Hà Nội,2025-10-16,bronze
+C001145,Nguyễn Hữu Trang,0959685116,user1145@example.com,TP.HCM,2022-12-09,silver
+C001146,Đặng Thu Minh,0924423439,user1146@example.com,Hà Nội,2022-04-22,silver
+C001147,Bùi Minh Trang,0931148490,user1147@example.com,Hà Nội,2025-09-27,bronze
+C001148,Hồ Ngọc Hùng,0954083196,user1148@example.com,TP.HCM,2023-04-29,gold
+C001149,Nguyễn Thu Minh,0993887491,user1149@example.com,TP.HCM,2022-08-10,bronze
+C001150,Đặng Ngọc Quân,0943065854,user1150@example.com,Hà Nội,2022-10-05,bronze
+C001151,Đỗ Minh Hùng,0939102851,user1151@example.com,TP.HCM,2022-01-25,bronze
+C001152,Trần Ngọc An,0918630435,user1152@example.com,TP.HCM,2024-10-26,gold
+C001153,Vũ Văn Nam,0981587643,user1153@example.com,Hà Nội,2022-06-12,bronze
+C001154,Đặng Minh An,0943418924,user1154@example.com,Hà Nội,2023-11-11,bronze
+C001155,Bùi Văn Minh,0933956382,user1155@example.com,Hà Nội,2025-01-22,bronze
+C001156,Đỗ Văn Lan,0928445622,user1156@example.com,Hà Nội,2023-12-07,bronze
+C001157,Đỗ Minh Hà,0980094467,user1157@example.com,TP.HCM,2023-02-14,bronze
+C001158,Lê Văn Thảo,0986868354,user1158@example.com,Hà Nội,2023-12-17,bronze
+C001159,Đỗ Văn Quân,0943423679,user1159@example.com,TP.HCM,2025-05-12,bronze
+C001160,Đỗ Minh Chi,0912968365,user1160@example.com,TP.HCM,2022-05-07,bronze
+C001161,Hồ Minh Chi,0927218395,user1161@example.com,Hà Nội,2024-04-29,silver
+C001162,Hoàng Hữu An,0915512617,user1162@example.com,TP.HCM,2025-10-25,bronze
+C001163,Đỗ Thị Bình,0991129236,user1163@example.com,TP.HCM,2024-08-21,silver
+C001164,Phạm Ngọc Hùng,0941509681,user1164@example.com,TP.HCM,2025-10-06,bronze
+C001165,Hoàng Hữu Trang,0974827218,user1165@example.com,TP.HCM,2022-11-16,bronze
+C001166,Hoàng Thu Thảo,0984750515,user1166@example.com,Hà Nội,2025-08-24,bronze
+C001167,Phạm Văn Minh,0988988780,user1167@example.com,Hà Nội,2024-12-14,bronze
+C001168,Phạm Hữu Nam,0998605252,user1168@example.com,Hà Nội,2024-02-18,silver
+C001169,Hoàng Hữu An,0987080001,user1169@example.com,TP.HCM,2022-11-07,bronze
+C001170,Hồ Minh Quân,0989843607,user1170@example.com,Hà Nội,2024-03-05,bronze
+C001171,Đỗ Văn Tuấn,0971959984,user1171@example.com,Hà Nội,2023-02-26,bronze
+C001172,Đặng Văn Quân,0945944598,user1172@example.com,TP.HCM,2022-04-03,silver
+C001173,Đỗ Văn Dũng,0998229176,user1173@example.com,TP.HCM,2022-08-15,silver
+C001174,Bùi Minh An,0932338887,user1174@example.com,Hà Nội,2022-01-26,bronze
+C001175,Lê Ngọc Hùng,0975028518,user1175@example.com,TP.HCM,2022-01-01,bronze
+C001176,Đặng Văn Ngọc,0990356950,user1176@example.com,TP.HCM,2024-10-17,bronze
+C001177,Trần Thị Nam,0998776492,user1177@example.com,Hà Nội,2025-02-25,bronze
+C001178,Đặng Thu Chi,0998111198,user1178@example.com,TP.HCM,2025-09-17,silver
+C001179,Nguyễn Minh Dũng,0952282993,user1179@example.com,TP.HCM,2022-09-09,bronze
+C001180,Nguyễn Ngọc Dũng,0925925329,user1180@example.com,Hà Nội,2025-04-13,bronze
+C001181,Đặng Thị Tuấn,0991409840,user1181@example.com,TP.HCM,2025-08-25,bronze
+C001182,Hoàng Văn Hùng,0914079706,user1182@example.com,TP.HCM,2023-04-23,bronze
+C001183,Đỗ Văn Linh,0956344589,user1183@example.com,TP.HCM,2023-04-10,gold
+C001184,Hồ Thị Dũng,0963176451,user1184@example.com,TP.HCM,2025-01-11,silver
+C001185,Đặng Thu Phương,0929410296,user1185@example.com,Hà Nội,2022-03-09,bronze
+C001186,Phạm Thu Nam,0910628684,user1186@example.com,TP.HCM,2024-04-13,bronze
+C001187,Nguyễn Minh Tuấn,0932828148,user1187@example.com,TP.HCM,2025-03-10,bronze
+C001188,Vũ Văn Dũng,0925564775,user1188@example.com,Hà Nội,2022-02-02,silver
+C001189,Đặng Thị Trang,0910300777,user1189@example.com,TP.HCM,2023-09-14,bronze
+C001190,Hồ Hữu Dũng,0920700427,user1190@example.com,Hà Nội,2022-09-25,bronze
+C001191,Lê Hữu Hà,0919407360,user1191@example.com,Hà Nội,2024-12-16,bronze
+C001192,Vũ Thu Phương,0919869757,user1192@example.com,Hà Nội,2023-08-09,silver
+C001193,Hồ Thị Nam,0936110038,user1193@example.com,TP.HCM,2024-09-03,bronze
+C001194,Vũ Văn An,0968508738,user1194@example.com,Hà Nội,2022-11-19,silver
+C001195,Bùi Minh Hà,0986145882,user1195@example.com,Hà Nội,2024-07-11,bronze
+C001196,Đặng Minh Ngọc,0964352271,user1196@example.com,TP.HCM,2022-05-12,gold
+C001197,Trần Thị Hùng,0976720915,user1197@example.com,Hà Nội,2022-06-24,silver
+C001198,Hồ Minh Thảo,0970903823,user1198@example.com,Hà Nội,2023-12-30,bronze
+C001199,Đặng Ngọc Dũng,0976044764,user1199@example.com,Hà Nội,2025-03-17,bronze
+C001200,Vũ Ngọc Lan,0987449548,user1200@example.com,Hà Nội,2023-12-28,bronze
+C001201,Hoàng Minh Nam,0922027231,user1201@example.com,TP.HCM,2023-08-27,bronze
+C001202,Bùi Thu Quân,0990535619,user1202@example.com,Hà Nội,2023-04-09,bronze
+C001203,Trần Văn Chi,0969413363,user1203@example.com,Hà Nội,2024-07-03,bronze
+C001204,Hoàng Thu Hùng,0916445455,user1204@example.com,TP.HCM,2025-06-24,bronze
+C001205,Lê Văn An,0915672839,user1205@example.com,Hà Nội,2024-09-08,gold
+C001206,Hồ Minh An,0915052290,user1206@example.com,TP.HCM,2024-03-11,bronze
+C001207,Hoàng Ngọc Minh,0958606805,user1207@example.com,Hà Nội,2024-08-16,bronze
+C001208,Hoàng Ngọc Trang,0930131593,user1208@example.com,Hà Nội,2023-02-28,gold
+C001209,Trần Hữu Ngọc,0950759223,user1209@example.com,TP.HCM,2025-09-19,bronze
+C001210,Trần Hữu Bình,0952957000,user1210@example.com,Hà Nội,2024-01-22,bronze
+C001211,Đỗ Hữu Trang,0942932578,user1211@example.com,Hà Nội,2024-04-29,bronze
+C001212,Lê Ngọc Chi,0937522063,user1212@example.com,Hà Nội,2025-06-06,bronze
+C001213,Hồ Hữu Chi,0921279200,user1213@example.com,Hà Nội,2025-05-01,bronze
+C001214,Phạm Ngọc Linh,0912104339,user1214@example.com,Hà Nội,2023-10-16,bronze
+C001215,Đặng Minh Lan,0933564971,user1215@example.com,Hà Nội,2023-07-27,bronze
+C001216,Phạm Thu Trang,0960765966,user1216@example.com,Hà Nội,2025-10-24,bronze
+C001217,Phạm Thu Hùng,0985852020,user1217@example.com,TP.HCM,2022-12-29,bronze
+C001218,Trần Hữu Bình,0984110267,user1218@example.com,TP.HCM,2023-03-02,silver
+C001219,Lê Ngọc Trang,0952834373,user1219@example.com,Hà Nội,2023-07-04,bronze
+C001220,Nguyễn Thu Trang,0917804525,user1220@example.com,Hà Nội,2023-04-22,bronze
+C001221,Nguyễn Ngọc Bình,0913571382,user1221@example.com,Hà Nội,2023-07-05,bronze
+C001222,Đỗ Thu Minh,0920758355,user1222@example.com,TP.HCM,2023-09-09,bronze
+C001223,Nguyễn Thị Chi,0935590251,user1223@example.com,Hà Nội,2022-01-30,gold
+C001224,Bùi Thu Nam,0967425351,user1224@example.com,Hà Nội,2025-07-03,bronze
+C001225,Đỗ Thu Dũng,0921237460,user1225@example.com,Hà Nội,2024-12-11,bronze
+C001226,Lê Hữu Nam,0947109656,user1226@example.com,Hà Nội,2022-02-02,bronze
+C001227,Trần Minh Nam,0968995182,user1227@example.com,Hà Nội,2022-04-14,silver
+C001228,Nguyễn Ngọc Linh,0954619861,user1228@example.com,Hà Nội,2025-08-23,bronze
+C001229,Vũ Thị Hùng,0964575591,user1229@example.com,Hà Nội,2025-06-24,bronze
+C001230,Bùi Minh Minh,0920027334,user1230@example.com,Hà Nội,2025-01-21,silver
+C001231,Đặng Hữu Quân,0937728154,user1231@example.com,TP.HCM,2025-04-20,bronze
+C001232,Hồ Thị Hùng,0936494171,user1232@example.com,Hà Nội,2022-01-11,bronze
+C001233,Đỗ Ngọc Dũng,0914099370,user1233@example.com,TP.HCM,2022-07-04,silver
+C001234,Vũ Thị Hùng,0945897977,user1234@example.com,TP.HCM,2024-12-26,bronze
+C001235,Bùi Hữu Tuấn,0940941658,user1235@example.com,TP.HCM,2022-08-18,bronze
+C001236,Phạm Thị Linh,0938375001,user1236@example.com,Hà Nội,2025-05-22,bronze
+C001237,Vũ Văn Phương,0949447827,user1237@example.com,TP.HCM,2023-02-15,silver
+C001238,Bùi Văn Phương,0980970631,user1238@example.com,TP.HCM,2025-04-20,silver
+C001239,Hồ Văn Dũng,0958168893,user1239@example.com,TP.HCM,2023-02-15,silver
+C001240,Hoàng Thu Thảo,0964563352,user1240@example.com,Hà Nội,2024-07-27,bronze
+C001241,Vũ Thu Hà,0960456591,user1241@example.com,TP.HCM,2025-03-18,silver
+C001242,Nguyễn Ngọc Trang,0942427034,user1242@example.com,Hà Nội,2022-10-13,bronze
+C001243,Bùi Hữu An,0914365934,user1243@example.com,TP.HCM,2022-01-14,bronze
+C001244,Hoàng Thị Dũng,0936135819,user1244@example.com,Hà Nội,2025-09-11,bronze
+C001245,Hoàng Văn Trang,0920119901,user1245@example.com,Hà Nội,2025-07-17,bronze
+C001246,Hoàng Thị Chi,0980207581,user1246@example.com,TP.HCM,2024-02-10,silver
+C001247,Đặng Hữu Phương,0961498834,user1247@example.com,Hà Nội,2023-07-22,bronze
+C001248,Hoàng Thu Bình,0978648727,user1248@example.com,TP.HCM,2024-07-29,silver
+C001249,Đặng Thị Thảo,0965990876,user1249@example.com,TP.HCM,2022-02-18,bronze
+C001250,Phạm Ngọc Linh,0978603165,user1250@example.com,TP.HCM,2025-08-25,bronze
+C001251,Hồ Văn Ngọc,0911585060,user1251@example.com,Hà Nội,2023-04-07,bronze
+C001252,Bùi Văn Chi,0914457204,user1252@example.com,Hà Nội,2023-04-30,bronze
+C001253,Đỗ Ngọc Lan,0980650550,user1253@example.com,TP.HCM,2025-08-30,bronze
+C001254,Phạm Thị Linh,0931172224,user1254@example.com,TP.HCM,2024-02-11,silver
+C001255,Hồ Minh Nam,0966811341,user1255@example.com,Hà Nội,2022-03-30,bronze
+C001256,Lê Văn Lan,0927267556,user1256@example.com,Hà Nội,2024-10-08,bronze
+C001257,Đỗ Hữu Nam,0968057820,user1257@example.com,Hà Nội,2024-02-01,silver
+C001258,Trần Minh Ngọc,0910500139,user1258@example.com,Hà Nội,2025-09-07,bronze
+C001259,Vũ Thị Dũng,0982700026,user1259@example.com,TP.HCM,2023-03-13,silver
+C001260,Lê Thị Phương,0965189780,user1260@example.com,Hà Nội,2025-08-25,bronze
+C001261,Đặng Minh Minh,0983369674,user1261@example.com,TP.HCM,2023-12-14,silver
+C001262,Phạm Minh An,0991231774,user1262@example.com,TP.HCM,2023-10-15,bronze
+C001263,Hồ Thị Thảo,0975269557,user1263@example.com,Hà Nội,2022-01-14,bronze
+C001264,Bùi Thị Ngọc,0959342246,user1264@example.com,TP.HCM,2025-10-18,gold
+C001265,Phạm Thu Chi,0925639442,user1265@example.com,TP.HCM,2023-04-18,bronze
+C001266,Bùi Minh Linh,0941466983,user1266@example.com,TP.HCM,2025-08-13,bronze
+C001267,Lê Minh Lan,0942634132,user1267@example.com,TP.HCM,2025-04-25,silver
+C001268,Hồ Ngọc An,0910258704,user1268@example.com,TP.HCM,2023-03-10,bronze
+C001269,Đỗ Văn Hùng,0952955988,user1269@example.com,Hà Nội,2025-10-12,bronze
+C001270,Vũ Ngọc Nam,0924230747,user1270@example.com,TP.HCM,2022-07-10,bronze
+C001271,Hồ Thị Hùng,0992310299,user1271@example.com,TP.HCM,2023-02-21,bronze
+C001272,Bùi Thu Thảo,0974838731,user1272@example.com,Hà Nội,2024-09-29,silver
+C001273,Đặng Thị Lan,0943690511,user1273@example.com,TP.HCM,2025-01-13,bronze
+C001274,Đỗ Văn Linh,0971275627,user1274@example.com,TP.HCM,2023-07-26,bronze
+C001275,Đỗ Thị Tuấn,0964457716,user1275@example.com,Hà Nội,2022-11-16,bronze
+C001276,Phạm Ngọc Thảo,0948708086,user1276@example.com,Hà Nội,2022-03-14,silver
+C001277,Đặng Thị An,0912188728,user1277@example.com,Hà Nội,2023-09-07,silver
+C001278,Nguyễn Hữu Phương,0912752395,user1278@example.com,TP.HCM,2023-03-06,bronze
+C001279,Đỗ Ngọc Hùng,0971122359,user1279@example.com,TP.HCM,2022-03-08,bronze
+C001280,Bùi Minh Nam,0917975611,user1280@example.com,TP.HCM,2023-01-31,bronze
+C001281,Nguyễn Thị Ngọc,0977445377,user1281@example.com,Hà Nội,2022-11-13,bronze
+C001282,Đặng Thị An,0938934813,user1282@example.com,TP.HCM,2024-04-24,bronze
+C001283,Đỗ Thị Bình,0978035265,user1283@example.com,Hà Nội,2024-01-23,bronze
+C001284,Đỗ Văn Bình,0921752693,user1284@example.com,TP.HCM,2022-04-21,bronze
+C001285,Đặng Ngọc Hùng,0987283156,user1285@example.com,TP.HCM,2022-10-19,bronze
+C001286,Vũ Văn Hùng,0918348821,user1286@example.com,TP.HCM,2022-02-20,bronze
+C001287,Bùi Thu Ngọc,0994231320,user1287@example.com,Hà Nội,2022-07-20,bronze
+C001288,Hoàng Văn Thảo,0939378007,user1288@example.com,TP.HCM,2025-01-10,bronze
+C001289,Bùi Thị Hùng,0987700707,user1289@example.com,TP.HCM,2023-06-21,silver
+C001290,Lê Thị Quân,0945577669,user1290@example.com,TP.HCM,2023-03-31,bronze
+C001291,Vũ Thị Tuấn,0986697422,user1291@example.com,TP.HCM,2023-04-24,silver
+C001292,Lê Minh Tuấn,0930944733,user1292@example.com,Hà Nội,2022-02-07,silver
+C001293,Phạm Minh Dũng,0962426749,user1293@example.com,Hà Nội,2023-05-25,bronze
+C001294,Đặng Thị Dũng,0987768436,user1294@example.com,TP.HCM,2024-06-04,bronze
+C001295,Đặng Ngọc Quân,0983687863,user1295@example.com,TP.HCM,2022-08-05,bronze
+C001296,Hoàng Văn Quân,0965782540,user1296@example.com,Hà Nội,2025-05-27,silver
+C001297,Bùi Văn Dũng,0928364746,user1297@example.com,TP.HCM,2022-07-11,bronze
+C001298,Đỗ Hữu Minh,0953345595,user1298@example.com,Hà Nội,2025-05-18,silver
+C001299,Hồ Ngọc Hùng,0989733633,user1299@example.com,Hà Nội,2025-03-08,bronze
+C001300,Đỗ Thị An,0922184195,user1300@example.com,TP.HCM,2022-06-27,bronze
+C001301,Phạm Văn Nam,0940688313,user1301@example.com,TP.HCM,2023-02-26,bronze
+C001302,Phạm Ngọc Chi,0956837190,user1302@example.com,TP.HCM,2023-12-25,silver
+C001303,Hồ Thị Hà,0916082411,user1303@example.com,TP.HCM,2023-03-29,bronze
+C001304,Trần Hữu Thảo,0962882724,user1304@example.com,Hà Nội,2024-09-23,bronze
+C001305,Vũ Hữu Dũng,0970672676,user1305@example.com,Hà Nội,2023-04-09,bronze
+C001306,Lê Thu Hà,0927005882,user1306@example.com,TP.HCM,2022-10-02,silver
+C001307,Vũ Văn Chi,0992838136,user1307@example.com,Hà Nội,2023-09-22,bronze
+C001308,Lê Hữu Bình,0979543276,user1308@example.com,Hà Nội,2023-09-14,bronze
+C001309,Lê Thị Thảo,0915542284,user1309@example.com,Hà Nội,2022-08-27,bronze
+C001310,Hồ Hữu An,0996618092,user1310@example.com,Hà Nội,2024-02-16,silver
+C001311,Vũ Hữu Chi,0966638942,user1311@example.com,TP.HCM,2025-04-04,silver
+C001312,Hoàng Ngọc Quân,0920163977,user1312@example.com,TP.HCM,2022-07-12,bronze
+C001313,Bùi Thị Tuấn,0925060379,user1313@example.com,TP.HCM,2024-02-19,bronze
+C001314,Bùi Thu Minh,0960715237,user1314@example.com,TP.HCM,2024-10-17,bronze
+C001315,Đặng Ngọc Phương,0940649580,user1315@example.com,Hà Nội,2022-07-11,silver
+C001316,Hồ Thị Quân,0921097345,user1316@example.com,TP.HCM,2025-04-22,bronze
+C001317,Đặng Hữu Phương,0913361363,user1317@example.com,TP.HCM,2025-01-13,silver
+C001318,Trần Thị Quân,0952987253,user1318@example.com,TP.HCM,2022-12-14,bronze
+C001319,Hoàng Minh Nam,0934445890,user1319@example.com,Hà Nội,2023-03-18,bronze
+C001320,Đỗ Thu Hà,0999438892,user1320@example.com,Hà Nội,2022-06-10,bronze
+C001321,Đỗ Minh An,0923232890,user1321@example.com,Hà Nội,2025-01-17,bronze
+C001322,Nguyễn Ngọc Dũng,0923429710,user1322@example.com,TP.HCM,2023-12-29,bronze
+C001323,Đặng Thu Linh,0961528953,user1323@example.com,TP.HCM,2023-06-16,bronze
+C001324,Trần Minh An,0988868405,user1324@example.com,TP.HCM,2024-03-08,bronze
+C001325,Phạm Ngọc Nam,0993379238,user1325@example.com,Hà Nội,2023-03-12,silver
+C001326,Trần Minh Trang,0923551377,user1326@example.com,Hà Nội,2023-09-19,bronze
+C001327,Phạm Văn Linh,0970897354,user1327@example.com,TP.HCM,2023-09-23,bronze
+C001328,Vũ Ngọc Chi,0980829017,user1328@example.com,Hà Nội,2023-01-28,bronze
+C001329,Nguyễn Hữu Thảo,0925862916,user1329@example.com,Hà Nội,2022-04-10,silver
+C001330,Nguyễn Ngọc Minh,0938863443,user1330@example.com,Hà Nội,2025-10-02,bronze
+C001331,Đặng Thu Tuấn,0919434231,user1331@example.com,Hà Nội,2025-04-02,gold
+C001332,Trần Ngọc An,0920875844,user1332@example.com,Hà Nội,2023-01-21,bronze
+C001333,Hồ Hữu Lan,0953547165,user1333@example.com,TP.HCM,2025-10-22,silver
+C001334,Hoàng Minh Dũng,0937911983,user1334@example.com,Hà Nội,2023-07-12,bronze
+C001335,Nguyễn Thu Quân,0976260974,user1335@example.com,TP.HCM,2023-02-15,gold
+C001336,Vũ Ngọc Minh,0920564857,user1336@example.com,TP.HCM,2022-02-17,silver
+C001337,Bùi Minh Minh,0965350145,user1337@example.com,TP.HCM,2024-07-26,bronze
+C001338,Vũ Hữu Quân,0922250180,user1338@example.com,TP.HCM,2023-08-20,silver
+C001339,Nguyễn Hữu Dũng,0999655923,user1339@example.com,Hà Nội,2023-08-03,bronze
+C001340,Hồ Văn Ngọc,0975598051,user1340@example.com,Hà Nội,2023-04-17,bronze
+C001341,Lê Ngọc Dũng,0959280968,user1341@example.com,Hà Nội,2023-09-22,silver
+C001342,Vũ Văn Quân,0993392836,user1342@example.com,Hà Nội,2022-11-01,bronze
+C001343,Vũ Hữu Quân,0961597088,user1343@example.com,TP.HCM,2022-09-21,gold
+C001344,Đặng Hữu Chi,0960167367,user1344@example.com,TP.HCM,2023-10-21,bronze
+C001345,Hồ Hữu Thảo,0976307842,user1345@example.com,Hà Nội,2022-12-17,bronze
+C001346,Hồ Ngọc Phương,0967677721,user1346@example.com,Hà Nội,2024-08-03,silver
+C001347,Phạm Thị Minh,0944910424,user1347@example.com,Hà Nội,2023-06-28,bronze
+C001348,Hồ Ngọc Chi,0986521743,user1348@example.com,Hà Nội,2023-08-01,bronze
+C001349,Đặng Thu Linh,0987300211,user1349@example.com,TP.HCM,2023-09-09,bronze
+C001350,Hoàng Thu Ngọc,0951482803,user1350@example.com,TP.HCM,2025-02-20,bronze
+C001351,Hồ Thị Thảo,0974239820,user1351@example.com,TP.HCM,2024-12-03,bronze
+C001352,Hồ Văn Nam,0990050494,user1352@example.com,TP.HCM,2022-11-20,bronze
+C001353,Lê Thị Phương,0922877111,user1353@example.com,TP.HCM,2023-11-25,bronze
+C001354,Đỗ Thị Phương,0930322457,user1354@example.com,Hà Nội,2024-11-11,bronze
+C001355,Đỗ Ngọc Hùng,0993103382,user1355@example.com,TP.HCM,2022-02-18,bronze
+C001356,Phạm Minh Dũng,0917260477,user1356@example.com,TP.HCM,2025-05-11,silver
+C001357,Vũ Văn Linh,0919326204,user1357@example.com,Hà Nội,2023-10-11,silver
+C001358,Đỗ Hữu Chi,0945336856,user1358@example.com,Hà Nội,2023-12-11,bronze
+C001359,Hoàng Thị Linh,0933694666,user1359@example.com,Hà Nội,2025-10-20,bronze
+C001360,Phạm Thu Minh,0981865622,user1360@example.com,TP.HCM,2022-02-08,bronze
+C001361,Đỗ Thu Tuấn,0944456142,user1361@example.com,TP.HCM,2022-08-19,bronze
+C001362,Lê Thị Minh,0998845009,user1362@example.com,TP.HCM,2023-11-28,silver
+C001363,Hoàng Ngọc Tuấn,0967156581,user1363@example.com,Hà Nội,2024-08-16,gold
+C001364,Bùi Thị Dũng,0935095073,user1364@example.com,TP.HCM,2022-03-16,silver
+C001365,Đặng Thu Ngọc,0985531005,user1365@example.com,Hà Nội,2025-04-12,silver
+C001366,Đỗ Văn Quân,0934180071,user1366@example.com,TP.HCM,2024-11-02,bronze
+C001367,Hoàng Ngọc Minh,0980307141,user1367@example.com,TP.HCM,2022-08-18,bronze
+C001368,Đỗ Hữu Hùng,0930751646,user1368@example.com,TP.HCM,2024-08-22,bronze
+C001369,Trần Ngọc Tuấn,0950554850,user1369@example.com,Hà Nội,2022-10-06,bronze
+C001370,Đặng Ngọc Nam,0923553964,user1370@example.com,TP.HCM,2023-12-24,bronze
+C001371,Phạm Văn Nam,0987326772,user1371@example.com,Hà Nội,2024-04-21,silver
+C001372,Nguyễn Văn Quân,0977456129,user1372@example.com,TP.HCM,2025-07-19,bronze
+C001373,Phạm Ngọc Chi,0956499265,user1373@example.com,TP.HCM,2025-09-05,silver
+C001374,Hồ Ngọc Trang,0973830836,user1374@example.com,Hà Nội,2023-10-31,bronze
+C001375,Trần Minh Hà,0923419838,user1375@example.com,Hà Nội,2023-01-28,bronze
+C001376,Bùi Ngọc Tuấn,0999067322,user1376@example.com,Hà Nội,2023-12-18,bronze
+C001377,Hoàng Hữu Hùng,0969138196,user1377@example.com,Hà Nội,2022-08-26,silver
+C001378,Trần Văn Ngọc,0996443281,user1378@example.com,Hà Nội,2024-01-08,silver
+C001379,Trần Hữu Lan,0932267662,user1379@example.com,TP.HCM,2025-07-04,gold
+C001380,Đặng Minh Lan,0961577450,user1380@example.com,TP.HCM,2024-10-03,silver
+C001381,Trần Minh Thảo,0997591647,user1381@example.com,TP.HCM,2025-06-29,bronze
+C001382,Bùi Thị Dũng,0979760616,user1382@example.com,TP.HCM,2022-04-18,bronze
+C001383,Hoàng Ngọc Thảo,0917529576,user1383@example.com,TP.HCM,2024-07-09,bronze
+C001384,Bùi Hữu Hà,0926901553,user1384@example.com,TP.HCM,2025-06-11,bronze
+C001385,Đỗ Hữu Trang,0976400050,user1385@example.com,TP.HCM,2024-06-11,bronze
+C001386,Đặng Thu Quân,0938170587,user1386@example.com,Hà Nội,2023-07-21,bronze
+C001387,Đặng Thu Minh,0980348526,user1387@example.com,Hà Nội,2023-03-23,bronze
+C001388,Hồ Thị Dũng,0977307230,user1388@example.com,Hà Nội,2022-01-31,silver
+C001389,Hoàng Hữu Chi,0929896149,user1389@example.com,TP.HCM,2024-05-03,silver
+C001390,Phạm Thu Linh,0982749992,user1390@example.com,Hà Nội,2025-01-21,silver
+C001391,Đặng Minh Nam,0982166203,user1391@example.com,TP.HCM,2022-05-10,bronze
+C001392,Lê Hữu Bình,0943811716,user1392@example.com,TP.HCM,2023-02-17,bronze
+C001393,Phạm Thu An,0938220671,user1393@example.com,Hà Nội,2023-08-19,silver
+C001394,Nguyễn Thu Thảo,0978647343,user1394@example.com,Hà Nội,2024-06-10,bronze
+C001395,Vũ Văn Chi,0910538133,user1395@example.com,TP.HCM,2022-10-19,bronze
+C001396,Bùi Thị Bình,0975839838,user1396@example.com,TP.HCM,2025-02-05,bronze
+C001397,Phạm Minh Phương,0932740984,user1397@example.com,TP.HCM,2025-08-17,bronze
+C001398,Đặng Thị Minh,0958833176,user1398@example.com,TP.HCM,2022-02-12,silver
+C001399,Nguyễn Minh Thảo,0984391444,user1399@example.com,Hà Nội,2022-11-29,bronze
+C001400,Trần Ngọc Hùng,0964368040,user1400@example.com,TP.HCM,2024-01-26,silver
+C001401,Bùi Hữu Minh,0988291445,user1401@example.com,Hà Nội,2023-10-21,bronze
+C001402,Lê Văn Ngọc,0959587584,user1402@example.com,TP.HCM,2022-06-10,bronze
+C001403,Lê Hữu Ngọc,0997102521,user1403@example.com,TP.HCM,2025-06-24,bronze
+C001404,Trần Ngọc Quân,0943593329,user1404@example.com,Hà Nội,2025-02-25,bronze
+C001405,Nguyễn Hữu Dũng,0996145394,user1405@example.com,TP.HCM,2023-03-28,silver
+C001406,Nguyễn Thu Quân,0954946755,user1406@example.com,Hà Nội,2023-11-09,bronze
+C001407,Đỗ Minh Hà,0989604963,user1407@example.com,TP.HCM,2025-09-21,bronze
+C001408,Vũ Thị Linh,0996890952,user1408@example.com,Hà Nội,2023-02-16,silver
+C001409,Nguyễn Hữu An,0969169833,user1409@example.com,Hà Nội,2022-10-11,bronze
+C001410,Nguyễn Thu Trang,0945124845,user1410@example.com,Hà Nội,2024-03-11,silver
+C001411,Nguyễn Văn Trang,0910472698,user1411@example.com,TP.HCM,2022-08-23,bronze
+C001412,Hoàng Ngọc Quân,0962401995,user1412@example.com,Hà Nội,2022-08-03,gold
+C001413,Đặng Minh Linh,0931111088,user1413@example.com,TP.HCM,2024-08-26,bronze
+C001414,Bùi Ngọc Trang,0978098576,user1414@example.com,Hà Nội,2022-11-16,silver
+C001415,Hồ Văn Minh,0931807229,user1415@example.com,TP.HCM,2022-07-05,silver
+C001416,Đặng Thu Chi,0986166554,user1416@example.com,Hà Nội,2022-07-09,bronze
+C001417,Đỗ Ngọc Bình,0994192748,user1417@example.com,TP.HCM,2025-05-26,bronze
+C001418,Đặng Thu Dũng,0950414905,user1418@example.com,TP.HCM,2023-04-20,bronze
+C001419,Phạm Ngọc Ngọc,0940011772,user1419@example.com,TP.HCM,2024-06-22,bronze
+C001420,Nguyễn Ngọc Dũng,0964697649,user1420@example.com,TP.HCM,2025-08-29,silver
+C001421,Trần Thị Trang,0915848730,user1421@example.com,TP.HCM,2024-09-24,bronze
+C001422,Phạm Ngọc Hùng,0978457891,user1422@example.com,TP.HCM,2022-10-26,bronze
+C001423,Phạm Minh Hùng,0979833314,user1423@example.com,TP.HCM,2025-04-09,bronze
+C001424,Phạm Minh Tuấn,0960136253,user1424@example.com,TP.HCM,2022-10-21,bronze
+C001425,Đỗ Văn Thảo,0913956064,user1425@example.com,TP.HCM,2025-09-04,bronze
+C001426,Nguyễn Ngọc Trang,0970069439,user1426@example.com,TP.HCM,2024-10-04,gold
+C001427,Nguyễn Hữu Ngọc,0961979264,user1427@example.com,Hà Nội,2025-02-28,bronze
+C001428,Đỗ Thu Minh,0941097205,user1428@example.com,Hà Nội,2023-04-21,bronze
+C001429,Trần Văn Quân,0977679072,user1429@example.com,TP.HCM,2025-06-07,silver
+C001430,Trần Thu Trang,0932467196,user1430@example.com,Hà Nội,2023-03-16,bronze
+C001431,Bùi Văn Trang,0940440714,user1431@example.com,TP.HCM,2025-01-05,bronze
+C001432,Đỗ Thị An,0984592645,user1432@example.com,Hà Nội,2024-08-19,silver
+C001433,Hoàng Minh Minh,0937208250,user1433@example.com,Hà Nội,2022-01-16,bronze
+C001434,Bùi Hữu Trang,0960153906,user1434@example.com,TP.HCM,2025-04-10,bronze
+C001435,Đặng Hữu Hà,0995628778,user1435@example.com,TP.HCM,2023-07-20,bronze
+C001436,Đặng Thị Bình,0989861829,user1436@example.com,TP.HCM,2023-10-02,bronze
+C001437,Đặng Minh Phương,0930076834,user1437@example.com,TP.HCM,2025-01-17,bronze
+C001438,Phạm Minh Hùng,0992507633,user1438@example.com,Hà Nội,2023-03-13,bronze
+C001439,Bùi Hữu Lan,0947375510,user1439@example.com,TP.HCM,2024-09-28,silver
+C001440,Đặng Thị An,0957476871,user1440@example.com,TP.HCM,2022-02-17,bronze
+C001441,Vũ Văn Minh,0986146155,user1441@example.com,Hà Nội,2024-12-22,silver
+C001442,Hoàng Ngọc Ngọc,0975242539,user1442@example.com,Hà Nội,2025-05-02,bronze
+C001443,Lê Văn An,0921486341,user1443@example.com,Hà Nội,2023-03-21,silver
+C001444,Hồ Minh Ngọc,0967906840,user1444@example.com,Hà Nội,2022-09-09,bronze
+C001445,Đỗ Minh Linh,0996415381,user1445@example.com,Hà Nội,2024-08-30,bronze
+C001446,Hồ Văn Hùng,0964403646,user1446@example.com,Hà Nội,2025-05-30,bronze
+C001447,Hồ Hữu Chi,0936743398,user1447@example.com,Hà Nội,2022-03-29,bronze
+C001448,Nguyễn Ngọc Chi,0922716220,user1448@example.com,Hà Nội,2025-04-03,silver
+C001449,Đỗ Minh Nam,0957558843,user1449@example.com,TP.HCM,2024-01-11,bronze
+C001450,Trần Hữu Ngọc,0923911317,user1450@example.com,TP.HCM,2022-12-10,bronze
+C001451,Vũ Văn Nam,0974347398,user1451@example.com,TP.HCM,2022-08-03,bronze
+C001452,Hồ Hữu Ngọc,0944115911,user1452@example.com,Hà Nội,2024-10-27,silver
+C001453,Bùi Minh Dũng,0955210373,user1453@example.com,Hà Nội,2025-01-24,bronze
+C001454,Nguyễn Thu Trang,0932155251,user1454@example.com,TP.HCM,2023-12-04,bronze
+C001455,Hồ Hữu Lan,0946784063,user1455@example.com,Hà Nội,2024-02-25,bronze
+C001456,Trần Văn Chi,0981249594,user1456@example.com,Hà Nội,2023-03-10,bronze
+C001457,Hồ Minh Trang,0993459295,user1457@example.com,TP.HCM,2025-06-09,silver
+C001458,Hồ Thu Ngọc,0990003282,user1458@example.com,TP.HCM,2024-05-01,bronze
+C001459,Lê Hữu Thảo,0937873291,user1459@example.com,TP.HCM,2022-09-12,bronze
+C001460,Bùi Hữu Phương,0966602177,user1460@example.com,TP.HCM,2025-08-03,silver
+C001461,Nguyễn Thu Hùng,0993085663,user1461@example.com,Hà Nội,2024-04-06,silver
+C001462,Hoàng Thị Ngọc,0926024638,user1462@example.com,TP.HCM,2023-02-03,bronze
+C001463,Trần Thu Lan,0965300374,user1463@example.com,Hà Nội,2023-10-03,gold
+C001464,Bùi Văn Bình,0914846024,user1464@example.com,TP.HCM,2023-03-26,bronze
+C001465,Lê Thị Hà,0944705649,user1465@example.com,Hà Nội,2023-06-20,bronze
+C001466,Hồ Hữu Minh,0992174667,user1466@example.com,TP.HCM,2023-09-23,silver
+C001467,Đỗ Minh Hà,0999425062,user1467@example.com,TP.HCM,2023-10-19,bronze
+C001468,Hồ Văn Dũng,0994527251,user1468@example.com,TP.HCM,2024-08-10,bronze
+C001469,Phạm Thị Ngọc,0997314783,user1469@example.com,Hà Nội,2025-07-07,bronze
+C001470,Hoàng Hữu Tuấn,0956881923,user1470@example.com,TP.HCM,2023-01-23,silver
+C001471,Đặng Thu Phương,0983654233,user1471@example.com,Hà Nội,2024-04-16,gold
+C001472,Đỗ Văn Dũng,0958986387,user1472@example.com,Hà Nội,2024-02-04,bronze
+C001473,Phạm Minh Thảo,0968591625,user1473@example.com,Hà Nội,2023-04-08,gold
+C001474,Trần Minh Bình,0974492569,user1474@example.com,TP.HCM,2024-03-06,bronze
+C001475,Đặng Thu Minh,0931994858,user1475@example.com,TP.HCM,2022-02-08,silver
+C001476,Trần Minh Lan,0948079758,user1476@example.com,TP.HCM,2024-12-31,bronze
+C001477,Nguyễn Thị Dũng,0940881609,user1477@example.com,Hà Nội,2023-09-01,bronze
+C001478,Nguyễn Thu Nam,0945862171,user1478@example.com,TP.HCM,2023-07-22,bronze
+C001479,Trần Minh Hà,0942766078,user1479@example.com,TP.HCM,2022-11-07,bronze
+C001480,Phạm Minh Hà,0947398059,user1480@example.com,TP.HCM,2022-01-25,bronze
+C001481,Lê Minh Tuấn,0923676617,user1481@example.com,Hà Nội,2022-10-05,bronze
+C001482,Nguyễn Ngọc Linh,0949366114,user1482@example.com,Hà Nội,2023-12-03,bronze
+C001483,Vũ Minh Minh,0923693763,user1483@example.com,TP.HCM,2022-10-07,bronze
+C001484,Vũ Văn Lan,0983996315,user1484@example.com,Hà Nội,2024-10-04,bronze
+C001485,Bùi Ngọc Bình,0980358664,user1485@example.com,TP.HCM,2023-07-30,bronze
+C001486,Vũ Minh Thảo,0951035955,user1486@example.com,Hà Nội,2022-03-11,bronze
+C001487,Trần Văn Bình,0924062163,user1487@example.com,TP.HCM,2025-06-09,bronze
+C001488,Lê Ngọc Linh,0922586114,user1488@example.com,Hà Nội,2022-04-06,bronze
+C001489,Phạm Thu An,0977133155,user1489@example.com,Hà Nội,2023-08-02,silver
+C001490,Đặng Thị Lan,0987033390,user1490@example.com,TP.HCM,2024-09-20,bronze
+C001491,Đặng Thu Nam,0974984596,user1491@example.com,TP.HCM,2024-10-17,bronze
+C001492,Bùi Ngọc Minh,0970670531,user1492@example.com,Hà Nội,2022-05-13,bronze
+C001493,Phạm Thị An,0990405124,user1493@example.com,Hà Nội,2023-03-27,bronze
+C001494,Lê Thị Dũng,0926788094,user1494@example.com,Hà Nội,2023-07-12,bronze
+C001495,Đỗ Văn An,0972153117,user1495@example.com,TP.HCM,2022-06-18,silver
+C001496,Phạm Thu Chi,0944032688,user1496@example.com,TP.HCM,2025-03-24,bronze
+C001497,Nguyễn Thị Linh,0931136793,user1497@example.com,Hà Nội,2025-06-26,bronze
+C001498,Phạm Thu Tuấn,0939174664,user1498@example.com,TP.HCM,2025-01-12,silver
+C001499,Bùi Thị Hùng,0971739573,user1499@example.com,Hà Nội,2024-01-23,bronze
+C001500,Hoàng Hữu Trang,0935335332,user1500@example.com,Hà Nội,2024-04-09,bronze
+C001501,Lê Thu Linh,0964071409,user1501@example.com,TP.HCM,2025-08-16,silver
+C001502,Bùi Minh Ngọc,0960646903,user1502@example.com,TP.HCM,2024-01-08,bronze
+C001503,Đỗ Văn Minh,0977144955,user1503@example.com,Hà Nội,2024-05-17,bronze
+C001504,Hoàng Thu Minh,0932991124,user1504@example.com,TP.HCM,2022-10-11,bronze
+C001505,Phạm Thu Phương,0913351523,user1505@example.com,Hà Nội,2022-04-06,silver
+C001506,Hồ Văn Linh,0986968754,user1506@example.com,TP.HCM,2023-09-20,bronze
+C001507,Vũ Thị Linh,0982065293,user1507@example.com,Hà Nội,2024-08-20,gold
+C001508,Phạm Minh Ngọc,0990561587,user1508@example.com,Hà Nội,2023-02-24,silver
+C001509,Phạm Thu Hà,0964616878,user1509@example.com,TP.HCM,2024-06-03,gold
+C001510,Nguyễn Hữu Linh,0917577138,user1510@example.com,Hà Nội,2023-11-20,bronze
+C001511,Đặng Hữu Chi,0922652533,user1511@example.com,TP.HCM,2023-09-16,bronze
+C001512,Vũ Thu Nam,0910928490,user1512@example.com,Hà Nội,2022-06-30,bronze
+C001513,Phạm Thị Linh,0942611473,user1513@example.com,Hà Nội,2023-02-11,bronze
+C001514,Hồ Văn Hà,0949542818,user1514@example.com,Hà Nội,2022-11-19,bronze
+C001515,Lê Hữu Phương,0961411598,user1515@example.com,TP.HCM,2024-11-09,bronze
+C001516,Bùi Minh Ngọc,0988753280,user1516@example.com,Hà Nội,2025-06-15,bronze
+C001517,Lê Minh Trang,0930337187,user1517@example.com,Hà Nội,2024-11-22,bronze
+C001518,Nguyễn Minh Dũng,0942031899,user1518@example.com,TP.HCM,2025-06-12,bronze
+C001519,Phạm Thị Tuấn,0927334681,user1519@example.com,Hà Nội,2023-11-11,bronze
+C001520,Bùi Văn Hà,0986710997,user1520@example.com,TP.HCM,2022-09-12,bronze
+C001521,Bùi Văn Bình,0999865219,user1521@example.com,Hà Nội,2023-01-25,bronze
+C001522,Lê Thị Minh,0975613535,user1522@example.com,TP.HCM,2025-03-19,bronze
+C001523,Vũ Ngọc Tuấn,0921813252,user1523@example.com,TP.HCM,2022-05-20,bronze
+C001524,Đỗ Thị Trang,0958138535,user1524@example.com,TP.HCM,2024-01-24,bronze
+C001525,Phạm Ngọc Tuấn,0950125398,user1525@example.com,Hà Nội,2022-06-01,bronze
+C001526,Bùi Minh Ngọc,0927135951,user1526@example.com,Hà Nội,2024-06-30,bronze
+C001527,Vũ Ngọc Quân,0991155302,user1527@example.com,Hà Nội,2023-03-14,bronze
+C001528,Lê Văn Quân,0929512340,user1528@example.com,Hà Nội,2023-11-08,bronze
+C001529,Phạm Thị Quân,0913860427,user1529@example.com,TP.HCM,2024-01-30,bronze
+C001530,Lê Văn Nam,0954762694,user1530@example.com,TP.HCM,2024-12-24,silver
+C001531,Bùi Minh Tuấn,0927391616,user1531@example.com,TP.HCM,2024-06-10,bronze
+C001532,Hoàng Minh Chi,0933792070,user1532@example.com,Hà Nội,2023-05-17,bronze
+C001533,Lê Thị Nam,0923245447,user1533@example.com,TP.HCM,2023-12-31,bronze
+C001534,Hồ Thị Bình,0923265040,user1534@example.com,TP.HCM,2024-04-19,bronze
+C001535,Hồ Hữu Dũng,0911128779,user1535@example.com,Hà Nội,2023-06-12,silver
+C001536,Vũ Thị Trang,0967343495,user1536@example.com,TP.HCM,2024-07-23,bronze
+C001537,Phạm Thị Lan,0994381649,user1537@example.com,Hà Nội,2022-05-21,gold
+C001538,Lê Hữu Hùng,0956050939,user1538@example.com,Hà Nội,2022-12-30,bronze
+C001539,Hồ Minh Hùng,0919160606,user1539@example.com,TP.HCM,2023-06-03,bronze
+C001540,Lê Ngọc Quân,0929038632,user1540@example.com,Hà Nội,2022-11-05,bronze
+C001541,Phạm Thị Thảo,0968452362,user1541@example.com,Hà Nội,2023-09-12,silver
+C001542,Bùi Ngọc Hà,0917127491,user1542@example.com,TP.HCM,2022-08-22,silver
+C001543,Trần Thị Phương,0961568579,user1543@example.com,TP.HCM,2023-07-09,bronze
+C001544,Vũ Minh Minh,0994719686,user1544@example.com,TP.HCM,2025-05-10,bronze
+C001545,Trần Văn Lan,0972976552,user1545@example.com,Hà Nội,2023-01-30,bronze
+C001546,Phạm Thị Minh,0918319488,user1546@example.com,TP.HCM,2022-01-15,bronze
+C001547,Bùi Thị Lan,0969498893,user1547@example.com,Hà Nội,2025-05-05,bronze
+C001548,Hồ Hữu An,0947401956,user1548@example.com,TP.HCM,2023-07-23,bronze
+C001549,Hồ Hữu Thảo,0959108882,user1549@example.com,TP.HCM,2022-12-20,silver
+C001550,Hoàng Thị An,0965290315,user1550@example.com,Hà Nội,2022-10-25,bronze
+C001551,Đỗ Hữu Bình,0993168581,user1551@example.com,Hà Nội,2025-05-11,bronze
+C001552,Lê Hữu An,0937915664,user1552@example.com,Hà Nội,2025-03-17,bronze
+C001553,Đặng Thị Hà,0995509348,user1553@example.com,TP.HCM,2025-06-03,bronze
+C001554,Lê Văn An,0995963158,user1554@example.com,TP.HCM,2023-04-10,silver
+C001555,Nguyễn Hữu Trang,0944192227,user1555@example.com,TP.HCM,2024-01-27,silver
+C001556,Lê Thị Linh,0994983537,user1556@example.com,Hà Nội,2022-11-18,silver
+C001557,Đặng Thị Chi,0970100181,user1557@example.com,TP.HCM,2025-09-05,bronze
+C001558,Nguyễn Thu Lan,0946294673,user1558@example.com,Hà Nội,2023-04-26,bronze
+C001559,Đặng Thị Bình,0959819315,user1559@example.com,TP.HCM,2025-08-05,bronze
+C001560,Đặng Hữu Trang,0936461520,user1560@example.com,TP.HCM,2023-01-21,bronze
+C001561,Vũ Thị Lan,0986439177,user1561@example.com,TP.HCM,2023-02-16,bronze
+C001562,Nguyễn Ngọc Linh,0999899585,user1562@example.com,TP.HCM,2023-01-21,bronze
+C001563,Hồ Thị Thảo,0916386064,user1563@example.com,TP.HCM,2024-10-13,bronze
+C001564,Đặng Văn Linh,0985179209,user1564@example.com,TP.HCM,2023-12-04,bronze
+C001565,Vũ Ngọc Lan,0972090196,user1565@example.com,Hà Nội,2025-10-05,bronze
+C001566,Đỗ Thị Quân,0967854918,user1566@example.com,Hà Nội,2025-06-18,gold
+C001567,Lê Thu Tuấn,0979489949,user1567@example.com,TP.HCM,2023-09-02,bronze
+C001568,Bùi Văn Quân,0960665464,user1568@example.com,TP.HCM,2024-03-05,bronze
+C001569,Vũ Hữu Lan,0921355985,user1569@example.com,TP.HCM,2025-10-28,bronze
+C001570,Trần Thị Hùng,0976105313,user1570@example.com,TP.HCM,2025-10-14,bronze
+C001571,Hoàng Thị Quân,0942017196,user1571@example.com,TP.HCM,2023-02-04,bronze
+C001572,Đặng Ngọc Lan,0988544200,user1572@example.com,TP.HCM,2022-12-11,gold
+C001573,Phạm Thị Hà,0915353853,user1573@example.com,Hà Nội,2022-03-15,bronze
+C001574,Trần Ngọc Nam,0929101944,user1574@example.com,TP.HCM,2024-07-08,bronze
+C001575,Đỗ Văn An,0974724751,user1575@example.com,Hà Nội,2025-05-17,gold
+C001576,Hồ Thị An,0950597137,user1576@example.com,TP.HCM,2023-09-07,silver
+C001577,Hồ Thị Hùng,0933686227,user1577@example.com,TP.HCM,2022-02-18,silver
+C001578,Đỗ Thị Hùng,0913594743,user1578@example.com,TP.HCM,2022-08-15,bronze
+C001579,Đặng Minh Thảo,0933574946,user1579@example.com,TP.HCM,2025-08-23,bronze
+C001580,Vũ Thu Thảo,0977623199,user1580@example.com,Hà Nội,2023-04-30,bronze
+C001581,Đỗ Hữu Quân,0917597203,user1581@example.com,Hà Nội,2024-07-19,bronze
+C001582,Bùi Hữu Linh,0938688922,user1582@example.com,TP.HCM,2022-01-06,silver
+C001583,Hồ Minh Dũng,0982478673,user1583@example.com,TP.HCM,2025-04-07,silver
+C001584,Đặng Hữu Minh,0967780336,user1584@example.com,TP.HCM,2022-06-15,bronze
+C001585,Bùi Thu Minh,0941869449,user1585@example.com,TP.HCM,2023-09-18,silver
+C001586,Đặng Văn Ngọc,0975083756,user1586@example.com,Hà Nội,2023-03-06,bronze
+C001587,Hồ Ngọc Ngọc,0991365745,user1587@example.com,Hà Nội,2023-04-13,bronze
+C001588,Vũ Hữu Phương,0954691721,user1588@example.com,TP.HCM,2024-12-10,bronze
+C001589,Bùi Thị Nam,0989096224,user1589@example.com,TP.HCM,2023-01-13,gold
+C001590,Trần Văn Quân,0967414348,user1590@example.com,TP.HCM,2023-09-17,silver
+C001591,Phạm Văn Linh,0979206644,user1591@example.com,TP.HCM,2025-02-27,gold
+C001592,Lê Thị Hà,0919597845,user1592@example.com,TP.HCM,2022-11-26,bronze
+C001593,Trần Thị Hà,0974436602,user1593@example.com,Hà Nội,2023-09-10,bronze
+C001594,Đỗ Văn Chi,0996552596,user1594@example.com,Hà Nội,2023-11-30,gold
+C001595,Hồ Ngọc Trang,0997009505,user1595@example.com,TP.HCM,2024-08-07,bronze
+C001596,Đặng Ngọc Phương,0986083924,user1596@example.com,TP.HCM,2025-02-14,bronze
+C001597,Vũ Thị Linh,0967198634,user1597@example.com,TP.HCM,2023-02-21,silver
+C001598,Nguyễn Thu Nam,0978578485,user1598@example.com,Hà Nội,2022-08-20,bronze
+C001599,Hoàng Minh Linh,0967080038,user1599@example.com,TP.HCM,2024-11-18,bronze
+C001600,Nguyễn Thu Hùng,0956505753,user1600@example.com,Hà Nội,2022-09-12,silver
+C001601,Hoàng Văn Quân,0916265192,user1601@example.com,Hà Nội,2023-08-05,bronze
+C001602,Đỗ Thị Tuấn,0986809772,user1602@example.com,Hà Nội,2023-12-24,bronze
+C001603,Đỗ Hữu Tuấn,0934737024,user1603@example.com,Hà Nội,2024-01-22,gold
+C001604,Phạm Ngọc Bình,0921116803,user1604@example.com,TP.HCM,2022-07-05,silver
+C001605,Nguyễn Hữu Hà,0955478192,user1605@example.com,TP.HCM,2025-07-19,silver
+C001606,Trần Thu Nam,0963691982,user1606@example.com,TP.HCM,2024-10-08,bronze
+C001607,Nguyễn Ngọc Quân,0972616304,user1607@example.com,Hà Nội,2025-05-28,bronze
+C001608,Hồ Ngọc Dũng,0974169372,user1608@example.com,TP.HCM,2023-03-12,bronze
+C001609,Nguyễn Thu Hùng,0959731508,user1609@example.com,Hà Nội,2024-03-23,bronze
+C001610,Nguyễn Thị Hùng,0991497645,user1610@example.com,TP.HCM,2024-04-22,bronze
+C001611,Bùi Văn Ngọc,0920775881,user1611@example.com,Hà Nội,2024-11-09,silver
+C001612,Đỗ Thu Trang,0941354483,user1612@example.com,Hà Nội,2025-04-14,bronze
+C001613,Bùi Minh Hà,0935331873,user1613@example.com,TP.HCM,2023-06-07,bronze
+C001614,Đỗ Thị Ngọc,0942940262,user1614@example.com,TP.HCM,2025-07-26,bronze
+C001615,Bùi Thu Linh,0941436716,user1615@example.com,Hà Nội,2023-11-10,bronze
+C001616,Bùi Thu Minh,0953919147,user1616@example.com,TP.HCM,2022-08-19,bronze
+C001617,Đặng Thị Lan,0914245356,user1617@example.com,Hà Nội,2023-05-05,bronze
+C001618,Phạm Thu Quân,0958886157,user1618@example.com,Hà Nội,2024-07-17,silver
+C001619,Hoàng Thu Lan,0987408700,user1619@example.com,Hà Nội,2022-06-11,bronze
+C001620,Vũ Thu Chi,0963469594,user1620@example.com,Hà Nội,2025-03-27,bronze
+C001621,Hồ Thị Chi,0975229812,user1621@example.com,Hà Nội,2022-12-17,bronze
+C001622,Nguyễn Thị Chi,0965908630,user1622@example.com,Hà Nội,2023-09-23,bronze
+C001623,Đặng Thu Nam,0992494518,user1623@example.com,Hà Nội,2022-03-14,bronze
+C001624,Nguyễn Văn Chi,0953371529,user1624@example.com,Hà Nội,2024-12-29,silver
+C001625,Lê Văn Hà,0969803006,user1625@example.com,TP.HCM,2024-06-22,silver
+C001626,Bùi Minh Ngọc,0987509433,user1626@example.com,Hà Nội,2024-02-12,bronze
+C001627,Vũ Văn Tuấn,0944622255,user1627@example.com,TP.HCM,2025-01-25,bronze
+C001628,Vũ Văn Bình,0930782617,user1628@example.com,Hà Nội,2023-03-15,bronze
+C001629,Bùi Hữu Lan,0948049897,user1629@example.com,TP.HCM,2024-06-29,bronze
+C001630,Vũ Ngọc Minh,0969668126,user1630@example.com,TP.HCM,2024-08-13,gold
+C001631,Hoàng Văn Lan,0926267832,user1631@example.com,Hà Nội,2022-03-16,bronze
+C001632,Vũ Ngọc Linh,0981550937,user1632@example.com,Hà Nội,2022-05-18,bronze
+C001633,Hoàng Ngọc Trang,0923059522,user1633@example.com,TP.HCM,2023-01-08,silver
+C001634,Hoàng Hữu Quân,0943566804,user1634@example.com,Hà Nội,2022-11-18,gold
+C001635,Vũ Thị Nam,0920458836,user1635@example.com,Hà Nội,2023-04-20,silver
+C001636,Nguyễn Thị Nam,0936045685,user1636@example.com,Hà Nội,2025-06-05,bronze
+C001637,Hồ Thu Hà,0917884244,user1637@example.com,TP.HCM,2025-05-19,bronze
+C001638,Bùi Minh Phương,0918584271,user1638@example.com,Hà Nội,2023-09-07,silver
+C001639,Vũ Ngọc Nam,0956419440,user1639@example.com,Hà Nội,2022-12-02,bronze
+C001640,Trần Minh An,0951955301,user1640@example.com,Hà Nội,2024-05-16,bronze
+C001641,Trần Minh Phương,0961352352,user1641@example.com,Hà Nội,2025-09-12,silver
+C001642,Lê Thu An,0938658499,user1642@example.com,Hà Nội,2025-05-29,silver
+C001643,Lê Thu Hà,0998867727,user1643@example.com,Hà Nội,2022-03-01,bronze
+C001644,Đỗ Ngọc Bình,0921998253,user1644@example.com,Hà Nội,2023-12-01,bronze
+C001645,Trần Ngọc Thảo,0935241401,user1645@example.com,Hà Nội,2022-06-29,silver
+C001646,Đỗ Thu Nam,0924576728,user1646@example.com,Hà Nội,2022-12-07,bronze
+C001647,Đỗ Minh Phương,0962934202,user1647@example.com,Hà Nội,2024-12-04,silver
+C001648,Lê Hữu An,0960222940,user1648@example.com,TP.HCM,2024-01-22,bronze
+C001649,Đặng Minh Tuấn,0967058855,user1649@example.com,Hà Nội,2025-03-11,bronze
+C001650,Trần Thu Hà,0947835871,user1650@example.com,Hà Nội,2023-03-12,silver
+C001651,Đỗ Ngọc Ngọc,0987044070,user1651@example.com,TP.HCM,2023-10-02,bronze
+C001652,Đỗ Thị Ngọc,0960346937,user1652@example.com,Hà Nội,2023-11-08,silver
+C001653,Đỗ Thu Thảo,0920071140,user1653@example.com,TP.HCM,2022-06-07,silver
+C001654,Đỗ Thị Quân,0992840742,user1654@example.com,TP.HCM,2025-04-14,bronze
+C001655,Nguyễn Thị Bình,0963686828,user1655@example.com,TP.HCM,2022-06-17,bronze
+C001656,Hoàng Minh Phương,0982064301,user1656@example.com,TP.HCM,2024-06-30,silver
+C001657,Nguyễn Ngọc Bình,0980787174,user1657@example.com,TP.HCM,2022-02-12,gold
+C001658,Bùi Ngọc Trang,0929023480,user1658@example.com,Hà Nội,2022-03-30,bronze
+C001659,Hồ Văn Nam,0986663524,user1659@example.com,TP.HCM,2022-03-15,silver
+C001660,Trần Minh Chi,0971631576,user1660@example.com,Hà Nội,2024-04-22,silver
+C001661,Đặng Thu Chi,0983342124,user1661@example.com,Hà Nội,2025-04-25,bronze
+C001662,Bùi Ngọc Linh,0983725299,user1662@example.com,TP.HCM,2025-07-19,bronze
+C001663,Phạm Văn Linh,0988630494,user1663@example.com,TP.HCM,2023-06-28,bronze
+C001664,Hoàng Thu Hà,0982515984,user1664@example.com,Hà Nội,2023-09-26,bronze
+C001665,Đỗ Thị Dũng,0990702329,user1665@example.com,TP.HCM,2022-09-11,silver
+C001666,Hoàng Minh Tuấn,0988054166,user1666@example.com,TP.HCM,2022-06-12,bronze
+C001667,Phạm Ngọc Nam,0937130463,user1667@example.com,TP.HCM,2025-10-03,silver
+C001668,Phạm Thị Phương,0992573410,user1668@example.com,Hà Nội,2023-01-02,silver
+C001669,Đỗ Minh An,0968186765,user1669@example.com,TP.HCM,2023-05-17,bronze
+C001670,Vũ Thu Trang,0911940362,user1670@example.com,Hà Nội,2024-12-21,silver
+C001671,Hoàng Văn Thảo,0927431305,user1671@example.com,Hà Nội,2025-10-31,silver
+C001672,Trần Ngọc Hùng,0967633865,user1672@example.com,Hà Nội,2022-05-29,bronze
+C001673,Hoàng Minh An,0997638142,user1673@example.com,TP.HCM,2025-04-27,bronze
+C001674,Phạm Hữu Minh,0982891454,user1674@example.com,TP.HCM,2025-05-31,bronze
+C001675,Lê Thị Ngọc,0957637113,user1675@example.com,Hà Nội,2022-12-01,bronze
+C001676,Nguyễn Ngọc An,0992035661,user1676@example.com,TP.HCM,2025-03-30,silver
+C001677,Nguyễn Minh Nam,0997619402,user1677@example.com,TP.HCM,2023-02-14,bronze
+C001678,Lê Hữu Nam,0960028693,user1678@example.com,Hà Nội,2025-03-13,bronze
+C001679,Hoàng Minh An,0955990390,user1679@example.com,TP.HCM,2025-02-10,silver
+C001680,Hồ Hữu Thảo,0937917745,user1680@example.com,TP.HCM,2025-04-18,bronze
+C001681,Bùi Thu Hùng,0930076552,user1681@example.com,TP.HCM,2022-05-04,bronze
+C001682,Vũ Văn Ngọc,0924159211,user1682@example.com,Hà Nội,2022-03-22,bronze
+C001683,Trần Văn Lan,0917373149,user1683@example.com,Hà Nội,2023-07-12,bronze
+C001684,Nguyễn Thị Bình,0948688906,user1684@example.com,TP.HCM,2023-07-23,gold
+C001685,Bùi Văn Bình,0971059201,user1685@example.com,TP.HCM,2022-02-24,bronze
+C001686,Hoàng Thị Trang,0992091560,user1686@example.com,Hà Nội,2023-07-27,bronze
+C001687,Đỗ Ngọc Tuấn,0910280294,user1687@example.com,TP.HCM,2024-03-17,bronze
+C001688,Hoàng Thu Phương,0976473958,user1688@example.com,TP.HCM,2024-05-19,bronze
+C001689,Bùi Minh Quân,0953646666,user1689@example.com,Hà Nội,2022-02-06,bronze
+C001690,Bùi Ngọc Quân,0969454362,user1690@example.com,Hà Nội,2023-09-14,bronze
+C001691,Nguyễn Thu Lan,0945883131,user1691@example.com,TP.HCM,2022-12-29,bronze
+C001692,Nguyễn Thu Nam,0972184420,user1692@example.com,TP.HCM,2024-06-16,bronze
+C001693,Đỗ Văn Ngọc,0919949769,user1693@example.com,Hà Nội,2025-07-22,bronze
+C001694,Hồ Ngọc Bình,0958228224,user1694@example.com,Hà Nội,2025-09-09,bronze
+C001695,Hoàng Ngọc Quân,0967712472,user1695@example.com,Hà Nội,2022-11-23,bronze
+C001696,Đặng Hữu Phương,0980079124,user1696@example.com,TP.HCM,2023-12-25,bronze
+C001697,Phạm Văn Lan,0929322809,user1697@example.com,TP.HCM,2025-02-04,silver
+C001698,Đỗ Ngọc Hà,0922094458,user1698@example.com,Hà Nội,2022-08-12,silver
+C001699,Vũ Thu Lan,0936136074,user1699@example.com,Hà Nội,2022-05-25,bronze
+C001700,Vũ Hữu Chi,0938559141,user1700@example.com,Hà Nội,2025-03-17,bronze
+C001701,Nguyễn Thu Linh,0927775694,user1701@example.com,Hà Nội,2024-04-20,silver
+C001702,Hoàng Minh Minh,0929066352,user1702@example.com,TP.HCM,2023-03-01,bronze
+C001703,Đỗ Minh Lan,0991717601,user1703@example.com,Hà Nội,2025-05-15,bronze
+C001704,Bùi Văn Hà,0918919516,user1704@example.com,Hà Nội,2024-04-02,bronze
+C001705,Nguyễn Hữu An,0957225709,user1705@example.com,TP.HCM,2022-08-21,silver
+C001706,Đỗ Ngọc Hà,0918141101,user1706@example.com,TP.HCM,2022-01-01,silver
+C001707,Đặng Thị Phương,0988781701,user1707@example.com,TP.HCM,2024-03-20,silver
+C001708,Hồ Hữu Tuấn,0919801507,user1708@example.com,TP.HCM,2024-04-04,bronze
+C001709,Phạm Hữu Hùng,0943695930,user1709@example.com,TP.HCM,2025-03-21,bronze
+C001710,Đỗ Thu Minh,0983497889,user1710@example.com,TP.HCM,2024-01-19,bronze
+C001711,Bùi Thu Minh,0993981451,user1711@example.com,TP.HCM,2025-07-29,bronze
+C001712,Vũ Văn Thảo,0979985227,user1712@example.com,TP.HCM,2022-01-14,bronze
+C001713,Bùi Văn Hà,0971556374,user1713@example.com,Hà Nội,2023-10-03,bronze
+C001714,Đỗ Thu Trang,0986785616,user1714@example.com,TP.HCM,2024-11-23,bronze
+C001715,Bùi Văn Quân,0931745504,user1715@example.com,TP.HCM,2023-12-03,silver
+C001716,Đỗ Ngọc Ngọc,0985561788,user1716@example.com,TP.HCM,2022-10-22,bronze
+C001717,Bùi Ngọc Bình,0975051262,user1717@example.com,TP.HCM,2024-10-03,bronze
+C001718,Đỗ Ngọc Chi,0937910792,user1718@example.com,TP.HCM,2022-07-02,bronze
+C001719,Hồ Văn Phương,0923861386,user1719@example.com,Hà Nội,2022-08-28,bronze
+C001720,Vũ Ngọc Nam,0980361191,user1720@example.com,Hà Nội,2022-11-21,bronze
+C001721,Nguyễn Ngọc Chi,0953751291,user1721@example.com,TP.HCM,2022-10-09,silver
+C001722,Bùi Thu Quân,0977202907,user1722@example.com,Hà Nội,2023-12-16,silver
+C001723,Bùi Ngọc Linh,0917054348,user1723@example.com,TP.HCM,2023-01-01,silver
+C001724,Phạm Hữu Chi,0983313477,user1724@example.com,TP.HCM,2025-04-23,silver
+C001725,Nguyễn Văn Bình,0930397075,user1725@example.com,TP.HCM,2022-07-11,bronze
+C001726,Vũ Minh Thảo,0920768636,user1726@example.com,Hà Nội,2022-09-30,bronze
+C001727,Bùi Hữu Chi,0930653136,user1727@example.com,Hà Nội,2022-12-02,bronze
+C001728,Trần Văn Hà,0952897573,user1728@example.com,Hà Nội,2025-05-02,silver
+C001729,Vũ Thị Trang,0993474870,user1729@example.com,TP.HCM,2025-04-05,silver
+C001730,Vũ Văn Minh,0972073004,user1730@example.com,Hà Nội,2025-04-26,bronze
+C001731,Lê Hữu An,0969294578,user1731@example.com,Hà Nội,2024-05-03,gold
+C001732,Vũ Hữu Nam,0986619233,user1732@example.com,TP.HCM,2022-07-08,bronze
+C001733,Đỗ Thị Tuấn,0986653387,user1733@example.com,Hà Nội,2025-06-14,bronze
+C001734,Hoàng Ngọc Hùng,0922513968,user1734@example.com,TP.HCM,2022-06-10,silver
+C001735,Hồ Thu Minh,0925045594,user1735@example.com,TP.HCM,2024-05-18,bronze
+C001736,Đỗ Thị Hùng,0969617857,user1736@example.com,Hà Nội,2025-07-26,silver
+C001737,Trần Ngọc Ngọc,0945446028,user1737@example.com,Hà Nội,2025-04-17,bronze
+C001738,Hồ Ngọc Hà,0959673965,user1738@example.com,Hà Nội,2022-05-06,bronze
+C001739,Hồ Minh Thảo,0941300004,user1739@example.com,Hà Nội,2022-01-30,bronze
+C001740,Trần Thu Hùng,0962494607,user1740@example.com,TP.HCM,2023-11-12,bronze
+C001741,Trần Thị Quân,0943475734,user1741@example.com,Hà Nội,2025-05-18,bronze
+C001742,Đỗ Hữu Hùng,0969141860,user1742@example.com,TP.HCM,2024-02-09,bronze
+C001743,Vũ Thị An,0955886351,user1743@example.com,Hà Nội,2024-10-23,bronze
+C001744,Phạm Thị Nam,0914958565,user1744@example.com,TP.HCM,2023-05-18,bronze
+C001745,Đỗ Minh Trang,0940098676,user1745@example.com,TP.HCM,2022-04-05,bronze
+C001746,Nguyễn Minh Linh,0910769605,user1746@example.com,Hà Nội,2023-02-13,bronze
+C001747,Hồ Minh Ngọc,0934379509,user1747@example.com,TP.HCM,2023-05-27,bronze
+C001748,Đặng Thị Thảo,0999126943,user1748@example.com,TP.HCM,2022-05-02,bronze
+C001749,Nguyễn Minh An,0948228225,user1749@example.com,Hà Nội,2025-03-01,bronze
+C001750,Đỗ Ngọc Tuấn,0956064927,user1750@example.com,Hà Nội,2022-02-21,silver
+C001751,Trần Thị Hùng,0970676731,user1751@example.com,TP.HCM,2025-08-13,bronze
+C001752,Nguyễn Ngọc Ngọc,0910438411,user1752@example.com,Hà Nội,2024-09-27,bronze
+C001753,Hoàng Ngọc Chi,0921562341,user1753@example.com,Hà Nội,2024-11-09,bronze
+C001754,Phạm Minh Thảo,0921546690,user1754@example.com,Hà Nội,2023-10-22,silver
+C001755,Trần Hữu Phương,0976143499,user1755@example.com,TP.HCM,2025-05-04,bronze
+C001756,Hoàng Hữu Hà,0985356343,user1756@example.com,Hà Nội,2025-08-26,bronze
+C001757,Vũ Thu An,0939064361,user1757@example.com,TP.HCM,2023-10-16,bronze
+C001758,Nguyễn Ngọc Lan,0914640361,user1758@example.com,Hà Nội,2022-12-21,silver
+C001759,Vũ Minh Trang,0917070884,user1759@example.com,Hà Nội,2022-10-17,bronze
+C001760,Lê Hữu Ngọc,0925089320,user1760@example.com,Hà Nội,2024-10-07,bronze
+C001761,Hoàng Hữu Linh,0917359557,user1761@example.com,Hà Nội,2022-01-18,bronze
+C001762,Hồ Thu Linh,0989481679,user1762@example.com,Hà Nội,2025-01-11,bronze
+C001763,Bùi Minh Ngọc,0944450668,user1763@example.com,Hà Nội,2025-07-08,bronze
+C001764,Đỗ Thu Chi,0914609781,user1764@example.com,Hà Nội,2023-02-14,bronze
+C001765,Phạm Thị Thảo,0976348903,user1765@example.com,Hà Nội,2022-05-16,silver
+C001766,Đặng Ngọc An,0994530797,user1766@example.com,Hà Nội,2025-05-19,bronze
+C001767,Vũ Minh Dũng,0937186884,user1767@example.com,TP.HCM,2025-08-10,bronze
+C001768,Lê Hữu Thảo,0974599550,user1768@example.com,TP.HCM,2024-03-26,bronze
+C001769,Lê Thị An,0931143866,user1769@example.com,Hà Nội,2024-09-29,gold
+C001770,Hồ Thu Bình,0941914411,user1770@example.com,TP.HCM,2024-11-30,gold
+C001771,Phạm Ngọc Hà,0995282387,user1771@example.com,Hà Nội,2023-10-02,bronze
+C001772,Phạm Minh Chi,0920329894,user1772@example.com,TP.HCM,2024-02-11,bronze
+C001773,Hoàng Hữu An,0967967944,user1773@example.com,TP.HCM,2024-11-17,bronze
+C001774,Đỗ Thị Lan,0913110930,user1774@example.com,TP.HCM,2022-03-19,bronze
+C001775,Phạm Ngọc Nam,0934507958,user1775@example.com,TP.HCM,2024-01-13,bronze
+C001776,Vũ Hữu Lan,0933426021,user1776@example.com,Hà Nội,2025-06-06,bronze
+C001777,Nguyễn Văn Nam,0975003203,user1777@example.com,Hà Nội,2023-04-13,bronze
+C001778,Đặng Văn Hùng,0955144258,user1778@example.com,TP.HCM,2022-01-11,bronze
+C001779,Phạm Thu Hùng,0957066751,user1779@example.com,Hà Nội,2022-11-28,bronze
+C001780,Vũ Ngọc Nam,0970993416,user1780@example.com,Hà Nội,2025-04-10,bronze
+C001781,Trần Văn Chi,0955858825,user1781@example.com,TP.HCM,2025-08-13,bronze
+C001782,Vũ Minh Minh,0910876825,user1782@example.com,TP.HCM,2024-07-09,bronze
+C001783,Trần Ngọc Ngọc,0930191563,user1783@example.com,Hà Nội,2022-11-06,bronze
+C001784,Hồ Thị Thảo,0936346605,user1784@example.com,Hà Nội,2024-03-17,bronze
+C001785,Vũ Ngọc Thảo,0964537692,user1785@example.com,TP.HCM,2022-08-16,silver
+C001786,Lê Minh Phương,0993893770,user1786@example.com,Hà Nội,2025-03-07,bronze
+C001787,Vũ Ngọc Chi,0923013961,user1787@example.com,TP.HCM,2023-04-30,bronze
+C001788,Nguyễn Hữu Tuấn,0940138421,user1788@example.com,TP.HCM,2022-04-30,silver
+C001789,Đỗ Hữu Hà,0969890256,user1789@example.com,TP.HCM,2024-11-15,bronze
+C001790,Hồ Thị Phương,0996227178,user1790@example.com,Hà Nội,2022-02-19,silver
+C001791,Trần Thu Bình,0991404655,user1791@example.com,Hà Nội,2023-01-02,bronze
+C001792,Phạm Hữu Chi,0996059577,user1792@example.com,Hà Nội,2025-04-07,bronze
+C001793,Bùi Thu Phương,0958573192,user1793@example.com,TP.HCM,2025-05-23,silver
+C001794,Lê Hữu Chi,0915415201,user1794@example.com,TP.HCM,2022-04-24,silver
+C001795,Lê Hữu Phương,0994925437,user1795@example.com,Hà Nội,2025-05-07,bronze
+C001796,Bùi Hữu Ngọc,0948367173,user1796@example.com,Hà Nội,2024-07-29,bronze
+C001797,Phạm Thu Linh,0942302576,user1797@example.com,Hà Nội,2024-05-04,bronze
+C001798,Bùi Văn Quân,0981062858,user1798@example.com,Hà Nội,2022-03-28,bronze
+C001799,Trần Thu Hùng,0985557872,user1799@example.com,TP.HCM,2024-05-01,bronze
+C001800,Bùi Hữu Ngọc,0933277139,user1800@example.com,Hà Nội,2024-06-22,bronze
+C001801,Đặng Thị Lan,0971343137,user1801@example.com,TP.HCM,2025-01-10,silver
+C001802,Nguyễn Thu Bình,0922542417,user1802@example.com,Hà Nội,2022-11-23,bronze
+C001803,Phạm Minh Nam,0972381603,user1803@example.com,Hà Nội,2024-09-25,bronze
+C001804,Hoàng Minh Linh,0937241980,user1804@example.com,TP.HCM,2024-05-01,silver
+C001805,Phạm Thị Quân,0938273591,user1805@example.com,Hà Nội,2024-12-21,bronze
+C001806,Phạm Ngọc Lan,0958257249,user1806@example.com,TP.HCM,2022-05-10,silver
+C001807,Đỗ Thu Quân,0992043820,user1807@example.com,TP.HCM,2025-02-27,bronze
+C001808,Trần Thu Hùng,0930991562,user1808@example.com,Hà Nội,2023-05-29,bronze
+C001809,Lê Thu Hùng,0956476713,user1809@example.com,TP.HCM,2024-01-24,bronze
+C001810,Hồ Hữu Dũng,0923120321,user1810@example.com,TP.HCM,2023-05-02,silver
+C001811,Trần Hữu Linh,0942783516,user1811@example.com,TP.HCM,2024-10-26,bronze
+C001812,Hoàng Ngọc Hà,0985772591,user1812@example.com,Hà Nội,2022-08-31,bronze
+C001813,Phạm Văn Chi,0997527129,user1813@example.com,TP.HCM,2022-11-17,bronze
+C001814,Hoàng Minh Tuấn,0963606265,user1814@example.com,Hà Nội,2024-04-10,bronze
+C001815,Đỗ Ngọc Tuấn,0939550262,user1815@example.com,TP.HCM,2022-05-24,bronze
+C001816,Bùi Văn Quân,0941735396,user1816@example.com,Hà Nội,2023-03-09,silver
+C001817,Lê Hữu Phương,0924629216,user1817@example.com,Hà Nội,2025-05-19,silver
+C001818,Trần Thị Nam,0955003321,user1818@example.com,TP.HCM,2022-03-17,bronze
+C001819,Phạm Văn Bình,0938148632,user1819@example.com,TP.HCM,2022-12-08,silver
+C001820,Lê Minh Hùng,0995839339,user1820@example.com,TP.HCM,2023-10-25,bronze
+C001821,Phạm Hữu An,0990579352,user1821@example.com,TP.HCM,2024-07-02,bronze
+C001822,Hồ Văn Quân,0985426773,user1822@example.com,TP.HCM,2022-10-01,bronze
+C001823,Phạm Văn An,0967838952,user1823@example.com,TP.HCM,2025-06-30,silver
+C001824,Hồ Văn Bình,0935509010,user1824@example.com,TP.HCM,2024-05-21,silver
+C001825,Trần Ngọc Hùng,0942161461,user1825@example.com,TP.HCM,2022-12-29,bronze
+C001826,Đỗ Thu Trang,0981904122,user1826@example.com,Hà Nội,2023-01-22,bronze
+C001827,Hồ Ngọc Dũng,0925250793,user1827@example.com,TP.HCM,2023-01-21,bronze
+C001828,Phạm Văn Lan,0968606878,user1828@example.com,Hà Nội,2022-05-16,bronze
+C001829,Phạm Thu Thảo,0999383025,user1829@example.com,Hà Nội,2023-04-28,bronze
+C001830,Nguyễn Văn Linh,0976751149,user1830@example.com,TP.HCM,2024-12-13,bronze
+C001831,Hồ Thu Tuấn,0918496538,user1831@example.com,TP.HCM,2024-10-20,silver
+C001832,Nguyễn Văn Phương,0996783821,user1832@example.com,Hà Nội,2023-09-05,silver
+C001833,Phạm Hữu Minh,0948190999,user1833@example.com,TP.HCM,2023-02-13,bronze
+C001834,Đỗ Thị Hà,0978363100,user1834@example.com,Hà Nội,2024-11-08,silver
+C001835,Trần Hữu Trang,0978169811,user1835@example.com,TP.HCM,2023-05-18,bronze
+C001836,Trần Hữu An,0924809082,user1836@example.com,TP.HCM,2025-10-23,gold
+C001837,Hoàng Thị Hà,0993208491,user1837@example.com,TP.HCM,2024-03-31,bronze
+C001838,Hoàng Ngọc Ngọc,0999078016,user1838@example.com,Hà Nội,2024-07-14,silver
+C001839,Trần Văn Minh,0929262625,user1839@example.com,Hà Nội,2022-12-04,bronze
+C001840,Nguyễn Ngọc Hà,0957631810,user1840@example.com,TP.HCM,2025-06-13,bronze
+C001841,Lê Thị Ngọc,0954862440,user1841@example.com,TP.HCM,2022-02-23,bronze
+C001842,Phạm Hữu Bình,0956970748,user1842@example.com,Hà Nội,2023-04-07,bronze
+C001843,Hồ Minh Bình,0978637796,user1843@example.com,Hà Nội,2023-02-03,silver
+C001844,Đỗ Ngọc Tuấn,0949080715,user1844@example.com,TP.HCM,2022-12-10,bronze
+C001845,Nguyễn Minh Ngọc,0979155943,user1845@example.com,TP.HCM,2022-03-23,bronze
+C001846,Bùi Văn Chi,0923835526,user1846@example.com,TP.HCM,2025-08-15,bronze
+C001847,Phạm Ngọc Tuấn,0910734357,user1847@example.com,TP.HCM,2023-01-02,bronze
+C001848,Lê Hữu Ngọc,0929890056,user1848@example.com,Hà Nội,2022-01-08,bronze
+C001849,Hoàng Minh Hùng,0953270153,user1849@example.com,TP.HCM,2023-06-28,bronze
+C001850,Bùi Văn Nam,0982991892,user1850@example.com,Hà Nội,2025-03-15,bronze
+C001851,Lê Thu Trang,0989482476,user1851@example.com,TP.HCM,2022-07-27,bronze
+C001852,Nguyễn Văn Nam,0995653471,user1852@example.com,TP.HCM,2023-04-27,bronze
+C001853,Nguyễn Thị Bình,0989644800,user1853@example.com,TP.HCM,2023-09-17,bronze
+C001854,Hồ Thu Phương,0985935925,user1854@example.com,TP.HCM,2024-04-27,bronze
+C001855,Đặng Minh Dũng,0929197699,user1855@example.com,TP.HCM,2022-07-05,bronze
+C001856,Phạm Minh Nam,0954301884,user1856@example.com,Hà Nội,2025-02-06,gold
+C001857,Hồ Thị Lan,0951240532,user1857@example.com,TP.HCM,2025-02-08,bronze
+C001858,Trần Văn Hùng,0910316160,user1858@example.com,Hà Nội,2024-04-18,bronze
+C001859,Đỗ Thu Dũng,0985360891,user1859@example.com,TP.HCM,2024-04-15,bronze
+C001860,Hồ Thu Quân,0957669227,user1860@example.com,TP.HCM,2023-11-26,bronze
+C001861,Phạm Thu Phương,0937139094,user1861@example.com,TP.HCM,2024-06-26,bronze
+C001862,Bùi Thu Hùng,0950705878,user1862@example.com,Hà Nội,2024-07-03,bronze
+C001863,Hoàng Hữu Dũng,0957814752,user1863@example.com,Hà Nội,2023-08-11,bronze
+C001864,Vũ Thị An,0922792455,user1864@example.com,TP.HCM,2022-08-05,silver
+C001865,Lê Hữu Trang,0964390416,user1865@example.com,Hà Nội,2025-10-19,bronze
+C001866,Đặng Thị Linh,0910165916,user1866@example.com,Hà Nội,2025-07-29,bronze
+C001867,Hồ Hữu Bình,0937344920,user1867@example.com,TP.HCM,2024-09-25,bronze
+C001868,Lê Thị An,0932148005,user1868@example.com,Hà Nội,2022-02-24,silver
+C001869,Đặng Minh Hà,0951177865,user1869@example.com,TP.HCM,2023-12-07,bronze
+C001870,Trần Thị Minh,0915953808,user1870@example.com,TP.HCM,2022-11-11,bronze
+C001871,Nguyễn Minh Quân,0998499769,user1871@example.com,Hà Nội,2022-04-07,bronze
+C001872,Trần Minh Quân,0920211884,user1872@example.com,Hà Nội,2023-08-16,bronze
+C001873,Đỗ Minh Bình,0950167551,user1873@example.com,Hà Nội,2024-11-02,bronze
+C001874,Nguyễn Hữu Tuấn,0959604083,user1874@example.com,TP.HCM,2024-09-23,bronze
+C001875,Phạm Minh Hùng,0953667106,user1875@example.com,TP.HCM,2023-08-12,bronze
+C001876,Bùi Văn Chi,0948754613,user1876@example.com,TP.HCM,2023-10-28,bronze
+C001877,Bùi Hữu Quân,0923810038,user1877@example.com,Hà Nội,2024-07-07,silver
+C001878,Phạm Thu Quân,0950915119,user1878@example.com,Hà Nội,2025-10-30,silver
+C001879,Phạm Hữu Hà,0954852236,user1879@example.com,TP.HCM,2025-10-16,bronze
+C001880,Bùi Thị Linh,0999766729,user1880@example.com,TP.HCM,2023-08-01,bronze
+C001881,Bùi Thu Nam,0950145403,user1881@example.com,Hà Nội,2024-08-19,silver
+C001882,Hồ Thị Quân,0921976719,user1882@example.com,Hà Nội,2024-11-25,bronze
+C001883,Nguyễn Hữu Thảo,0914631472,user1883@example.com,TP.HCM,2022-08-20,silver
+C001884,Phạm Thị Bình,0960301990,user1884@example.com,TP.HCM,2022-10-05,bronze
+C001885,Đỗ Thị Quân,0925181548,user1885@example.com,Hà Nội,2025-05-23,silver
+C001886,Nguyễn Hữu Chi,0995444995,user1886@example.com,TP.HCM,2025-04-18,bronze
+C001887,Hồ Văn Quân,0938342329,user1887@example.com,TP.HCM,2024-09-27,bronze
+C001888,Bùi Ngọc Nam,0912203256,user1888@example.com,Hà Nội,2022-06-09,bronze
+C001889,Đặng Văn Linh,0999914296,user1889@example.com,Hà Nội,2022-05-28,silver
+C001890,Phạm Thu Tuấn,0919235741,user1890@example.com,Hà Nội,2023-09-07,silver
+C001891,Lê Thị Nam,0973711649,user1891@example.com,Hà Nội,2023-04-12,bronze
+C001892,Nguyễn Thu Hùng,0927136514,user1892@example.com,TP.HCM,2024-05-22,bronze
+C001893,Trần Hữu Phương,0961845874,user1893@example.com,Hà Nội,2024-12-25,bronze
+C001894,Bùi Thị Ngọc,0966951639,user1894@example.com,Hà Nội,2023-04-13,bronze
+C001895,Nguyễn Hữu Minh,0946267753,user1895@example.com,Hà Nội,2022-11-23,silver
+C001896,Đỗ Thu Nam,0913465134,user1896@example.com,TP.HCM,2022-01-20,silver
+C001897,Trần Hữu Ngọc,0931223888,user1897@example.com,Hà Nội,2024-07-13,gold
+C001898,Lê Minh An,0997917505,user1898@example.com,Hà Nội,2022-10-18,gold
+C001899,Đỗ Thị Lan,0931188474,user1899@example.com,TP.HCM,2023-12-20,bronze
+C001900,Phạm Ngọc Phương,0963384848,user1900@example.com,TP.HCM,2024-01-19,bronze
+C001901,Đỗ Hữu Hà,0979729865,user1901@example.com,Hà Nội,2022-10-07,silver
+C001902,Hoàng Minh Phương,0988549882,user1902@example.com,Hà Nội,2023-05-08,silver
+C001903,Phạm Thị Thảo,0912498319,user1903@example.com,Hà Nội,2025-09-03,bronze
+C001904,Vũ Hữu Minh,0973567960,user1904@example.com,Hà Nội,2024-08-07,bronze
+C001905,Đỗ Thu Nam,0914713972,user1905@example.com,Hà Nội,2023-01-11,silver
+C001906,Đặng Ngọc Quân,0948049585,user1906@example.com,Hà Nội,2022-04-20,silver
+C001907,Hoàng Hữu Thảo,0910552483,user1907@example.com,Hà Nội,2022-09-13,bronze
+C001908,Hồ Ngọc Dũng,0958041372,user1908@example.com,Hà Nội,2022-06-19,silver
+C001909,Vũ Minh Trang,0933915596,user1909@example.com,TP.HCM,2022-10-24,bronze
+C001910,Bùi Văn Dũng,0961043610,user1910@example.com,TP.HCM,2024-08-22,silver
+C001911,Trần Văn Ngọc,0992004503,user1911@example.com,Hà Nội,2022-03-17,bronze
+C001912,Phạm Hữu Lan,0980442502,user1912@example.com,Hà Nội,2023-10-08,bronze
+C001913,Hồ Hữu Phương,0981108472,user1913@example.com,TP.HCM,2024-01-13,silver
+C001914,Hồ Văn Nam,0992076573,user1914@example.com,Hà Nội,2024-05-05,bronze
+C001915,Lê Minh Quân,0967701455,user1915@example.com,Hà Nội,2022-12-21,bronze
+C001916,Hồ Hữu Chi,0924205816,user1916@example.com,Hà Nội,2025-09-21,silver
+C001917,Hồ Văn Ngọc,0987689025,user1917@example.com,Hà Nội,2023-09-27,bronze
+C001918,Nguyễn Thị Trang,0929909200,user1918@example.com,Hà Nội,2022-09-16,bronze
+C001919,Lê Minh An,0963642404,user1919@example.com,TP.HCM,2024-09-03,bronze
+C001920,Nguyễn Hữu Phương,0982643351,user1920@example.com,Hà Nội,2025-04-29,silver
+C001921,Vũ Ngọc Chi,0942023765,user1921@example.com,TP.HCM,2023-06-07,bronze
+C001922,Phạm Hữu Minh,0945265526,user1922@example.com,TP.HCM,2025-09-06,bronze
+C001923,Hoàng Hữu An,0967325554,user1923@example.com,TP.HCM,2022-06-10,bronze
+C001924,Vũ Văn Chi,0923783116,user1924@example.com,Hà Nội,2022-05-31,bronze
+C001925,Đặng Thị Phương,0912076644,user1925@example.com,TP.HCM,2023-01-09,silver
+C001926,Phạm Thị Hùng,0974143909,user1926@example.com,TP.HCM,2023-10-29,bronze
+C001927,Nguyễn Thu An,0976351212,user1927@example.com,TP.HCM,2023-12-01,bronze
+C001928,Lê Thu Trang,0929869689,user1928@example.com,TP.HCM,2022-03-09,bronze
+C001929,Lê Ngọc Thảo,0928041366,user1929@example.com,TP.HCM,2025-01-15,bronze
+C001930,Vũ Thu Linh,0966617777,user1930@example.com,Hà Nội,2023-07-01,bronze
+C001931,Phạm Hữu Tuấn,0926455824,user1931@example.com,Hà Nội,2025-05-05,bronze
+C001932,Vũ Minh Trang,0952855831,user1932@example.com,Hà Nội,2023-10-16,bronze
+C001933,Hồ Thị Ngọc,0957511179,user1933@example.com,Hà Nội,2025-04-07,silver
+C001934,Vũ Văn Ngọc,0954756815,user1934@example.com,Hà Nội,2022-07-31,bronze
+C001935,Lê Hữu Quân,0997767743,user1935@example.com,TP.HCM,2022-03-21,bronze
+C001936,Hồ Thị Ngọc,0927817386,user1936@example.com,TP.HCM,2022-02-22,bronze
+C001937,Trần Thị Phương,0913125599,user1937@example.com,Hà Nội,2024-02-02,bronze
+C001938,Phạm Minh Lan,0998481934,user1938@example.com,TP.HCM,2025-09-22,bronze
+C001939,Lê Minh Nam,0967727934,user1939@example.com,TP.HCM,2023-05-22,bronze
+C001940,Đỗ Thu An,0935557480,user1940@example.com,TP.HCM,2023-03-18,bronze
+C001941,Phạm Minh Hùng,0928217748,user1941@example.com,Hà Nội,2024-05-31,bronze
+C001942,Hồ Thu Lan,0962224323,user1942@example.com,TP.HCM,2023-06-28,bronze
+C001943,Phạm Thị Hùng,0924568439,user1943@example.com,Hà Nội,2023-03-02,silver
+C001944,Lê Ngọc Chi,0994006871,user1944@example.com,Hà Nội,2024-09-19,bronze
+C001945,Hồ Thu Nam,0987398264,user1945@example.com,Hà Nội,2023-09-19,silver
+C001946,Vũ Thị Bình,0992747218,user1946@example.com,Hà Nội,2022-09-09,bronze
+C001947,Đỗ Hữu Hà,0940663598,user1947@example.com,Hà Nội,2025-05-31,bronze
+C001948,Đặng Hữu Lan,0946053734,user1948@example.com,TP.HCM,2023-04-26,silver
+C001949,Phạm Văn Hà,0956847357,user1949@example.com,Hà Nội,2022-05-21,bronze
+C001950,Hồ Thu Trang,0918175100,user1950@example.com,TP.HCM,2022-02-08,silver
+C001951,Đặng Minh An,0925567998,user1951@example.com,TP.HCM,2025-06-23,bronze
+C001952,Lê Ngọc Hùng,0975322861,user1952@example.com,TP.HCM,2022-03-02,bronze
+C001953,Hồ Thị Chi,0978231947,user1953@example.com,Hà Nội,2023-06-28,gold
+C001954,Vũ Ngọc Bình,0955726886,user1954@example.com,Hà Nội,2024-09-11,silver
+C001955,Lê Thu Hùng,0980787562,user1955@example.com,Hà Nội,2022-02-10,bronze
+C001956,Đỗ Văn Ngọc,0969612661,user1956@example.com,TP.HCM,2023-10-11,bronze
+C001957,Lê Thị Quân,0983472670,user1957@example.com,Hà Nội,2022-02-02,silver
+C001958,Nguyễn Thị Hùng,0914344040,user1958@example.com,Hà Nội,2023-09-10,silver
+C001959,Đỗ Minh Minh,0942833498,user1959@example.com,Hà Nội,2022-04-26,bronze
+C001960,Bùi Ngọc Minh,0940611236,user1960@example.com,TP.HCM,2025-02-20,bronze
+C001961,Đặng Ngọc An,0992147471,user1961@example.com,TP.HCM,2022-07-09,bronze
+C001962,Nguyễn Thu Nam,0975235360,user1962@example.com,TP.HCM,2025-08-26,bronze
+C001963,Nguyễn Minh Hà,0910256520,user1963@example.com,Hà Nội,2024-04-18,silver
+C001964,Vũ Ngọc Tuấn,0965601066,user1964@example.com,Hà Nội,2024-06-18,bronze
+C001965,Đỗ Văn An,0980213938,user1965@example.com,Hà Nội,2024-05-22,silver
+C001966,Đặng Hữu Chi,0988613855,user1966@example.com,Hà Nội,2023-02-27,gold
+C001967,Lê Thị Thảo,0978865194,user1967@example.com,Hà Nội,2023-12-04,bronze
+C001968,Vũ Minh Trang,0964180390,user1968@example.com,Hà Nội,2023-04-12,bronze
+C001969,Lê Thu Linh,0986622378,user1969@example.com,TP.HCM,2023-02-01,gold
+C001970,Vũ Ngọc An,0995323871,user1970@example.com,Hà Nội,2023-02-25,bronze
+C001971,Lê Văn Thảo,0931401766,user1971@example.com,TP.HCM,2024-11-19,bronze
+C001972,Phạm Thị Hùng,0930844167,user1972@example.com,TP.HCM,2022-06-23,bronze
+C001973,Hồ Ngọc Lan,0953029272,user1973@example.com,TP.HCM,2025-01-30,bronze
+C001974,Đỗ Minh Dũng,0988831658,user1974@example.com,Hà Nội,2022-11-06,bronze
+C001975,Vũ Ngọc Dũng,0931241385,user1975@example.com,Hà Nội,2025-10-18,bronze
+C001976,Hoàng Hữu Lan,0963179931,user1976@example.com,Hà Nội,2025-06-28,bronze
+C001977,Bùi Thu Quân,0949920837,user1977@example.com,Hà Nội,2022-03-30,silver
+C001978,Lê Minh An,0911807437,user1978@example.com,Hà Nội,2025-10-30,silver
+C001979,Nguyễn Minh Lan,0971952508,user1979@example.com,Hà Nội,2025-03-08,bronze
+C001980,Đỗ Hữu An,0918157195,user1980@example.com,Hà Nội,2024-01-29,bronze
+C001981,Đặng Thị Trang,0918913410,user1981@example.com,Hà Nội,2024-09-01,gold
+C001982,Bùi Thị Thảo,0910005082,user1982@example.com,TP.HCM,2023-09-30,bronze
+C001983,Hoàng Văn Hà,0931957036,user1983@example.com,Hà Nội,2023-08-03,bronze
+C001984,Đỗ Thị Phương,0914577654,user1984@example.com,TP.HCM,2025-03-25,bronze
+C001985,Vũ Thu Bình,0949046738,user1985@example.com,Hà Nội,2022-06-17,bronze
+C001986,Bùi Ngọc Quân,0956359960,user1986@example.com,TP.HCM,2022-05-17,bronze
+C001987,Bùi Ngọc Dũng,0939069048,user1987@example.com,TP.HCM,2025-01-03,gold
+C001988,Vũ Văn Phương,0965858952,user1988@example.com,Hà Nội,2025-07-24,bronze
+C001989,Đặng Hữu Dũng,0970963817,user1989@example.com,TP.HCM,2022-03-21,bronze
+C001990,Vũ Văn Hà,0951500311,user1990@example.com,TP.HCM,2022-02-04,silver
+C001991,Hồ Văn Chi,0971184788,user1991@example.com,TP.HCM,2024-01-18,bronze
+C001992,Phạm Ngọc Tuấn,0976729022,user1992@example.com,TP.HCM,2025-05-04,bronze
+C001993,Trần Ngọc Ngọc,0988205429,user1993@example.com,TP.HCM,2022-08-10,bronze
+C001994,Phạm Ngọc Quân,0989930680,user1994@example.com,Hà Nội,2024-06-21,silver
+C001995,Nguyễn Thu Dũng,0936056318,user1995@example.com,Hà Nội,2025-05-17,bronze
+C001996,Trần Hữu Tuấn,0935497640,user1996@example.com,Hà Nội,2022-02-20,bronze
+C001997,Vũ Minh Nam,0946164015,user1997@example.com,Hà Nội,2023-05-06,bronze
+C001998,Trần Thị Quân,0978478108,user1998@example.com,Hà Nội,2024-02-20,silver
+C001999,Hồ Hữu Chi,0937498716,user1999@example.com,TP.HCM,2023-12-29,bronze
+C002000,Hồ Văn Linh,0976724355,user2000@example.com,Hà Nội,2024-05-15,gold

@@ -1,0 +1,31 @@
+store_id,store_name,city,district,opened_date,seats,tier
+HN01,Phin Phố Hoàn Kiếm,Hà Nội,Hoàn Kiếm,2019-01-15,24,0.6
+SG01,Phin Phố Quận 1,TP.HCM,Quận 1,2019-04-22,37,1.3
+HN02,Phin Phố Ba Đình,Hà Nội,Ba Đình,2019-07-28,50,1.0
+SG02,Phin Phố Quận 3,TP.HCM,Quận 3,2019-11-02,63,0.7
+HN03,Phin Phố Đống Đa,Hà Nội,Đống Đa,2020-02-07,76,1.4
+SG03,Phin Phố Quận 4,TP.HCM,Quận 4,2020-05-14,29,1.1
+HN04,Phin Phố Hai Bà Trưng,Hà Nội,Hai Bà Trưng,2020-08-19,42,0.8
+SG04,Phin Phố Quận 5,TP.HCM,Quận 5,2020-11-24,55,1.5
+HN05,Phin Phố Cầu Giấy,Hà Nội,Cầu Giấy,2021-03-01,68,1.2
+SG05,Phin Phố Quận 7,TP.HCM,Quận 7,2021-06-06,81,0.9
+HN06,Phin Phố Tây Hồ,Hà Nội,Tây Hồ,2021-09-11,34,0.6
+SG06,Phin Phố Quận 10,TP.HCM,Quận 10,2021-12-17,47,1.3
+HN07,Phin Phố Thanh Xuân,Hà Nội,Thanh Xuân,2022-03-24,60,1.0
+SG07,Phin Phố Quận 11,TP.HCM,Quận 11,2022-06-29,73,0.7
+HN08,Phin Phố Hoàng Mai,Hà Nội,Hoàng Mai,2022-10-04,26,1.4
+SG08,Phin Phố Bình Thạnh,TP.HCM,Bình Thạnh,2023-01-09,39,1.1
+HN09,Phin Phố Long Biên,Hà Nội,Long Biên,2023-04-16,52,0.8
+SG09,Phin Phố Phú Nhuận,TP.HCM,Phú Nhuận,2023-07-22,65,1.5
+HN10,Phin Phố Nam Từ Liêm,Hà Nội,Nam Từ Liêm,2023-10-27,78,1.2
+SG10,Phin Phố Tân Bình,TP.HCM,Tân Bình,2024-02-01,31,0.9
+HN11,Phin Phố Bắc Từ Liêm,Hà Nội,Bắc Từ Liêm,2024-05-08,44,0.6
+SG11,Phin Phố Gò Vấp,TP.HCM,Gò Vấp,2019-02-21,57,1.3
+HN12,Phin Phố Hà Đông,Hà Nội,Hà Đông,2019-05-29,70,1.0
+SG12,Phin Phố Thủ Đức,TP.HCM,Thủ Đức,2019-09-03,83,0.7
+HN13,Phin Phố Thanh Trì,Hà Nội,Thanh Trì,2019-12-09,36,1.4
+SG13,Phin Phố Bình Tân,TP.HCM,Bình Tân,2020-03-15,49,1.1
+HN14,Phin Phố Gia Lâm,Hà Nội,Gia Lâm,2020-06-20,62,0.8
+SG14,Phin Phố Tân Phú,TP.HCM,Tân Phú,2020-09-25,75,1.5
+HN15,Phin Phố Đông Anh,Hà Nội,Đông Anh,2020-12-31,28,1.2
+SG15,Phin Phố Quận 12,TP.HCM,Quận 12,2021-04-07,41,0.9

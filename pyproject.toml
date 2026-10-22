@@ -55,3 +55,6 @@ quote-style = "double"
 testpaths = ["data/generator/tests", "platform/ingestion/tests", "videos"]
 python_files = ["test_*.py"]
 addopts = "-q"
+
+[tool.ruff.lint.isort]
+known-first-party = ["coffeegen", "coffee_ingestion"]

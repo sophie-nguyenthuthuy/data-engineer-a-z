@@ -1,0 +1,24 @@
+item_id,item_name,category,price_vnd,cost_vnd
+CF01,Cà phê đen đá,coffee,29000,7000
+CF02,Cà phê sữa đá,coffee,35000,9000
+CF03,Bạc xỉu,coffee,39000,11000
+CF04,Cà phê muối,coffee,45000,12000
+CF05,Cà phê trứng,coffee,55000,15000
+CF06,Cold brew,coffee,49000,13000
+CF07,Espresso,coffee,39000,9000
+CF08,Americano,coffee,45000,9000
+CF09,Cappuccino,coffee,55000,14000
+CF10,Latte,coffee,59000,15000
+TE01,Trà đào cam sả,tea,49000,13000
+TE02,Trà vải,tea,49000,13000
+TE03,Trà sen vàng,tea,45000,11000
+TE04,Trà ô long,tea,39000,9000
+MT01,Trà sữa trân châu,milk_tea,45000,12000
+MT02,Matcha latte,milk_tea,59000,17000
+OD01,Sữa chua đá,other_drink,39000,10000
+OD02,Nước cam,other_drink,45000,15000
+FD01,Bánh mì que,food,15000,6000
+FD02,Croissant,food,35000,12000
+FD03,Bánh su kem,food,25000,8000
+FD04,Bánh chuối,food,29000,9000
+FD05,Tiramisu,food,49000,18000

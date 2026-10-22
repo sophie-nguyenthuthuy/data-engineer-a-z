@@ -49,11 +49,10 @@ ps: env ## List running services
 install: ## Install Python packages (generator, ingestion) + dev tools into .venv
 	$(UV) sync --all-packages --group dev
 
-generate: ## Regenerate committed samples with the generator (deterministic)
-	$(UV) run coffeegen pos --days 7 --stores 30 --seed 42 --out data/samples
-	$(UV) run coffeegen app-events --days 7 --seed 42 --out data/samples
-	$(UV) run coffeegen iot --days 1 --machines 60 --hz 0.02 --seed 42 --out data/samples
-	$(UV) run python data/samples/make_seed_sql.py
+generate: ## Regenerate committed samples with the generator (deterministic, < 2 MB)
+	$(UV) run coffeegen pos        --start 2026-02-14 --days 6 --stores 30 --scale 0.1 --seed 42 --out data/samples
+	$(UV) run coffeegen app-events --start 2026-02-16 --days 2 --stores 30 --scale 0.1 --seed 42 --out data/samples
+	$(UV) run coffeegen iot        --start 2026-02-16 --machines 60 --hz 0.0167 --hours 0.75 --seed 42 --out data/samples
 
 test: ## Run unit tests
 	$(UV) run pytest

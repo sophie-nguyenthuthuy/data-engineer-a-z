@@ -1,0 +1,61 @@
+machine_id,store_id,model,installed_date
+M001,HN01,LM Linea PB,2019-01-15
+M002,SG01,Nuova Simonelli Aurelia,2019-05-23
+M003,HN02,Victoria Arduino Eagle One,2019-09-28
+M004,SG02,LM Linea PB,2020-02-03
+M005,HN03,Nuova Simonelli Aurelia,2020-06-10
+M006,SG03,Victoria Arduino Eagle One,2020-10-16
+M007,HN04,LM Linea PB,2021-02-21
+M008,SG04,Nuova Simonelli Aurelia,2021-06-29
+M009,HN05,Victoria Arduino Eagle One,2021-11-04
+M010,SG05,LM Linea PB,2022-03-12
+M011,HN06,Nuova Simonelli Aurelia,2022-07-18
+M012,SG06,Victoria Arduino Eagle One,2022-11-23
+M013,HN07,LM Linea PB,2023-03-31
+M014,SG07,Nuova Simonelli Aurelia,2022-07-02
+M015,HN08,Victoria Arduino Eagle One,2022-11-07
+M016,SG08,LM Linea PB,2023-03-15
+M017,HN09,Nuova Simonelli Aurelia,2023-07-21
+M018,SG09,Victoria Arduino Eagle One,2023-11-26
+M019,HN10,LM Linea PB,2024-04-02
+M020,SG10,Nuova Simonelli Aurelia,2024-08-08
+M021,HN11,Victoria Arduino Eagle One,2024-12-14
+M022,SG11,LM Linea PB,2019-10-30
+M023,HN12,Nuova Simonelli Aurelia,2020-03-06
+M024,SG12,Victoria Arduino Eagle One,2020-07-12
+M025,HN13,LM Linea PB,2020-11-17
+M026,SG13,Nuova Simonelli Aurelia,2021-03-25
+M027,HN14,Victoria Arduino Eagle One,2020-06-26
+M028,SG14,LM Linea PB,2020-11-01
+M029,HN15,Nuova Simonelli Aurelia,2021-03-09
+M030,SG15,Victoria Arduino Eagle One,2021-07-15
+M031,HN01,LM Linea PB,2019-05-25
+M032,SG01,Nuova Simonelli Aurelia,2019-09-30
+M033,HN02,Victoria Arduino Eagle One,2020-02-05
+M034,SG02,LM Linea PB,2020-06-12
+M035,HN03,Nuova Simonelli Aurelia,2020-10-18
+M036,SG03,Victoria Arduino Eagle One,2021-02-23
+M037,HN04,LM Linea PB,2021-07-01
+M038,SG04,Nuova Simonelli Aurelia,2021-11-06
+M039,HN05,Victoria Arduino Eagle One,2022-03-14
+M040,SG05,LM Linea PB,2021-06-15
+M041,HN06,Nuova Simonelli Aurelia,2021-10-21
+M042,SG06,Victoria Arduino Eagle One,2022-02-26
+M043,HN07,LM Linea PB,2022-07-04
+M044,SG07,Nuova Simonelli Aurelia,2022-11-09
+M045,HN08,Victoria Arduino Eagle One,2023-03-17
+M046,SG08,LM Linea PB,2023-07-23
+M047,HN09,Nuova Simonelli Aurelia,2023-11-28
+M048,SG09,Victoria Arduino Eagle One,2024-04-04
+M049,HN10,LM Linea PB,2024-08-10
+M050,SG10,Nuova Simonelli Aurelia,2024-12-16
+M051,HN11,Victoria Arduino Eagle One,2025-04-23
+M052,SG11,LM Linea PB,2020-03-08
+M053,HN12,Nuova Simonelli Aurelia,2019-06-10
+M054,SG12,Victoria Arduino Eagle One,2019-10-16
+M055,HN13,LM Linea PB,2020-02-21
+M056,SG13,Nuova Simonelli Aurelia,2020-06-28
+M057,HN14,Victoria Arduino Eagle One,2020-11-03
+M058,SG14,LM Linea PB,2021-03-11
+M059,HN15,Nuova Simonelli Aurelia,2021-07-17
+M060,SG15,Victoria Arduino Eagle One,2021-11-22
