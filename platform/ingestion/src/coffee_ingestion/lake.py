@@ -90,8 +90,9 @@ class Lake:
                 if info.type == pafs.FileType.File and info.path != self._strip(keep):
                     fs.delete_file(info.path)
             return
+        keep_path = Path(keep).resolve()  # "./lake-local/..." và "lake-local/..." là cùng một file
         for f in Path(prefix).iterdir():
-            if f.is_file() and str(f) != keep:
+            if f.is_file() and f.resolve() != keep_path:
                 f.unlink()
 
     def read_parquet(self, layer: str, table: str, partition: str | None = None) -> pl.DataFrame:

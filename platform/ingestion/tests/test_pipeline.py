@@ -89,3 +89,16 @@ def test_write_parquet_overwrites_whole_partition(tmp_path):
     (part / "_SUCCESS").write_bytes(b"")
     lake.write_parquet(pl.DataFrame({"a": [1]}), "silver", "t", "dt=2026-02-15")
     assert sorted(p.name for p in part.iterdir()) == ["part-000.parquet"]
+
+
+def test_write_parquet_relative_root_keeps_new_file(tmp_path, monkeypatch):
+    """Root tương đối kiểu './lake-local' (như `make smoke`) không được xoá nhầm file vừa ghi."""
+    import polars as pl
+
+    from coffee_ingestion.lake import Lake
+
+    monkeypatch.chdir(tmp_path)
+    lake = Lake("./lake-local")
+    uri = lake.write_parquet(pl.DataFrame({"a": [1, 2]}), "silver", "t", "dt=2026-02-15")
+    assert Path(uri).exists()
+    assert pl.read_parquet(uri).height == 2
