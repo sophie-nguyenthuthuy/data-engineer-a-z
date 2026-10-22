@@ -1,0 +1,26 @@
+# Lời giải #05 — thêm Adminer (web UI cho Postgres) bằng file override, không đụng docker-compose.yml.
+#
+# Chạy (từ root repo):
+#   docker compose --env-file .env -f docker-compose.yml -f videos/05-docker-cho-data-engineer/lab/solution/compose.override.yml \
+#       --profile core up -d adminer
+# Mở http://localhost:8089 → System: PostgreSQL, Server: postgres, Username: coffee, Password: coffee, Database: coffee_pos.
+# Dừng & xoá:
+#   docker compose --env-file .env -f docker-compose.yml -f videos/05-docker-cho-data-engineer/lab/solution/compose.override.yml \
+#       rm -sf adminer
+
+services:
+  adminer:
+    image: adminer:4.8.1            # pin version: build hôm nay = build 6 tháng sau
+    profiles: [core]                # bật cùng postgres/minio; `make up` không biết file này nên không tự bật
+    depends_on:
+      postgres: { condition: service_healthy }   # chờ pg_isready, không chỉ chờ container "started"
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres           # tên service = hostname trong network dea2z_default
+    ports:
+      - "${ADMINER_PORT:-8089}:8080"             # host:container; đổi ADMINER_PORT trong .env nếu trùng
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/ >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 10s

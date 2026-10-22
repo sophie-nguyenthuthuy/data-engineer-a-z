@@ -1,0 +1,35 @@
+# Lab #20 — Data contract cho silver.pos_line_items. Điền các TODO rồi chạy:
+#   uv run python platform/quality/contract_check.py \
+#     --contract videos/20-data-quality/lab/contracts/pos_line_items.yaml \
+#     --parquet "lake-local/silver/pos_line_items/dt=2026-02-15/*.parquet"
+#
+# Các key contract_check.py hiểu: name, type (string|integer|float|boolean|timestamp|date),
+# required, unique, allowed, pattern, min. Xem schema cột ở data/generator/SCHEMA.md.
+contract: silver.pos_line_items
+version: "1.0"
+owner: data-platform@phinpho.example
+source_owner: pos-team@phinpho.example
+sla:
+  freshness_hours: 26
+  # TODO: ngưỡng số dòng/ngày. Gợi ý: mỗi hoá đơn ~1.75 món; dùng cùng tỉ lệ với min_rows_per_day của pos_transactions.
+  min_rows_per_day: 0
+exceptions:
+  # TODO: những ngày Tết được phép ít dòng (copy từ contracts/pos_transactions.yaml)
+  low_volume_dates: []
+columns:
+  - { name: line_id,        type: string,  required: true, unique: true }
+  # TODO: transaction_id — bắt buộc; pattern giống transaction_id ở contract pos_transactions:
+  #       "{store_id}-{YYYYMMDD}-{seq 5 số}" → regex "^(HN|SG)[0-9]{2}-[0-9]{8}-[0-9]{5}$"
+  - { name: transaction_id, type: string,  required: true }
+  # TODO: item_id — pattern 2 chữ cái (CF|TE|MT|OD|FD) + 2 số
+  - { name: item_id,        type: string,  required: true }
+  # TODO: size — chỉ cho phép S, M, L
+  - { name: size,           type: string,  required: true }
+  # TODO: quantity — integer, bắt buộc, min 1 (negative_qty đã vào quarantine ở silver)
+  - { name: quantity,       type: integer, required: true }
+  # TODO: unit_price_vnd — integer, min 15000 (món rẻ nhất size S trong menu_items.csv)
+  - { name: unit_price_vnd, type: integer, required: true }
+  # TODO: line_total_vnd — integer, min 0
+  - { name: line_total_vnd, type: integer, required: true }
+changelog:
+  - { version: "1.0", date: 2026-02-01, note: "initial contract" }

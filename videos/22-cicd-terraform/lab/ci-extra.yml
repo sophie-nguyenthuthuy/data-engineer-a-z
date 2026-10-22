@@ -1,0 +1,25 @@
+# Lab #22 — viết một GitHub Actions workflow từ đầu: kiểm tra Terraform, chỉ chạy khi infra/terraform/ đổi.
+# Khi xong: copy vào .github/workflows/ci-extra.yml trên fork của bạn. Kiểm tra cấu trúc bằng:
+#   uv run pytest videos/22-cicd-terraform -q
+name: CI extra — terraform
+
+# TODO: trigger. Cần 2 sự kiện:
+#   pull_request:  với paths: ["infra/terraform/**"]
+#   push:          branches: [main], cũng với paths như trên
+# Gợi ý: nhiều người viết "on": (có ngoặc kép) vì YAML 1.1 đọc `on` trần thành boolean true.
+on: {}
+
+jobs:
+  terraform-check:
+    name: terraform fmt + validate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra/terraform
+    steps:
+      - uses: actions/checkout@v4
+      # TODO: cài Terraform bằng action hashicorp/setup-terraform@v3, pin terraform_version "1.9.8"
+      #       (pin version để CI hôm nay và 6 tháng sau chạy giống nhau)
+      # TODO: step "fmt": terraform fmt -check -recursive
+      # TODO: step "init": terraform init -backend=false -input=false   (vì sao -backend=false? xem README)
+      # TODO: step "validate": terraform validate

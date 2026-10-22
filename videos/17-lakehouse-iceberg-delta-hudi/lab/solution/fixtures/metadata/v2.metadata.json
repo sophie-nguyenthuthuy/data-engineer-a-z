@@ -1,0 +1,100 @@
+{
+  "format-version": 2,
+  "table-uuid": "9f1c2b7e-4d2a-4c5e-9b1a-7e3d2c1b0a99",
+  "location": "s3a://warehouse/silver/pos_transactions",
+  "last-sequence-number": 2,
+  "last-updated-ms": 1771135260000,
+  "last-column-id": 11,
+  "current-schema-id": 0,
+  "schemas": [
+    {
+      "type": "struct",
+      "schema-id": 0,
+      "fields": [
+        {"id": 1, "name": "transaction_id", "required": true, "type": "string"},
+        {"id": 2, "name": "store_id", "required": true, "type": "string"},
+        {"id": 3, "name": "ts", "required": true, "type": "timestamptz"},
+        {"id": 4, "name": "channel", "required": false, "type": "string"},
+        {"id": 5, "name": "payment_method", "required": false, "type": "string"},
+        {"id": 6, "name": "customer_id", "required": false, "type": "string"},
+        {"id": 7, "name": "staff_id", "required": false, "type": "string"},
+        {"id": 8, "name": "total_amount_vnd", "required": false, "type": "long"},
+        {"id": 9, "name": "discount_vnd", "required": false, "type": "long"},
+        {"id": 10, "name": "is_rainy_day", "required": false, "type": "boolean"},
+        {"id": 11, "name": "_tz_fixed", "required": false, "type": "boolean"}
+      ]
+    }
+  ],
+  "default-spec-id": 0,
+  "partition-specs": [
+    {
+      "spec-id": 0,
+      "fields": [{"name": "ts_day", "transform": "day", "source-id": 3, "field-id": 1000}]
+    }
+  ],
+  "last-partition-id": 1000,
+  "default-sort-order-id": 0,
+  "sort-orders": [{"order-id": 0, "fields": []}],
+  "properties": {
+    "write.parquet.compression-codec": "zstd",
+    "write.target-file-size-bytes": "134217728"
+  },
+  "current-snapshot-id": 8821937160440015002,
+  "refs": {"main": {"snapshot-id": 8821937160440015002, "type": "branch"}},
+  "snapshots": [
+    {
+      "sequence-number": 1,
+      "snapshot-id": 3051729663735987200,
+      "timestamp-ms": 1771135200000,
+      "summary": {
+        "operation": "append",
+        "spark.app.id": "app-20260215100000-0001",
+        "added-data-files": "1",
+        "added-records": "792",
+        "added-files-size": "61440",
+        "changed-partition-count": "1",
+        "total-records": "792",
+        "total-files-size": "61440",
+        "total-data-files": "1",
+        "total-delete-files": "0",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      },
+      "manifest-list": "s3a://warehouse/silver/pos_transactions/metadata/snap-3051729663735987200-1-6a7f1c2e.avro",
+      "schema-id": 0
+    },
+    {
+      "sequence-number": 2,
+      "snapshot-id": 8821937160440015002,
+      "parent-snapshot-id": 3051729663735987200,
+      "timestamp-ms": 1771135260000,
+      "summary": {
+        "operation": "overwrite",
+        "spark.app.id": "app-20260215100100-0002",
+        "added-data-files": "1",
+        "deleted-data-files": "1",
+        "added-records": "792",
+        "deleted-records": "792",
+        "added-files-size": "61440",
+        "removed-files-size": "61440",
+        "changed-partition-count": "1",
+        "total-records": "792",
+        "total-files-size": "61440",
+        "total-data-files": "1",
+        "total-delete-files": "0",
+        "total-position-deletes": "0",
+        "total-equality-deletes": "0"
+      },
+      "manifest-list": "s3a://warehouse/silver/pos_transactions/metadata/snap-8821937160440015002-1-b3d9e0f4.avro",
+      "schema-id": 0
+    }
+  ],
+  "statistics": [],
+  "snapshot-log": [
+    {"timestamp-ms": 1771135200000, "snapshot-id": 3051729663735987200},
+    {"timestamp-ms": 1771135260000, "snapshot-id": 8821937160440015002}
+  ],
+  "metadata-log": [
+    {"timestamp-ms": 1771135200000, "metadata-file": "s3a://warehouse/silver/pos_transactions/metadata/v1.metadata.json"}
+  ]
+}

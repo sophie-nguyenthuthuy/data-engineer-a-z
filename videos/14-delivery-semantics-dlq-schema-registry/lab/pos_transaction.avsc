@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "PosTransaction",
+  "namespace": "vn.phinpho.pos",
+  "doc": "TODO: bổ sung các field còn thiếu theo data/generator/SCHEMA.md: channel, payment_method, customer_id (nullable, default null), staff_id, discount_vnd (default 0), is_rainy_day, items (array của record LineItem: item_id, size, qty, unit_price_vnd). So với lời giải bằng: uv run pytest videos/14-delivery-semantics-dlq-schema-registry -q",
+  "fields": [
+    {"name": "transaction_id", "type": "string"},
+    {"name": "store_id", "type": ["null", "string"], "default": null},
+    {"name": "ts", "type": "string", "doc": "ISO-8601 kèm +07:00"},
+    {"name": "total_amount_vnd", "type": "long"}
+  ]
+}

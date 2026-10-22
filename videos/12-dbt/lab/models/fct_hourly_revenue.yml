@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fct_hourly_revenue
+    description: "Doanh thu theo giờ Việt Nam × cửa hàng."
+    # TODO 5: test grain — dùng generic test tự viết của repo (tests/generic/dbt_utils_free_unique_combination.sql)
+    #   với combination_of_columns: [business_date, store_id, hour_local]
+    tests: []
+    columns:
+      - name: business_date
+        tests: [not_null]
+      - name: store_id
+        # TODO 6: not_null + relationships tới ref('dim_store') field store_id
+        tests: [not_null]
+      - name: hour_local
+        # TODO 7: not_null + accepted_values 0..23 (số, nên thêm `quote: false`)
+        tests: [not_null]
+      - name: revenue_vnd
+        # TODO 8: dùng generic test dbt_utils_free_positive của repo
+        tests: []

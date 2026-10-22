@@ -1,0 +1,37 @@
+# Lab #05 — thêm 1 service vào môi trường chung mà KHÔNG sửa docker-compose.yml của repo.
+# Compose cho phép chồng nhiều file: file sau bổ sung/ghi đè file trước.
+#
+# Chạy (từ root repo):
+#   docker compose --env-file .env -f docker-compose.yml -f videos/05-docker-cho-data-engineer/lab/compose.override.yml \
+#       --profile core up -d adminer
+# Dừng & xoá container:
+#   docker compose --env-file .env -f docker-compose.yml -f videos/05-docker-cho-data-engineer/lab/compose.override.yml \
+#       rm -sf adminer
+#
+# Mục tiêu: Adminer (web UI cho Postgres) chạy tại http://localhost:8089, đăng nhập server `postgres`, user/pass coffee/coffee.
+
+services:
+  adminer:
+    # TODO 1: image — luôn PIN version, không dùng :latest. Adminer 4.8.1 có bản arm64 + amd64.
+    image: TODO
+
+    # TODO 2: profile — để service chỉ bật cùng nhóm core (xem docker-compose.yml: postgres, minio cũng [core]).
+    profiles: [TODO]
+
+    # TODO 3: chỉ khởi động sau khi postgres HEALTHY (không chỉ "started").
+    #   Gợi ý: depends_on: { postgres: { condition: service_healthy } } — copy đúng cú pháp từ service jupyter.
+    depends_on: {}
+
+    # TODO 4: biến môi trường ADMINER_DEFAULT_SERVER = tên service Postgres trong network (không phải localhost!).
+    environment:
+      ADMINER_DEFAULT_SERVER: TODO
+
+    # TODO 5: map port host 8089 → port 8080 trong container. Dùng cú pháp "${ADMINER_PORT:-8089}:8080"
+    #   để ai bị trùng port có thể đổi trong .env mà không sửa file này.
+    ports: []
+
+    # TODO 6: healthcheck — image adminer là Alpine, có wget:
+    #   test: ["CMD-SHELL", "wget -qO- http://localhost:8080/ >/dev/null"]
+    #   Và dùng lại anchor `<<: *hc` được không? KHÔNG — anchor chỉ sống trong 1 file YAML. Viết interval/timeout/retries tay.
+    healthcheck:
+      test: ["CMD", "true"]

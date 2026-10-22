@@ -1,0 +1,24 @@
+{
+  "name": "coffee-pos",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "TODO: tên service Postgres trong docker network (xem docker-compose.yml)",
+    "database.port": "5432",
+    "database.user": "coffee",
+    "database.password": "coffee",
+    "database.dbname": "coffee_pos",
+    "plugin.name": "TODO: plugin logical decoding có sẵn trong Postgres 10+ (không cần cài thêm)",
+    "slot.name": "TODO: tên replication slot, ví dụ dbz_coffee — chữ thường, không dấu chấm",
+    "publication.name": "TODO: publication đã tạo sẵn trong data/samples/sql/01_schema.sql",
+    "table.include.list": "TODO: public.pos_transactions,public.pos_line_items (schema.table, phân cách bằng dấu phẩy)",
+    "topic.prefix": "TODO: coffee → topic sẽ là coffee.public.<table>",
+    "snapshot.mode": "initial",
+    "message.key.columns": "public.pos_transactions:transaction_id;public.pos_line_items:line_id",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "heartbeat.interval.ms": "10000"
+  }
+}

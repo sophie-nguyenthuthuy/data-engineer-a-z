@@ -1,0 +1,23 @@
+# Lời giải lab #20 — Data contract cho silver.pos_line_items.
+#   uv run python platform/quality/contract_check.py \
+#     --contract videos/20-data-quality/lab/solution/contracts/pos_line_items.yaml \
+#     --parquet "lake-local/silver/pos_line_items/dt=2026-02-15/*.parquet"
+contract: silver.pos_line_items
+version: "1.0"
+owner: data-platform@phinpho.example
+source_owner: pos-team@phinpho.example
+sla:
+  freshness_hours: 26
+  min_rows_per_day: 80      # ~1.75 món/hoá đơn × 50 hoá đơn tối thiểu của pos_transactions
+exceptions:
+  low_volume_dates: ["2026-02-17", "2026-02-18", "2026-02-19"]  # Tết: cửa hàng đóng
+columns:
+  - { name: line_id,        type: string,  required: true, unique: true }
+  - { name: transaction_id, type: string,  required: true, pattern: "^(HN|SG)[0-9]{2}-[0-9]{8}-[0-9]{5}$" }
+  - { name: item_id,        type: string,  required: true, pattern: "^(CF|TE|MT|OD|FD)[0-9]{2}$" }
+  - { name: size,           type: string,  required: true, allowed: [S, M, L] }
+  - { name: quantity,       type: integer, required: true, min: 1 }       # negative_qty đã vào quarantine
+  - { name: unit_price_vnd, type: integer, required: true, min: 15000 }   # món rẻ nhất size S
+  - { name: line_total_vnd, type: integer, required: true, min: 0 }
+changelog:
+  - { version: "1.0", date: 2026-02-01, note: "initial contract" }

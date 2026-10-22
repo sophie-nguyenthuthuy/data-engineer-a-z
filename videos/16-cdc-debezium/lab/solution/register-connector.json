@@ -1,0 +1,24 @@
+{
+  "name": "coffee-pos",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "coffee",
+    "database.password": "coffee",
+    "database.dbname": "coffee_pos",
+    "plugin.name": "pgoutput",
+    "slot.name": "dbz_coffee",
+    "publication.name": "dbz_publication",
+    "table.include.list": "public.pos_transactions,public.pos_line_items",
+    "topic.prefix": "coffee",
+    "snapshot.mode": "initial",
+    "message.key.columns": "public.pos_transactions:transaction_id;public.pos_line_items:line_id",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "heartbeat.interval.ms": "10000"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "type": "record",
+  "name": "PosTransaction",
+  "namespace": "vn.phinpho.pos",
+  "doc": "Một hoá đơn POS kèm các món — topic pos.transactions. Nguồn: data/generator/SCHEMA.md",
+  "fields": [
+    {
+      "name": "transaction_id",
+      "type": "string",
+      "doc": "{store_id}-{YYYYMMDD}-{seq:05d}; KHÔNG unique (duplicate cố ý)"
+    },
+    {
+      "name": "store_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "NULL cố ý: máy POS mới chưa cấu hình"
+    },
+    {
+      "name": "ts",
+      "type": "string",
+      "doc": "ISO-8601 kèm +07:00; vài dòng thiếu offset (tz_drift)"
+    },
+    {
+      "name": "channel",
+      "type": {
+        "type": "enum",
+        "name": "Channel",
+        "symbols": [
+          "store",
+          "app"
+        ]
+      }
+    },
+    {
+      "name": "payment_method",
+      "type": "string"
+    },
+    {
+      "name": "customer_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "staff_id",
+      "type": "string"
+    },
+    {
+      "name": "total_amount_vnd",
+      "type": "string",
+      "doc": "v2 (SAI): đổi long → string; reader cũ không đọc được → registry trả 409"
+    },
+    {
+      "name": "discount_vnd",
+      "type": "int",
+      "default": 0
+    },
+    {
+      "name": "is_rainy_day",
+      "type": "boolean"
+    },
+    {
+      "name": "items",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "LineItem",
+          "fields": [
+            {
+              "name": "item_id",
+              "type": "string"
+            },
+            {
+              "name": "size",
+              "type": {
+                "type": "enum",
+                "name": "Size",
+                "symbols": [
+                  "S",
+                  "M",
+                  "L"
+                ]
+              }
+            },
+            {
+              "name": "qty",
+              "type": "int",
+              "doc": "có số âm cố ý (negative_qty)"
+            },
+            {
+              "name": "unit_price_vnd",
+              "type": "long"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

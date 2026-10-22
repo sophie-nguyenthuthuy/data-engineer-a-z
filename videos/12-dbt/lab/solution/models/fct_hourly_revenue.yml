@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: fct_hourly_revenue
+    description: "Doanh thu theo giờ Việt Nam × cửa hàng. Nguồn cho biểu đồ giờ cao điểm (7–9 h, 14–16 h)."
+    tests:
+      - dbt_utils_free_unique_combination:
+          combination_of_columns: [business_date, store_id, hour_local]
+    columns:
+      - name: business_date
+        tests: [not_null]
+      - name: store_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_store')
+              field: store_id
+      - name: hour_local
+        description: "Giờ địa phương 0–23 (Asia/Ho_Chi_Minh)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+              quote: false
+      - name: transactions
+        tests: [dbt_utils_free_positive]
+      - name: revenue_vnd
+        # KHÔNG dùng dbt_utils_free_positive ở đây: có giờ chỉ 1 hoá đơn total = 0 (voucher ≥ tiền hàng) → FAIL 1.
+        # Doanh thu 0 là hợp lệ; âm mới sai (đã có singular test assert_revenue_non_negative cho bảng ngày).
+        tests: [not_null]
