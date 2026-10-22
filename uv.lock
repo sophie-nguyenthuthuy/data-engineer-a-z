@@ -711,6 +711,7 @@ dev = [
     { name = "pyarrow" },
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "pyyaml" },
     { name = "ruff" },
 ]
 
@@ -718,8 +719,8 @@ dev = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "dbt-core", specifier = ">=1.8,<1.10" },
-    { name = "dbt-duckdb", specifier = ">=1.8,<1.10" },
+    { name = "dbt-core", specifier = ">=1.9,<2" },
+    { name = "dbt-duckdb", specifier = ">=1.9,<2" },
     { name = "duckdb", specifier = ">=1.1" },
     { name = "pandas", specifier = ">=2.2" },
     { name = "polars", specifier = ">=1.10" },
@@ -727,6 +728,7 @@ dev = [
     { name = "pyarrow", specifier = ">=17" },
     { name = "pytest", specifier = ">=8" },
     { name = "pytest-cov", specifier = ">=5" },
+    { name = "pyyaml", specifier = ">=6" },
     { name = "ruff", specifier = ">=0.8" },
 ]
 

@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: dim_store
+    description: "Dimension cửa hàng."
+    columns:
+      - name: store_id
+        tests: [unique, not_null]
+  - name: dim_menu_item
+    columns:
+      - name: item_id
+        tests: [unique, not_null]
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+  - name: dim_date
+    columns:
+      - name: date_day
+        tests: [unique, not_null]
+  - name: fct_sales
+    description: "Fact grain = line item."
+    columns:
+      - name: line_id
+        tests: [unique, not_null]
+      - name: store_id
+        tests:
+          - relationships:
+              to: ref('dim_store')
+              field: store_id
+      - name: item_id
+        tests:
+          - relationships:
+              to: ref('dim_menu_item')
+              field: item_id
+  - name: fct_daily_store_revenue
+    tests:
+      - dbt_utils_free_unique_combination:
+          combination_of_columns: [business_date, store_id]

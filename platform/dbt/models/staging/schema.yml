@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_pos_transactions
+    columns:
+      - name: transaction_id
+        tests: [unique, not_null]
+      - name: channel
+        tests:
+          - accepted_values:
+              values: ["store", "app"]
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values: ["cash", "momo", "zalopay", "vnpay", "card", "app_wallet"]
+  - name: stg_pos_line_items
+    columns:
+      - name: line_id
+        tests: [unique, not_null]
+      - name: transaction_id
+        tests:
+          - relationships:
+              to: ref('stg_pos_transactions')
+              field: transaction_id
+      - name: quantity
+        tests:
+          - dbt_utils_free_positive  # macro-based generic test defined in tests/generic
+  - name: stg_stores
+    columns:
+      - name: store_id
+        tests: [unique, not_null]
+  - name: stg_menu_items
+    columns:
+      - name: item_id
+        tests: [unique, not_null]
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]

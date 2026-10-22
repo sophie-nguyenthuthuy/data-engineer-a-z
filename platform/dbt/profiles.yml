@@ -1,0 +1,31 @@
+# Profiles live in the repo on purpose: learners get a working setup with zero config.
+#   ci   → in-memory DuckDB, only used for `dbt parse` in GitHub Actions
+#   dev  → DuckDB file reading silver Parquet from ./lake-local (video #12)
+#   prod → Postgres in docker-compose (video #19 runs dbt from Airflow) — placeholder
+coffee_gold:
+  target: dev
+  outputs:
+    ci:
+      type: duckdb
+      path: ":memory:"
+      threads: 1
+    dev:
+      type: duckdb
+      path: "{{ env_var('DBT_DUCKDB_PATH', 'target/coffee_gold.duckdb') }}"
+      threads: 4
+      extensions: [httpfs, parquet]
+      settings:
+        s3_endpoint: "{{ env_var('DUCKDB_S3_ENDPOINT', 'localhost:9000') }}"
+        s3_access_key_id: "{{ env_var('AWS_ACCESS_KEY_ID', 'minioadmin') }}"
+        s3_secret_access_key: "{{ env_var('AWS_SECRET_ACCESS_KEY', 'minioadmin') }}"
+        s3_use_ssl: false
+        s3_url_style: path
+    prod:
+      type: postgres
+      host: "{{ env_var('DBT_PG_HOST', 'postgres') }}"
+      port: 5432
+      user: "{{ env_var('POSTGRES_USER', 'coffee') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'coffee') }}"
+      dbname: "{{ env_var('POSTGRES_DB', 'coffee_pos') }}"
+      schema: gold
+      threads: 4

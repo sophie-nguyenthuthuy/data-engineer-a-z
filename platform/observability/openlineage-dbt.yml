@@ -1,0 +1,5 @@
+# OPENLINEAGE_CONFIG=platform/observability/openlineage-dbt.yml dbt-ol build --profiles-dir platform/dbt
+transport:
+  type: http
+  url: http://localhost:5000
+  endpoint: api/v1/lineage

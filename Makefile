@@ -50,8 +50,8 @@ install: ## Install Python packages (generator, ingestion) + dev tools into .ven
 	$(UV) sync --all-packages --group dev
 
 generate: ## Regenerate committed samples with the generator (deterministic, < 2 MB)
-	$(UV) run coffeegen pos        --start 2026-02-14 --days 6 --stores 30 --scale 0.1 --seed 42 --out data/samples
-	$(UV) run coffeegen app-events --start 2026-02-16 --days 2 --stores 30 --scale 0.1 --seed 42 --out data/samples
+	$(UV) run coffeegen pos        --start 2026-02-14 --days 6 --stores 30 --scale 0.08 --seed 42 --out data/samples
+	$(UV) run coffeegen app-events --start 2026-02-16 --days 2 --stores 30 --scale 0.08 --seed 42 --out data/samples
 	$(UV) run coffeegen iot        --start 2026-02-16 --machines 60 --hz 0.0167 --hours 0.75 --seed 42 --out data/samples
 
 test: ## Run unit tests
@@ -66,7 +66,7 @@ fmt: ## Auto-fix lint + format
 	$(UV) run ruff format .
 
 dbt-parse: ## Parse the dbt project with the duckdb (CI) profile — no services needed
-	cd platform/dbt && $(UV) run dbt deps --profiles-dir . --target ci && $(UV) run dbt parse --profiles-dir . --target ci
+	cd platform/dbt && $(UV) run dbt parse --profiles-dir . --target ci
 
 smoke: ## Smoke-run the ingestion pipeline on committed samples → ./lake-local
-	$(UV) run coffee-ingest run --source data/samples --lake ./lake-local --date 2026-01-02
+	$(UV) run coffee-ingest run --source data/samples --lake ./lake-local --date 2026-02-15

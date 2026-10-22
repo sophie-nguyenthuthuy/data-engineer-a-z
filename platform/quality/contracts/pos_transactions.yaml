@@ -1,0 +1,24 @@
+# Data contract cho silver.pos_transactions — phiên bản 1.0
+# Đổi gì ở đây = đổi hợp đồng với downstream (dbt, dashboard). Tăng version, ghi changelog.
+contract: silver.pos_transactions
+version: "1.0"
+owner: data-platform@phinpho.example
+source_owner: pos-team@phinpho.example
+sla:
+  freshness_hours: 26      # dữ liệu ngày D phải có trước 02:00 ngày D+1
+  min_rows_per_day: 50     # dưới ngưỡng này → có thể source hỏng (trừ Tết, xem exceptions)
+exceptions:
+  low_volume_dates: ["2026-02-17", "2026-02-18", "2026-02-19"]  # Tết: cửa hàng đóng
+columns:
+  - { name: transaction_id,   type: string,    required: true, unique: true }
+  - { name: store_id,         type: string,    required: true, pattern: "^(HN|SG)[0-9]{2}$" }
+  - { name: ts,               type: timestamp, required: true }
+  - { name: channel,          type: string,    required: true, allowed: [store, app] }
+  - { name: payment_method,   type: string,    required: true, allowed: [cash, momo, zalopay, vnpay, card, app_wallet] }
+  - { name: customer_id,      type: string,    required: false, pattern: "^C[0-9]{6}$" }
+  - { name: staff_id,         type: string,    required: true }
+  - { name: total_amount_vnd, type: integer,   required: true, min: 0 }
+  - { name: discount_vnd,     type: integer,   required: true, min: 0 }
+  - { name: is_rainy_day,     type: boolean,   required: true }
+changelog:
+  - { version: "1.0", date: 2026-02-01, note: "initial contract" }

@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: silver
+    description: "Silver layer của lake — Parquet do coffee-ingest tạo ra (platform/ingestion). Đọc trực tiếp bằng DuckDB."
+    schema: silver
+    meta:
+      # dbt-duckdb: external_location biến mỗi source thành read_parquet(...) — không cần load vào DB.
+      external_location: "read_parquet('{{ env_var('LAKE_ROOT', var('lake_root')) }}/silver/{name}/*/*.parquet', hive_partitioning = true, union_by_name = true)"
+    tables:
+      - name: pos_transactions
+        description: "Hoá đơn đã dedup, ts ở UTC."
+        columns:
+          - name: transaction_id
+            tests: [unique, not_null]
+          - name: store_id
+            tests: [not_null]
+      - name: pos_line_items
+        columns:
+          - name: line_id
+            tests: [unique, not_null]
+      - name: stores
+      - name: menu_items
+      - name: customers
