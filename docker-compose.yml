@@ -1,0 +1,326 @@
+# Môi trường dùng chung của khoá "Data Engineer từ A–Z" (giới thiệu ở video #05).
+# Mọi lab sau đều chạy trên đây. Bật theo profile để tiết kiệm RAM:
+#   core          postgres + minio                          (~1.5 GB)
+#   notebook      + jupyter (pyspark kernel)                (~2 GB)
+#   streaming     + kafka, schema-registry, kafka-ui, debezium (~3 GB)
+#   spark         + spark master + 1 worker                 (~2.5 GB)
+#   orchestration + airflow webserver/scheduler, marquez    (~3 GB)
+#   analytics     + trino                                   (~2 GB)
+# `make up` = core + notebook; `make up PROFILE=all` bật tất cả. Xem SETUP.md.
+
+name: dea2z
+
+x-healthcheck-defaults: &hc
+  interval: 10s
+  timeout: 5s
+  retries: 12
+  start_period: 20s
+
+services:
+  # ─────────────────────────── CORE ───────────────────────────
+  postgres:
+    image: postgres:16.4
+    profiles: [core]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-coffee}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-coffee}
+      POSTGRES_DB: ${POSTGRES_DB:-coffee_pos}
+    command: >
+      postgres -c wal_level=logical -c max_wal_senders=10 -c max_replication_slots=10
+    ports: ["${POSTGRES_PORT:-5432}:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data/samples/sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-coffee} -d ${POSTGRES_DB:-coffee_pos}"]
+
+  minio:
+    image: minio/minio:RELEASE.2024-10-13T13-34-11Z
+    profiles: [core]
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "${MINIO_PORT:-9000}:9000"
+      - "${MINIO_CONSOLE_PORT:-9001}:9001"
+    volumes: [miniodata:/data]
+    healthcheck:
+      <<: *hc
+      test: ["CMD", "mc", "ready", "local"]
+
+  # Tạo bucket `lake` + prefix bronze/silver/gold rồi thoát.
+  minio-init:
+    image: minio/mc:RELEASE.2024-10-08T09-37-26Z
+    profiles: [core]
+    depends_on:
+      minio: { condition: service_healthy }
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 ${MINIO_ROOT_USER:-minioadmin} ${MINIO_ROOT_PASSWORD:-minioadmin} &&
+      mc mb --ignore-existing local/${LAKE_BUCKET:-lake} &&
+      mc mb --ignore-existing local/warehouse &&
+      for l in bronze silver gold; do echo '' | mc pipe local/${LAKE_BUCKET:-lake}/$$l/.keep; done &&
+      echo 'bucket ready'"
+
+  # ─────────────────────────── NOTEBOOK ───────────────────────────
+  jupyter:
+    build:
+      context: ./infra/docker
+      dockerfile: jupyter.Dockerfile
+    image: dea2z/jupyter:3.5.3
+    profiles: [notebook]
+    environment:
+      JUPYTER_TOKEN: dea2z
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-minioadmin}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      S3_ENDPOINT: http://minio:9000
+      POSTGRES_URL: postgresql://${POSTGRES_USER:-coffee}:${POSTGRES_PASSWORD:-coffee}@postgres:5432/${POSTGRES_DB:-coffee_pos}
+    ports: ["${JUPYTER_PORT:-8888}:8888"]
+    volumes:
+      - ./:/home/jovyan/work
+    depends_on:
+      postgres: { condition: service_healthy }
+      minio: { condition: service_healthy }
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:8888/api >/dev/null"]
+
+  # ─────────────────────────── SPARK ───────────────────────────
+  spark-master:
+    build:
+      context: ./infra/docker
+      dockerfile: spark.Dockerfile
+    image: dea2z/spark:3.5.3
+    profiles: [spark]
+    environment:
+      SPARK_MODE: master
+      SPARK_RPC_AUTHENTICATION_ENABLED: "no"
+      SPARK_RPC_ENCRYPTION_ENABLED: "no"
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-minioadmin}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "${SPARK_MASTER_PORT:-7077}:7077"
+      - "${SPARK_MASTER_UI_PORT:-8085}:8080"
+    volumes:
+      - ./platform/spark:/opt/jobs:ro
+      - ./data/samples:/opt/samples:ro
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080 >/dev/null"]
+
+  spark-worker:
+    image: dea2z/spark:3.5.3
+    profiles: [spark]
+    depends_on:
+      spark-master: { condition: service_healthy }
+    environment:
+      SPARK_MODE: worker
+      SPARK_MASTER_URL: spark://spark-master:7077
+      SPARK_WORKER_MEMORY: 2G
+      SPARK_WORKER_CORES: 2
+      SPARK_RPC_AUTHENTICATION_ENABLED: "no"
+      SPARK_RPC_ENCRYPTION_ENABLED: "no"
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-minioadmin}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    volumes:
+      - ./platform/spark:/opt/jobs:ro
+      - ./data/samples:/opt/samples:ro
+
+  # ─────────────────────────── STREAMING ───────────────────────────
+  kafka:
+    image: apache/kafka:3.8.0
+    profiles: [streaming]
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,EXTERNAL://localhost:${KAFKA_PORT:-9092}
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      CLUSTER_ID: dea2z-kraft-cluster-000001
+    ports: ["${KAFKA_PORT:-9092}:9092"]
+    volumes: [kafkadata:/var/lib/kafka/data]
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:29092 >/dev/null 2>&1"]
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.7.1
+    profiles: [streaming]
+    depends_on:
+      kafka: { condition: service_healthy }
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:29092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    ports: ["${SCHEMA_REGISTRY_PORT:-8081}:8081"]
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:8081/subjects >/dev/null"]
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:v0.7.2
+    profiles: [streaming]
+    depends_on:
+      kafka: { condition: service_healthy }
+    environment:
+      KAFKA_CLUSTERS_0_NAME: dea2z
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME: debezium
+      KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS: http://debezium:8083
+    ports: ["${KAFKA_UI_PORT:-8080}:8080"]
+
+  debezium:
+    image: debezium/connect:2.7.3.Final
+    profiles: [streaming]
+    depends_on:
+      kafka: { condition: service_healthy }
+      postgres: { condition: service_healthy }
+    environment:
+      BOOTSTRAP_SERVERS: kafka:29092
+      GROUP_ID: dea2z-connect
+      CONFIG_STORAGE_TOPIC: _connect_configs
+      OFFSET_STORAGE_TOPIC: _connect_offsets
+      STATUS_STORAGE_TOPIC: _connect_status
+      KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+    ports: ["${DEBEZIUM_PORT:-8083}:8083"]
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:8083/connectors >/dev/null"]
+
+  # ─────────────────────────── ORCHESTRATION ───────────────────────────
+  airflow-db:
+    image: postgres:16.4
+    profiles: [orchestration]
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes: [airflowdb:/var/lib/postgresql/data]
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+
+  airflow-init:
+    image: dea2z/airflow:2.9.3
+    build:
+      context: ./infra/docker
+      dockerfile: airflow.Dockerfile
+    profiles: [orchestration]
+    depends_on:
+      airflow-db: { condition: service_healthy }
+    environment: &airflow-env
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/airflow/dags
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "true"
+      AIRFLOW__OPENLINEAGE__TRANSPORT: '{"type":"http","url":"http://marquez-api:5000","endpoint":"api/v1/lineage"}'
+      AIRFLOW__OPENLINEAGE__NAMESPACE: dea2z
+      AIRFLOW_UID: ${AIRFLOW_UID:-50000}
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-admin}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-admin}
+      AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:-minioadmin}
+      AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      S3_ENDPOINT: http://minio:9000
+      POSTGRES_URL: postgresql://${POSTGRES_USER:-coffee}:${POSTGRES_PASSWORD:-coffee}@postgres:5432/${POSTGRES_DB:-coffee_pos}
+    entrypoint: /bin/bash
+    command: -c "airflow db migrate && airflow users create --username $${_AIRFLOW_WWW_USER_USERNAME} --password $${_AIRFLOW_WWW_USER_PASSWORD} --firstname Thuy --lastname DE --role Admin --email admin@example.com || true"
+    volumes: &airflow-vols
+      - ./platform/airflow/dags:/opt/airflow/dags
+      - ./platform/airflow/logs:/opt/airflow/logs
+      - ./platform/dbt:/opt/dbt
+      - ./platform/quality:/opt/quality
+      - ./platform/ingestion:/opt/ingestion:ro
+      - ./data/samples:/opt/samples:ro
+
+  airflow-webserver:
+    image: dea2z/airflow:2.9.3
+    profiles: [orchestration]
+    depends_on:
+      airflow-init: { condition: service_completed_successfully }
+    environment: *airflow-env
+    command: webserver
+    ports: ["${AIRFLOW_PORT:-8082}:8080"]
+    volumes: *airflow-vols
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/health >/dev/null"]
+
+  airflow-scheduler:
+    image: dea2z/airflow:2.9.3
+    profiles: [orchestration]
+    depends_on:
+      airflow-init: { condition: service_completed_successfully }
+    environment: *airflow-env
+    command: scheduler
+    volumes: *airflow-vols
+
+  marquez-db:
+    image: postgres:16.4
+    profiles: [orchestration]
+    environment:
+      POSTGRES_USER: marquez
+      POSTGRES_PASSWORD: marquez
+      POSTGRES_DB: marquez
+    volumes: [marquezdb:/var/lib/postgresql/data]
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "pg_isready -U marquez"]
+
+  marquez-api:
+    image: marquezproject/marquez:0.49.0
+    profiles: [orchestration]
+    depends_on:
+      marquez-db: { condition: service_healthy }
+    environment:
+      MARQUEZ_CONFIG: /opt/marquez/marquez.yml
+    volumes:
+      - ./platform/observability/marquez.yml:/opt/marquez/marquez.yml:ro
+    ports:
+      - "${MARQUEZ_API_PORT:-5000}:5000"
+      - "5001:5001"
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:5001/healthcheck >/dev/null"]
+
+  marquez-web:
+    image: marquezproject/marquez-web:0.49.0
+    profiles: [orchestration]
+    depends_on:
+      marquez-api: { condition: service_healthy }
+    environment:
+      MARQUEZ_HOST: marquez-api
+      MARQUEZ_PORT: 5000
+    ports: ["${MARQUEZ_WEB_PORT:-3000}:3000"]
+
+  # ─────────────────────────── ANALYTICS ───────────────────────────
+  trino:
+    image: trinodb/trino:460
+    profiles: [analytics]
+    depends_on:
+      minio: { condition: service_healthy }
+    ports: ["${TRINO_PORT:-8090}:8080"]
+    volumes:
+      - ./infra/docker/trino/catalog:/etc/trino/catalog:ro
+    healthcheck:
+      <<: *hc
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/v1/info | grep -q '\"starting\":false'"]
+
+volumes:
+  pgdata:
+  miniodata:
+  kafkadata:
+  airflowdb:
+  marquezdb:
